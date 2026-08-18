@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>abcweb.ing | Tvorivosť a technológie spojené</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Navigácia -->
+    <header class="navbar">
+        <div class="container nav-container">
+            <a href="#" class="logo">abcweb<span>.ing</span></a>
+
+            <button class="menu-toggle" type="button" aria-label="Otvoriť menu" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <nav class="nav-links">
+                <a href="#domov" class="active" data-key="nav-home">Domov</a>
+                <a href="#sluzby" data-key="nav-services">Služby</a>
+                <a href="#pristop" data-key="nav-approach">Náš prístup</a>
+                <a href="#blog" data-key="nav-blog">Blog</a>
+            </nav>
+            
+            <div class="nav-actions">
+                <!-- Prepínač jazykov -->
+                <div class="lang-switch">
+                    <button class="lang-btn active" onclick="setLanguage('sk')">SK</button>
+                    <span class="lang-divider">|</span>
+                    <button class="lang-btn" onclick="setLanguage('en')">EN</button>
+                </div>
+                <a href="#kontakt" class="btn btn-primary nav-btn" data-key="nav-cta">Objednať</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Sekcia -->
+    <section class="hero" id="domov">
+        <div class="blob-bg">
+            <div class="blob blob-1"></div>
+            <div class="blob blob-2"></div>
+            <div class="blob blob-3"></div>
+        </div>
+
+        <div class="container hero-container">
+            <div class="hero-content">
+                <h1 data-key="hero-title">TVORIVOSŤ A<br>TECHNOLÓGIE<br>SPOJENÉ.</h1>
+                <p data-key="hero-desc">Vytvárame moderné, rýchle a pútavé webové riešenia na mieru, ktoré pomáhajú vášmu podnikaniu rásť.</p>
+                <a href="#kontakt" class="btn btn-accent" data-key="hero-cta">Objednať konzultáciu zadarmo</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sekcia Služby -->
+    <section class="services" id="sluzby">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag" data-key="services-tag">Čo robíme</span>
+                <h2 data-key="services-title">Komplexné riešenia pre váš digitálny úspech</h2>
+                <p data-key="services-desc">Od prvotného nápadu až po finálne spustenie. Navrhujeme a vyvíjame weby, ktoré prinášajú reálne výsledky.</p>
+            </div>
+
+            <div class="services-grid">
+                <!-- Karta 1 -->
+                <div class="service-card">
+                    <div class="service-icon icon-blue">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
+                    </div>
+                    <h3 data-key="s1-title">Webstránky na mieru</h3>
+                    <p data-key="s1-desc">Moderný, rýchly a responzívny dizajn prispôsobený vašim potrebám a cieľovej skupine.</p>
+                </div>
+
+                <!-- Karta 2 -->
+                <div class="service-card">
+                    <div class="service-icon icon-purple">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+                    </div>
+                    <h3 data-key="s2-title">E-shopy & Rýchly predaj</h3>
+                    <p data-key="s2-desc">Výkonné internetové obchody s jednoduchou správou produktov a bezpečným platobným systémom.</p>
+                </div>
+
+                <!-- Karta 3 -->
+                <div class="service-card">
+                    <div class="service-icon icon-pink">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
+                    </div>
+                    <h3 data-key="s3-title">SEO & Výkonnostný marketing</h3>
+                    <p data-key="s3-desc">Optimalizácia pre vyhľadávače (Google), aby vás zákazníci našli na prvých priečkach.</p>
+                </div>
+
+                <!-- Karta 4 -->
+                <div class="service-card">
+                    <div class="service-icon icon-orange">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg>
+                    </div>
+                    <h3 data-key="s4-title">Redizajn & Správa webu</h3>
+                    <p data-key="s4-desc">Osvieženie starého webu do moderného šatu, pravidelné aktualizácie, údržba a bezpečnosť.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+<!-- Sekcia Náš prístup -->
+    <section class="approach" id="pristop">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag" data-key="approach-tag">Ako pracujeme</span>
+                <h2 data-key="approach-title">Jednoduchý proces k vášmu novému webu</h2>
+                <p data-key="approach-desc">Prevádzame vás celým procesom krok za krokom, bez zbytočného technického žargónu.</p>
+            </div>
+
+            <!-- Titulný obrázok sekcie -->
+            <div class="approach-hero-image">
+                <img src="4stage.png" alt="4 kroky procesu tvorby webu" class="approach-img">
+            </div>
+
+            <div class="process-steps">
+                <!-- Krok 1 -->
+                <div class="step-card">
+                    <div class="step-number num-blue">01</div>
+                    <h3 data-key="step1-title">Konzultácia & Stratégia</h3>
+                    <p  data-key="step1-desc">Spoznáme vaše podnikanie, ciele a cieľovú skupinu. Definujeme rozsah projektu a pripravíme jasný plán.</p>
+                </div>
+
+                <!-- Krok 2 -->
+                <div class="step-card">
+                    <div class="step-number num-purple">02</div>
+                    <h3  data-key="step2-title">Dizajn & UX</h3>
+                    <p  data-key="step2-desc">Vytvoríme vizuálny návrh na mieru s dôrazom na estetiku, prehľadnosť a zážitok návštevníka.</p>
+                </div>
+
+                <!-- Krok 3 -->
+                <div class="step-card">
+                    <div class="step-number num-cyan">03</div>
+                    <h3  data-key="step3-title">Vývoj & Testovanie</h3>
+                    <p  data-key="step3-desc">Návrh premeníme na čistý, rýchly a responzívny kód. Dôkladne otestujeme funkčnosť na všetkých zariadeniach.</p>
+                </div>
+
+                <!-- Krok 4 -->
+                <div class="step-card">
+                    <div class="step-number num-orange">04</div>
+                    <h3  data-key="step4-title">Spustenie & Podpora</h3>
+                    <p  data-key="step4-desc">Web nasadíme na vašu doménu, zaškolíme vás do obsluhy a zostávame vám k dispozícii pre ďalší rozvoj.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+<!-- Sekcia Cenník -->
+    <section class="pricing" id="cenik">
+        <div class="container">
+            <!-- Hlavička sekcie -->
+            <div class="section-header">
+                <span class="section-tag" data-key="pricing-tag">Transparentný cenník</span>
+                <h2 data-key="pricing-title">Investícia do vášho rastu</h2>
+                <p data-key="pricing-desc">Žiadne skryté poplatky. Vyberte si balík tvorby webu a úroveň mesačnej starostlivosti.</p>
+            </div>
+
+            <!-- 1. ČASŤ: Tvorba webstránky (Jednorazovo) -->
+            <div class="pricing-grid">
+                <!-- Starter -->
+                <div class="price-card">
+                    <div class="price-header">
+                        <h3 data-key="p1-name">Starter</h3>
+                        <p class="price-desc" data-key="p1-desc">Ideálne pre malé podniky, živnostníkov a efektívne landing page stránky.</p>
+                        <div class="price">
+                            <span class="amount">£350</span>
+                            <span class="period" data-key="p1-period">jednorazovo</span>
+                        </div>
+                    </div>
+                    <ul class="price-features">
+                        <li data-key="p1-f1">Jednostránkový web (Landing Page)</li>
+                        <li data-key="p1-f2">Moderný responzívny dizajn</li>
+                        <li data-key="p1-f3">Základné SEO nastavenie</li>
+                        <li data-key="p1-f4">Kontaktný formulár & Google Mapy</li>
+                        <li data-key="p1-f5">Rýchle načítanie & SSL certifikát</li>
+                    </ul>
+                    <a href="#kontakt" class="btn btn-outline btn-full" data-key="p1-btn">Vybrať Starter</a>
+                </div>
+
+                <!-- Business (Zvýraznené) -->
+                <div class="price-card featured">
+                    <div class="badge" data-key="p2-badge">Najobľúbenejšie</div>
+                    <div class="price-header">
+                        <h3 data-key="p2-name">Business</h3>
+                        <p class="price-desc" data-key="p2-desc">Kompletný firemný web na mieru navrhnutý na prilákanie a konverziu zákazníkov.</p>
+                        <div class="price">
+                            <span class="amount">£1,100</span>
+                            <span class="period" data-key="p2-period">jednorazovo</span>
+                        </div>
+                    </div>
+                    <ul class="price-features">
+                        <li data-key="p2-f1">Všetko, čo je v Starter balíku</li>
+                        <li data-key="p2-f2">Až 8 podstránok na mieru</li>
+                        <li data-key="p2-f3">Podpora viacerých jazykov (EN / SK)</li>
+                        <li data-key="p2-f4">Integrácia Google Analytics</li>
+                        <li data-key="p2-f5">Základné zaškolenie do CMS & podpora</li>
+                    </ul>
+                    <a href="#kontakt" class="btn btn-accent btn-full" data-key="p2-btn">Vybrať Business</a>
+                </div>
+
+                <!-- E-Commerce -->
+                <div class="price-card">
+                    <div class="price-header">
+                        <h3 data-key="p3-name">E-Commerce</h3>
+                        <p class="price-desc" data-key="p3-desc">Výkonný internetový obchod vytvorený na bezproblémový predaj vašich produktov.</p>
+                        <div class="price">
+                            <span class="amount">£2,100</span>
+                            <span class="period" data-key="p3-period">jednorazovo</span>
+                        </div>
+                    </div>
+                    <ul class="price-features">
+                        <li data-key="p3-f1">Kompletné nastavenie online obchodu</li>
+                        <li data-key="p3-f2">Platobné brány & integrácia dopravy</li>
+                        <li data-key="p3-f3">Správa produktov & kategórií</li>
+                        <li data-key="p3-f4">Automatické faktúry & transakčné e-maily</li>
+                        <li data-key="p3-f5">Optimalizácia konverzného pomeru</li>
+                    </ul>
+                    <a href="#kontakt" class="btn btn-outline btn-full" data-key="p3-btn">Vybrať E-Commerce</a>
+                </div>
+            </div>
+
+            <!-- Upozornenie na individuálnu cenu -->
+                <div class="pricing-note">
+                    <p data-key="pricing-custom-note">
+                        Každý projekt je jedinečný a jeho rozsah sa môže líšiť, čomu prispôsobujeme aj finálnu cenu. U nás máte vždy <strong>presnú a konečnú cenu projektu stanovenú ešte pred začatím prác</strong>. Bez vášho výslovného potvrdenia tejto sumy na projekte nezačneme pracovať a vy tak <strong>neplatíte absolútne nič</strong>.
+                    </p>
+                </div>
+
+            <!-- 2. ČASŤ: Mesačná správa & Údržba -->
+            <div class="section-header" style="margin-top: 80px;">
+                <span class="section-tag" data-key="care-tag">Mesačná starostlivosť</span>
+                <h2 data-key="care-title">Správa a údržba webu</h2>
+                <p data-key="care-desc">Nechajte technické záležitosti na nás a sústreďte sa plne na vaše podnikanie.</p>
+            </div>
+
+            <div class="pricing-grid">
+                <!-- Level 1: Základná údržba -->
+                <div class="price-card">
+                    <div class="price-header">
+                        <h3 data-key="m1-name">Basic Care</h3>
+                        <p class="price-desc" data-key="m1-desc">Pre webstránky, ktoré vyžadujú stabilný hosting, bezpečnosť a plynulý chod.</p>
+                        <div class="price">
+                            <span class="amount">£35</span>
+                            <span class="period" data-key="m-period">/ mesiac</span>
+                        </div>
+                    </div>
+                    <ul class="price-features">
+                        <li data-key="m1-f1">Rýchly Webhosting & SSL v cene</li>
+                        <li data-key="m1-f2">Pravidelné mesačné zálohy</li>
+                        <li data-key="m1-f3">Aktualizácia systému a pluginov</li>
+                        <li data-key="m1-f4">Bezpečnostný monitoring 24/7</li>
+                        <li data-key="m1-f5">E-mailová podpora</li>
+                    </ul>
+                    <a href="#kontakt" class="btn btn-outline btn-full" data-key="m1-btn">Vybrať Basic Care</a>
+                </div>
+
+                <!-- Level 2: Aktívna správa (Zvýraznená) -->
+                <div class="price-card featured">
+                    <div class="badge" data-key="m2-badge">Odporúčané</div>
+                    <div class="price-header">
+                        <h3 data-key="m2-name">Pro Care</h3>
+                        <p class="price-desc" data-key="m2-desc">Ideálne pre firmy, ktoré potrebujú pravidelne aktualizovať obsah a texty na webe.</p>
+                        <div class="price">
+                            <span class="amount">£75</span>
+                            <span class="period" data-key="m-period">/ mesiac</span>
+                        </div>
+                    </div>
+                    <ul class="price-features">
+                        <li data-key="m2-f1">Všetko z balíka Basic Care</li>
+                        <li data-key="m2-f2">Týždenné zálohovanie dát</li>
+                        <li data-key="m2-f3"><strong>Až 2 hodiny úprav obsahu</strong> mesačne</li>
+                        <li data-key="m2-f4">Prednostné riešenie požiadaviek</li>
+                        <li data-key="m2-f5">Mesačný prehľad návštevnosti</li>
+                    </ul>
+                    <a href="#kontakt" class="btn btn-accent btn-full" data-key="m2-btn">Vybrať Pro Care</a>
+                </div>
+
+                <!-- Level 3: Kompletná opatera -->
+                <div class="price-card">
+                    <div class="price-header">
+                        <h3 data-key="m3-name">Premium Care</h3>
+                        <p class="price-desc" data-key="m3-desc">Kompletný outsourcing digitálnej správy vrátane SEO úprav a prioritnej podpory.</p>
+                        <div class="price">
+                            <span class="amount">£140</span>
+                            <span class="period" data-key="m-period">/ mesiac</span>
+                        </div>
+                    </div>
+                    <ul class="price-features">
+                        <li data-key="m3-f1">Všetko z balíka Pro Care</li>
+                        <li data-key="m3-f2">Denné zálohovanie dát</li>
+                        <li data-key="m3-f3"><strong>Až 4 hodiny úprav obsahu</strong> mesačne</li>
+                        <li data-key="m3-f4">Mesačný SEO & Výkonnostný audit</li>
+                        <li data-key="m3-f5">Garantovaná podpora do 24 hodín</li>
+                    </ul>
+                    <a href="#kontakt" class="btn btn-outline btn-full" data-key="m3-btn">Vybrať Premium Care</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="kontakt">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag" data-key="contact-tag">Ozvite sa</span>
+                <h2 data-key="contact-title">Vybudujme spoločne niečo skvelé.</h2>
+                <p data-key="contact-desc">Máte na mysli nejaký projekt alebo chcete prediskutovať, ako môžeme pomôcť vašej firme rásť? Pošlite nám správu.</p>
+            </div>
+
+            <div class="contact-wrapper">
+                <!-- Contact Info Cards -->
+                <div class="contact-info">
+                    <div class="info-card">
+                        <div class="info-icon icon-blue">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                        </div>
+                        <div>
+                            <h3>Email</h3>
+                            <a href="mailto:info@abcweb.ing">info@abcweb.ing</a>
+                        </div>
+                    </div>
+
+                    <div class="info-card">
+                        <div class="info-icon icon-purple">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                        </div>
+                        <div>
+                            <h3 data-key="contact-phone-title">Zavolajte nám</h3>
+                            <a href="tel:+447748608115">+44 7748 60815</a>
+                        </div>
+                    </div>
+
+                    <div class="info-card">
+                        <div class="info-icon icon-orange">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                        </div>
+                        <div>
+                            <h3 data-key="contact-hours-title">Pracovné hodiny</h3>
+                            <p data-key="contact-hours-val">Pondelok - Piatok: 9:00 - 18:00</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact Form -->
+                <form class="contact-form" action="https://formsubmit.co/alexander.bohus@gmail.com" method="POST">
+                    <!-- Zbráni spamu (Honeypot) -->
+                    <input type="text" name="_honey" style="display:none">
+
+                    <!-- Vypne reCAPTCHA overenie pre čistejší odosielací proces -->
+                    <input type="checkbox" name="_captcha" value="false" style="display:none">
+
+                    <!-- Predmet e-mailu, ktorý vám príde -->
+                    <input type="hidden" name="_subject" value="Nová správa z webu abcweb.ing!">
+
+                    <!-- Stránka, na ktorú používateľa presmeruje po odoslaní (voliteľné) -->
+                    <input type="hidden" name="_next" value="https://abcweb.ing/thankyou.html">
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="name" data-key="form-label-name">Vaše meno</label>
+                            <input type="text" id="name" name="name" placeholder="Nick" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email" data-key="form-label-email">Váš email</label>
+                            <input type="email" id="email" name="email" placeholder="nick@example.com" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="package" data-key="form-label-package">Otázka alebo záujem o</label>
+                        <select id="package" name="package">
+                            <option value="general" data-key="opt-general">Všeobecná otázky</option>
+                            <option value="starter" data-key="opt-starter">Starter (£350)</option>
+                            <option value="business">Business (£1,100)</option>
+                            <option value="ecommerce">E-Commerce (£2,100)</option>
+                            <option value="custom" data-key="opt-custom">Projekt na mierut</option>
+                            <option value="basic-care" data-key="opt-basic-care">Basic Care (£35 / mesiac)</option>
+                            <option value="pro-care" data-key="opt-pro-care">Pro Care (£75 / mesiac)</option>
+                            <option value="premium-care" data-key="opt-premium-care">Premium Care (£140 / mesiac)</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message" data-key="form-label-message">Vaša správa</label>
+                        <textarea id="message" data-key="form-placeholder-message" name="message" rows="5" placeholder="Napíšte nám viac o..." required></textarea>
+                    </div>
+
+                    <button type="submit" data-key="form-btn-submit" class="btn btn-accent btn-full">Poslať správ</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-top">
+                <!-- Stĺpec 1: O nás / Brand -->
+                <div class="footer-brand">
+                    <a href="#" class="footer-logo">abcweb<span>.ing</span></a>
+                    <p class="footer-text" data-key="footer-desc">
+                        Navrhujeme a vyvíjame moderné webové stránky a e-shopy na mieru, ktoré menia návštevníkov na platiacich zákazníkov.
+                    </p>
+                    <div class="social-links">
+                        <a href="#" aria-label="LinkedIn" class="social-btn">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+                        </a>
+                        <a href="#" aria-label="Facebook" class="social-btn">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+                        </a>
+                        <a href="#" aria-label="Instagram" class="social-btn">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Stĺpec 2: Navigácia -->
+                <div class="footer-links">
+                    <h4 data-key="footer-nav-title">Navigácia</h4>
+                    <ul>
+                        <li><a  data-key="footer-services-title" href="#sluzby">Služby</a></li>
+                        <li><a  data-key="footer-how-we-work" href="#pristop">Náš prístup</a></li>
+                        <li><a data-key="footer-price-title" href="#cenik">Cenník</a></li>
+                        <li><a data-key="footer-contact-title" href="#kontakt">Kontakt</a></li>
+                    </ul>
+                </div>
+
+                <!-- Stĺpec 3: Balíčky -->
+                <div class="footer-links">
+                    <h4 data-key="footer-services-title" >Služby</h4>
+                    <ul>
+                        <li><a href="#cenik">Starter Web</a></li>
+                        <li><a href="#cenik">Business Web</a></li>
+                        <li><a href="#cenik">E-Commerce</a></li>
+                        <li><a data-key="s1-title" href="#kontakt">Riešenia na mieru</a></li>
+                    </ul>
+                </div>
+
+                <!-- Stĺpec 4: Kontakt -->
+                <div class="footer-contact">
+                    <h4 data-key="nav-contact">Kontakt</h4>
+                    <p data-key="footer-contact-desc">Máte otázky alebo záujem o spoluprácu?</p>
+                    <a href="mailto:info@abcweb.ing" class="footer-email">info@abcweb.ing</a>
+                    <a href="tel:+441234567890" class="footer-phone">+44 7748 608115</a>
+                </div>
+            </div>
+
+            <!-- Spodná čiara & Copyright -->
+            <div class="footer-bottom">
+                <p data-key="footer-rights">&copy; 2026 abcweb.ing. Všetky práva vyhradené.</p>
+                <div class="legal-links">
+                    <a href="privacy.html" data-key="footer-privacy">Ochrana osobných údajov</a>
+                    <a href="terms.html" data-key="footer-terms">Všeobecné podmienky</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

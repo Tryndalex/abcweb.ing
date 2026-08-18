@@ -1,0 +1,1068 @@
+/* ==========================================
+   1. ZÁKLADNÉ NASTAVENIA A REBOOT
+   ========================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: #ffffff;
+    color: #1a1a24;
+    overflow-x: hidden;
+    line-height: 1.5;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+/* ==========================================
+   2. NAVIGÁCIA (NAVBAR)
+   ========================================== */
+.navbar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100; /* Vysoký z-index zaručí, že navigácia bude vždy viditeľná */
+    padding: 28px 0;
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+}
+
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 44px;
+    height: 44px;
+    border: 1px solid #e2e8f0;
+    background: #ffffff;
+    border-radius: 12px;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(15, 23, 42, 0.06);
+    padding: 0;
+}
+
+.menu-toggle span {
+    display: block;
+    width: 20px;
+    height: 2px;
+    margin: 0 auto;
+    background: #0f172a;
+    border-radius: 10px;
+}
+
+/* Logo */
+.logo {
+    font-size: 26px;
+    font-weight: 800;
+    color: #0f172a;
+    text-decoration: none;
+    letter-spacing: -0.5px;
+}
+
+.logo span {
+    color: #2563eb;
+}
+
+/* Odkazy v menu */
+.nav-links {
+    display: flex;
+    gap: 32px;
+    align-items: center;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #475569;
+    font-weight: 600;
+    font-size: 15px;
+    transition: color 0.25s ease;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+    color: #0f172a;
+}
+
+/* Pravá časť navigácie (Prepínač + Tlačidlo) */
+.nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+}
+
+/* Prepínač jazykov SK / EN */
+.lang-switch {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    background: rgba(241, 245, 249, 0.8);
+    padding: 4px 8px;
+    border-radius: 20px;
+    border: 1px solid #e2e8f0;
+}
+
+.lang-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 13px;
+    color: #94a3b8;
+    padding: 2px 6px;
+    border-radius: 12px;
+    transition: all 0.2s ease;
+}
+
+.lang-btn:hover {
+    color: #0f172a;
+}
+
+.lang-btn.active {
+    color: #0f172a;
+    background: #ffffff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.lang-divider {
+    color: #cbd5e1;
+    font-size: 12px;
+}
+
+/* ==========================================
+   3. TLAČIDLÁ (BUTTONS)
+   ========================================== */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 28px;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 15px;
+    text-decoration: none;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+}
+
+.btn-primary {
+    background: #ffffff;
+    color: #0f172a;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.btn-primary:hover {
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+    background: #f8fafc;
+}
+
+.btn-accent {
+    background: #2563eb;
+    color: #ffffff;
+    border: none;
+    box-shadow: 0 8px 25px rgba(37, 99, 235, 0.35);
+}
+
+.btn-accent:hover {
+    background: #1d4ed8;
+    box-shadow: 0 12px 30px rgba(37, 99, 235, 0.45);
+}
+
+/* ==========================================
+   4. HERO SEKCIA A ANIMOVANÉ TVARY (BLOBS)
+   ========================================== */
+.hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding-top: 100px;
+    padding-bottom: 60px;
+    /* Dôležité: Zrušenie orezávania, aby bubliny moli vyčnievať */
+    overflow: visible;
+}
+
+.hero-container {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+}
+
+.hero-content {
+    max-width: 580px;
+}
+
+.hero-content h1 {
+    font-size: 56px;
+    line-height: 1.08;
+    font-weight: 800;
+    letter-spacing: -1.5px;
+    color: #0f172a;
+    margin-bottom: 24px;
+}
+
+.hero-content p {
+    font-size: 18px;
+    line-height: 1.6;
+    color: #475569;
+    margin-bottom: 36px;
+    font-weight: 400;
+}
+
+/* ==========================================
+   EFEKT LÁVOVEJ LAMPY (LAVA LAMP BLOBS)
+   ========================================== */
+.blob-bg {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 65%;
+    height: 100%;
+    /* Dôležité: Povolí presah bublín na okrajoch aj smerom nadol do ďalšej sekcie */
+    overflow: visible; 
+    pointer-events: none;
+    z-index: 13;
+}
+
+.blob {
+    position: absolute;
+    /* Pôvodný organický tvar namiesto dokonalého kruhu */
+    border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+    filter: blur(11px);
+    opacity: 0.85;
+    animation: float 14s infinite ease-in-out alternate;
+    will-change: transform, border-radius;
+}
+
+/* Kvapka 1 - Ružovo-fialová */
+.blob-1 {
+    top: 1%;
+    right: -5%;
+    width: 520px;
+    height: 520px;
+    background: linear-gradient(135deg, #f43f5e 0%, #8b5cf6 100%);
+}
+
+/* Kvapka 2 - Modro-tyrkysová */
+.blob-2 {
+    top: 35%;
+    right: 5%;
+    width: 480px;
+    height: 480px;
+    background: linear-gradient(135deg, #06b6d4 0%, #3b82f6 100%);
+    animation-delay: -4s;
+}
+
+/* Kvapka 3 - Oranžovo-žltá */
+.blob-3 {
+    bottom: -5%;
+    right: 10%;
+    width: 520px;
+    height: 420px;
+    background: linear-gradient(135deg, #f97316 0%, #eab308 100%);
+    animation-delay: -8s;
+}
+
+/* Jemná animácia pohybu pre efekt "plávania" */
+@keyframes float {
+    0% {
+        transform: translate(0px, 0px) scale(1);
+        border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+    }
+    33% {
+        transform: translate(-30px, 20px) scale(1.05);
+        border-radius: 60% 40% 30% 70% / 50% 60% 30% 60%;
+    }
+    66% {
+        transform: translate(25px, -15px) scale(0.95);
+        border-radius: 30% 60% 70% 40% / 60% 30% 60% 40%;
+    }
+    100% {
+        transform: translate(-10px, -30px) scale(1.02);
+        border-radius: 50% 50% 30% 70% / 30% 60% 40% 70%;
+    }
+}
+
+/* ==========================================
+   ANIMÁCIE DEFORMÁCIE A POHYBU (LAVA LAMP)
+   ========================================== */
+
+/* Animácia mení nielen polohu, ale aj tvar (border-radius) */
+@keyframes lava1 {
+    0%, 100% {
+        transform: translate(0, 0) scale(1);
+        border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+    }
+    25% {
+        transform: translate(-30px, 50px) scale(1.1);
+        border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%;
+    }
+    50% {
+        transform: translate(40px, -20px) scale(0.95);
+        border-radius: 50% 50% 20% 80% / 20% 80% 40% 60%;
+    }
+    75% {
+        transform: translate(-20px, -50px) scale(1.05);
+        border-radius: 70% 30% 50% 50% / 30% 40% 60% 70%;
+    }
+}
+
+@keyframes lava2 {
+    0%, 100% {
+        transform: translate(0, 0) scale(1);
+        border-radius: 40% 60% 50% 50% / 40% 40% 60% 60%;
+    }
+    33% {
+        transform: translate(50px, -40px) scale(1.15);
+        border-radius: 60% 40% 60% 40% / 70% 30% 50% 50%;
+    }
+    66% {
+        transform: translate(-40px, 30px) scale(0.9);
+        border-radius: 30% 70% 40% 60% / 30% 60% 40% 70%;
+    }
+}
+
+@keyframes lava3 {
+    0%, 100% {
+        transform: translate(0, 0) scale(1);
+        border-radius: 50% 50% 70% 30% / 50% 70% 30% 50%;
+    }
+    50% {
+        transform: translate(-60px, -30px) scale(1.1);
+        border-radius: 30% 70% 30% 70% / 70% 30% 70% 30%;
+    }
+}
+
+
+/* ==========================================
+   5. RESPONZIVITA (MOBILE & TABLET)
+   ========================================== */
+@media (max-width: 992px) {
+    .menu-toggle {
+        display: flex;
+        order: 3;
+    }
+
+    .nav-links {
+        position: absolute;
+        top: calc(100% + 12px);
+        left: 0;
+        right: 0;
+        display: none;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 14px;
+        background: rgba(255, 255, 255, 0.97);
+        border: 1px solid #e2e8f0;
+        border-radius: 18px;
+        padding: 18px 20px;
+        box-shadow: 0 16px 32px rgba(15, 23, 42, 0.08);
+    }
+
+    .nav-links.open {
+        display: flex;
+    }
+
+    .nav-actions {
+        margin-left: auto;
+    }
+
+    .hero-content h1 {
+        font-size: 42px;
+    }
+
+    .blob-bg {
+        width: 100%;
+        opacity: 0.4;
+    }
+}
+
+@media (max-width: 576px) {
+    .navbar {
+        padding: 16px 0;
+    }
+
+    .hero {
+        padding-top: 120px;
+    }
+
+    .hero-content h1 {
+        font-size: 34px;
+    }
+
+    .hero-content p {
+        font-size: 16px;
+    }
+
+    .nav-btn {
+        display: none; /* Na mobilných zariadeniach ponechá len prepínač jazykov */
+    }
+}
+
+/* ==========================================
+   SEKCIA SLUŽBY (SERVICES)
+   ========================================== */
+.services {
+    padding: 100px 0;
+    background-color: #f8fafc;
+    position: relative;
+    z-index: 2;
+}
+
+.section-header {
+    text-align: center;
+    max-width: 650px;
+    margin: 0 auto 60px auto;
+}
+
+.section-tag {
+    display: inline-block;
+    font-weight: 700;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #2563eb;
+    background: #dbeafe;
+    padding: 6px 16px;
+    border-radius: 20px;
+    margin-bottom: 16px;
+}
+
+.section-header h2 {
+    font-size: 38px;
+    font-weight: 800;
+    color: #0f172a;
+    letter-spacing: -1px;
+    line-height: 1.2;
+    margin-bottom: 16px;
+}
+
+.section-header p {
+    font-size: 16px;
+    color: #64748b;
+    line-height: 1.6;
+}
+
+/* Mriežka kariet */
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 30px;
+}
+
+.service-card {
+    background: #ffffff;
+    padding: 36px 28px;
+    border-radius: 20px;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.service-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.08);
+    border-color: #cbd5e1;
+}
+
+/* Ikony s farebným pozadím */
+.service-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 24px;
+}
+
+.icon-blue {
+    background: #dbeafe;
+    color: #2563eb;
+}
+
+.icon-purple {
+    background: #f3e8ff;
+    color: #9333ea;
+}
+
+.icon-pink {
+    background: #ffe4e6;
+    color: #e11d48;
+}
+
+.icon-orange {
+    background: #ffedd5;
+    color: #ea580c;
+}
+
+.service-card h3 {
+    font-size: 20px;
+    font-weight: 700;
+    color: #0f172a;
+    margin-bottom: 12px;
+}
+
+.service-card p {
+    font-size: 15px;
+    color: #64748b;
+    line-height: 1.6;
+}
+
+/* Responzivita pre Služby */
+@media (max-width: 768px) {
+    .services {
+        padding: 60px 0;
+    }
+    
+    .section-header h2 {
+        font-size: 28px;
+    }
+}
+
+/* ==========================================
+   SEKCIA NÁŠ PRÍSTUP (S TITULNÝM OBRÁZKOM)
+   ========================================== */
+.approach {
+    padding: 100px 0;
+    background-color: #ffffff;
+    position: relative;
+    z-index: 2;
+}
+
+/* Titulný obrázok v hlavičke sekcie */
+.approach-hero-image {
+    text-align: center;
+    margin: 0 auto 50px auto;
+    max-width: 950px;
+}
+
+.approach-img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+}
+
+.process-steps {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 30px;
+}
+
+.step-card {
+    background: #f8fafc;
+    padding: 32px 24px;
+    border-radius: 20px;
+    border: 1px solid #f1f5f9;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.step-card:hover {
+    transform: translateY(-5px);
+    background: #ffffff;
+    border-color: #cbd5e1;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+}
+
+.step-number {
+    font-size: 36px;
+    font-weight: 800;
+    margin-bottom: 16px;
+    opacity: 0.9;
+}
+
+/* Farebné čísla pre kroky */
+.step-number.num-blue { color: #2563eb; }
+.step-number.num-purple { color: #9333ea; }
+.step-number.num-cyan { color: #06b6d4; }
+.step-number.num-orange { color: #f97316; }
+
+.step-card h3 {
+    font-size: 18px;
+    font-weight: 700;
+    color: #0f172a;
+    margin-bottom: 12px;
+}
+
+.step-card p {
+    font-size: 14px;
+    color: #64748b;
+    line-height: 1.6;
+}
+
+@media (max-width: 768px) {
+    .approach {
+        padding: 60px 0;
+    }
+    
+    .approach-hero-image {
+        margin-bottom: 30px;
+    }
+}
+
+
+/* ==========================================
+   SEKCIA CENNÍK (PRICING)
+   ========================================== */
+
+.pricing {
+    padding: 100px 0;
+    background-color: #f8fafc;
+    position: relative;
+    z-index: 2;
+}
+
+.pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    align-items: stretch;
+}
+
+.price-card {
+    background: #ffffff;
+    border-radius: 24px;
+    padding: 40px 32px;
+    border: 1px solid #e2e8f0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.price-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+}
+
+
+.pricing-note {
+    max-width: 800px;
+    margin: 35px auto 0;
+    padding: 18px 25px;
+    background: rgba(255, 255, 255, 0.05);
+    border-left: 4px solid var(--accent-color, #007bff);
+    border-radius: 8px;
+    text-align: center;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: black;
+}
+
+.pricing-note strong {
+    color: #007bff;
+}
+
+/* Zvýraznená karta */
+.price-card.featured {
+    border: 2px solid #2563eb;
+    box-shadow: 0 10px 25px rgba(37, 99, 235, 0.15);
+}
+
+.badge {
+    position: absolute;
+    top: -14px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #2563eb;
+    color: #ffffff;
+    font-size: 12px;
+    font-weight: 800;
+    text-transform: uppercase;
+    padding: 4px 16px;
+    border-radius: 20px;
+    letter-spacing: 0.5px;
+}
+
+.price-header h3 {
+    font-size: 22px;
+    font-weight: 800;
+    color: #0f172a;
+    margin-bottom: 8px;
+}
+
+.price-desc {
+    font-size: 14px;
+    color: #64748b;
+    min-height: 42px;
+    line-height: 1.5;
+    margin-bottom: 24px;
+}
+
+.price {
+    margin-bottom: 24px;
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+}
+
+.price .amount {
+    font-size: 42px;
+    font-weight: 800;
+    color: #0f172a;
+    letter-spacing: -1px;
+}
+
+.price .period {
+    font-size: 14px;
+    font-weight: 600;
+    color: #64748b;
+    text-transform: uppercase;
+}
+
+.price .currency-uk {
+    font-size: 16px;
+    font-weight: 600;
+    color: #94a3b8;
+}
+
+.price-features {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 32px 0;
+}
+
+.price-features li {
+    font-size: 14px;
+    color: #475569;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.btn-full {
+    width: 100%;
+    text-align: center;
+}
+
+.btn-outline {
+    background: transparent;
+    color: #0f172a;
+    border: 1px solid #cbd5e1;
+}
+
+.btn-outline:hover {
+    background: #f1f5f9;
+}
+
+/* ==========================================
+   CONTACT SECTION
+   ========================================== */
+.contact {
+    padding: 100px 0;
+    background-color: #ffffff;
+    position: relative;
+    z-index: 2;
+}
+
+.contact-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 50px;
+    align-items: start;
+}
+
+/* Info Cards */
+.contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.info-card {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    background: #f8fafc;
+    padding: 24px;
+    border-radius: 16px;
+    border: 1px solid #e2e8f0;
+}
+
+.info-card h3 {
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #64748b;
+    margin-bottom: 4px;
+    letter-spacing: 0.5px;
+}
+
+.info-card a, .info-card p {
+    font-size: 16px;
+    font-weight: 600;
+    color: #0f172a;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.info-card a:hover {
+    color: #2563eb;
+}
+
+.info-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+/* Contact Form */
+.contact-form {
+    background: #ffffff;
+    padding: 40px;
+    border-radius: 24px;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.form-group label {
+    font-size: 14px;
+    font-weight: 600;
+    color: #0f172a;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 12px 16px;
+    border-radius: 10px;
+    border: 1px solid #cbd5e1;
+    font-size: 15px;
+    color: #0f172a;
+    background-color: #f8fafc;
+    outline: none;
+    transition: all 0.2s ease;
+    font-family: inherit;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    border-color: #2563eb;
+    background-color: #ffffff;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+/* Responsive Design */
+@media (max-width: 992px) {
+    .contact-wrapper {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 576px) {
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+    .contact-form {
+        padding: 24px;
+    }
+}
+
+/* ==========================================
+   FOOTER SECTION
+   ========================================== */
+.footer {
+    background-color: #0f172a;
+    color: #94a3b8;
+    padding: 80px 0 30px 0;
+    position: relative;
+    z-index: 2;
+}
+
+.footer-top {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1.5fr;
+    gap: 40px;
+    margin-bottom: 60px;
+}
+
+/* Brand */
+.footer-logo {
+    font-size: 24px;
+    font-weight: 800;
+    color: #ffffff;
+    text-decoration: none;
+    display: inline-block;
+    margin-bottom: 16px;
+}
+
+.footer-logo span {
+    color: #2563eb;
+}
+
+.footer-text {
+    font-size: 14px;
+    line-height: 1.6;
+    margin-bottom: 24px;
+    max-width: 320px;
+}
+
+/* Social Icon Buttons */
+.social-links {
+    display: flex;
+    gap: 12px;
+}
+
+.social-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.05);
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.2s ease;
+}
+
+.social-btn:hover {
+    background: #2563eb;
+    border-color: #2563eb;
+    transform: translateY(-3px);
+}
+
+/* Navigation & Links */
+.footer-links h4,
+.footer-contact h4 {
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.footer-links ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-links li {
+    margin-bottom: 12px;
+}
+
+.footer-links a {
+    color: #94a3b8;
+    text-decoration: none;
+    font-size: 14px;
+    transition: color 0.2s ease;
+}
+
+.footer-links a:hover {
+    color: #ffffff;
+}
+
+/* Contact Column */
+.footer-contact p {
+    font-size: 14px;
+    margin-bottom: 12px;
+}
+
+.footer-email,
+.footer-phone {
+    display: block;
+    color: #ffffff;
+    font-size: 15px;
+    font-weight: 600;
+    text-decoration: none;
+    margin-bottom: 6px;
+    transition: color 0.2s ease;
+}
+
+.footer-email:hover,
+.footer-phone:hover {
+    color: #2563eb;
+}
+
+/* Footer Bottom Bar */
+.footer-bottom {
+    padding-top: 30px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 13px;
+}
+
+.legal-links {
+    display: flex;
+    gap: 20px;
+}
+
+.legal-links a {
+    color: #94a3b8;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.legal-links a:hover {
+    color: #ffffff;
+}
+
+/* Responsive Grid */
+@media (max-width: 992px) {
+    .footer-top {
+        grid-template-columns: 1fr 1fr;
+        gap: 40px 20px;
+    }
+}
+
+@media (max-width: 576px) {
+    .footer-top {
+        grid-template-columns: 1fr;
+    }
+    
+    .footer-bottom {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+    }
+}
+
