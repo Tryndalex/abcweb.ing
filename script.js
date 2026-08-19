@@ -6,7 +6,7 @@ const translations = {
         "nav-pricing": "Cenník",
         "nav-contact": "Kontakt",
         "nav-cta": "Objednať",
-        "hero-title": "Tvoríme weby, <br>ktoré posúvajú váš <br> biznis vpred.",
+        "hero-title": "Tvoríme WEBY, <br>ktoré POSÚVAJÚ váš <br> BIZNIS VPRED.",
         "hero-desc": "Vytvárame moderné, rýchle a pútavé webové riešenia na mieru, ktoré pomáhajú vášmu podnikaniu rásť.",
         "hero-cta": "Objednať konzultáciu zadarmo",
         "services-tag": "Čo robíme",
@@ -191,7 +191,18 @@ const translations = {
         "p5-l4": "Právo na obmedzenie spracúvania a právo namietať proti spracúvaniu.",
         "p5-l5": "Právo podať sťažnosť na dozorný orgán pre ochranu osobných údajov.",
         "p6-title": "6. Kontakt pre otázky",
-        "p6-p1": "Ak máte akékoľvek otázky týkajúce sa spracúvania vašich osobných údajov, kontaktujte nás na e-mailovej adrese info@abcweb.ing."
+        "p6-p1": "Ak máte akékoľvek otázky týkajúce sa spracúvania vašich osobných údajov, kontaktujte nás na e-mailovej adrese info@abcweb.ing.",
+        // portfoliio sk
+        "portfolio-tag": "Naše práce",
+        "portfolio-title": "Vybrané projekty, na ktorých sme pracovali",
+        "portfolio-desc": "Pozrite si ukážky našich nedávnych projektov. Každý web tvoríme s dôrazom na dizajn, rýchlosť a výsledky.",
+        "port-p1-cat": "Webstránka",
+        "port-p1-title": "Tati Cleaning",
+        "port-p1-desc": "Moderná prezentácia pre miestnu firmu v Anglicku s dôrazom na rýchle načítanie a konverzie.",
+        "port-p2-cat": "E-Commerce",
+        "port-p2-title": "ABC tip",
+        "port-p2-desc": "Jednoduchá webová stránka pre seniorov, ktorá im pomáha bezpečne a s istotou objavovať digitálny svet.",
+        "port-btn-view": "Navštíviť web →"
 
     },
     en: {
@@ -388,7 +399,18 @@ const translations = {
         "p5-l4": "The right to restrict or object to data processing.",
         "p5-l5": "The right to lodge a complaint with a supervisory data protection authority.",
         "p6-title": "6. Contact Information",
-        "p6-p1": "If you have any questions regarding the processing of your personal data, please contact us at info@abcweb.ing."
+        "p6-p1": "If you have any questions regarding the processing of your personal data, please contact us at info@abcweb.ing.",
+        // portfolio en:
+        "portfolio-tag": "Our Portfolio",
+        "portfolio-title": "Featured projects we've worked on",
+        "portfolio-desc": "Explore showcase of our recent projects. We build every site with a focus on design, speed, and real results.",
+        "port-p1-cat": "Website",
+        "port-p1-title": "Tati Cleaning",
+        "port-p1-desc": "Modern web presentation built with a focus on fast loading speed and high conversion rate.",
+        "port-p2-cat": "E-Commerce",
+        "port-p2-title": "ABC tip",
+        "port-p2-desc": "A simple website for seniors in Slovakia that helps them explore the digital world safely and confidently",
+        "port-btn-view": "Visit website →"
     }
 };
 
