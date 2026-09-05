@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>abcweb.ing – Tiny Builders Magic Reveal</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    :root {
+      --bg1: #0f172a;
+      --bg2: #1e293b;
+      --accent: #22d3ee;
+      --accent2: #a78bfa;
+      --text: #e2e8f0;
+      --builder: #fbbf24;
+      --crane: #94a3b8;
+      --code-block: #38bdf8;
+      --magic-glow: #f472b6;
+    }
+
+    * { box-sizing: border-box; }
+    html, body {
+      height: 100%;
+      margin: 0;
+      background: radial-gradient(120deg, var(--bg1), var(--bg2));
+      color: var(--text);
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+      overflow: hidden;
+    }
+
+    .stage {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      display: grid;
+      place-items: center;
+      perspective: 800px;
+    }
+
+    /* Screen / Website being built */
+    .screen {
+      position: relative;
+      width: min(70vw, 560px);
+      aspect-ratio: 16 / 9;
+      background: linear-gradient(135deg, #0b1220, #111827);
+      border-radius: 16px;
+      box-shadow:
+        0 20px 60px rgba(0,0,0,0.6),
+        inset 0 0 0 2px rgba(255,255,255,0.06);
+      overflow: hidden;
+      transform-style: preserve-3d;
+      animation: floatScreen 8s ease-in-out infinite;
+    }
+
+    @keyframes floatScreen {
+      0%, 100% { transform: translateY(0) rotateX(2deg); }
+      50% { transform: translateY(-8px) rotateX(-1deg); }
+    }
+
+    .screen-inner {
+      position: absolute;
+      inset: 0;
+      padding: 18px;
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+      gap: 12px;
+    }
+
+    .header-bar {
+      height: 14px;
+      background: linear-gradient(90deg, #1f2937, #111827);
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.06);
+      position: relative;
+      overflow: hidden;
+    }
+    .header-bar::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.12), transparent);
+      transform: translateX(-100%);
+      animation: shimmer 2.2s infinite;
+    }
+    @keyframes shimmer {
+      0% { transform: translateX(-100%); }
+      100% { transform: translateX(100%); }
+    }
+
+    .content-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 12px;
+    }
+
+    .code-block {
+      background: linear-gradient(135deg, rgba(56,189,248,0.15), rgba(56,189,248,0.05));
+      border: 1px solid rgba(56,189,248,0.25);
+      border-radius: 10px;
+      position: relative;
+      overflow: hidden;
+      min-height: 60px;
+    }
+    .code-block::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(
+        0deg,
+        rgba(255,255,255,0.06) 0 1px,
+        transparent 1px 10px
+      );
+      opacity: 0.35;
+    }
+
+    .image-block {
+      background: linear-gradient(135deg, rgba(167,139,250,0.15), rgba(167,139,250,0.05));
+      border: 1px solid rgba(167,139,250,0.25);
+      border-radius: 10px;
+      position: relative;
+      overflow: hidden;
+    }
+    .image-block::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.25), transparent 40%);
+      filter: blur(8px);
+    }
+
+    .footer-bar {
+      height: 10px;
+      background: linear-gradient(90deg, #1f2937, #111827);
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+
+    /* Builders */
+    .builder {
+      position: absolute;
+      width: 18px;
+      height: 26px;
+      background: var(--builder);
+      border-radius: 6px;
+      box-shadow: 0 6px 14px rgba(0,0,0,0.5);
+      transform-style: preserve-3d;
+      animation: builderWalk 6s linear infinite;
+    }
+    .builder::before {
+      content: "";
+      position: absolute;
+      top: -8px;
+      left: 3px;
+      width: 12px;
+      height: 12px;
+      background: #111827;
+      border-radius: 50%;
+      border: 2px solid #f59e0b;
+    }
+    .builder::after {
+      content: "";
+      position: absolute;
+      top: 10px;
+      left: -4px;
+      width: 26px;
+      height: 6px;
+      background: #0ea5e9;
+      border-radius: 4px;
+      opacity: 0.9;
+    }
+
+    .b1 { left: 8%; top: 60%; animation-duration: 7s; }
+    .b2 { left: 18%; top: 55%; animation-duration: 6.4s; animation-delay: 0.6s; }
+    .b3 { left: 72%; top: 62%; animation-duration: 6.8s; animation-delay: 0.2s; transform: scaleX(-1); }
+
+    @keyframes builderWalk {
+      0%   { transform: translateX(0) translateY(0) rotate(0deg); }
+      25%  { transform: translateX(10px) translateY(-2px) rotate(3deg); }
+      50%  { transform: translateX(0) translateY(0) rotate(0deg); }
+      75%  { transform: translateX(-10px) translateY(-2px) rotate(-3deg); }
+      100% { transform: translateX(0) translateY(0) rotate(0deg); }
+    }
+
+    /* Cranes */
+    .crane {
+      position: absolute;
+      width: 6px;
+      height: 90px;
+      background: linear-gradient(180deg, var(--crane), #64748b);
+      border-radius: 4px;
+      bottom: 18%;
+      left: 12%;
+      transform-origin: bottom center;
+      animation: craneSwing 5s ease-in-out infinite;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+    }
+    .crane::after {
+      content: "";
+      position: absolute;
+      top: -10px;
+      left: -10px;
+      width: 26px;
+      height: 10px;
+      background: #475569;
+      border-radius: 6px;
+    }
+
+    .crane2 {
+      left: auto;
+      right: 14%;
+      animation-duration: 5.6s;
+      animation-delay: 0.4s;
+      transform: scaleX(-1);
+    }
+
+    @keyframes craneSwing {
+      0%, 100% { transform: rotate(-6deg); }
+      50%      { transform: rotate(6deg); }
+    }
+
+    /* Code blocks being lifted */
+    .lifted-block {
+      position: absolute;
+      width: 50px;
+      height: 28px;
+      background: linear-gradient(135deg, var(--code-block), #0ea5e9);
+      border-radius: 6px;
+      opacity: 0;
+      box-shadow: 0 8px 20px rgba(14,165,233,0.35);
+      animation: liftBlock 6s ease-in-out infinite;
+    }
+    .lifted-block.l2 {
+      animation-delay: 1.2s;
+      left: 60%;
+      top: 40%;
+    }
+    .lifted-block.l1 {
+      animation-delay: 0.2s;
+      left: 35%;
+      top: 35%;
+    }
+
+    @keyframes liftBlock {
+      0%   { opacity: 0; transform: translateY(20px) scale(0.9); }
+      20%  { opacity: 1; }
+      60%  { opacity: 1; transform: translateY(-10px) scale(1); }
+      100% { opacity: 0; transform: translateY(-30px) scale(0.95); }
+    }
+
+    /* Magic hat & reveal */
+    .magic-stage {
+      position: absolute;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 1s ease;
+    }
+
+    .hat {
+      width: 70px;
+      height: 90px;
+      background: #111827;
+      border-radius: 12px 12px 20px 20px;
+      position: relative;
+      box-shadow: 0 15px 40px rgba(0,0,0,0.7);
+      transform: translateY(40px) scale(0.9);
+      transition: transform 1s cubic-bezier(.2,.8,.2,1), opacity 0.6s ease;
+      opacity: 0;
+    }
+    .hat::before {
+      content: "";
+      position: absolute;
+      bottom: -10px;
+      left: -18px;
+      width: 106px;
+      height: 18px;
+      background: #0b1220;
+      border-radius: 10px;
+      border: 2px solid #334155;
+    }
+    .hat-band {
+      position: absolute;
+      top: 28px;
+      left: 0;
+      width: 100%;
+      height: 12px;
+      background: linear-gradient(90deg, #7c3aed, #db2777);
+      border-radius: 4px;
+      opacity: 0.9;
+    }
+
+    .sparkles {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+    }
+    .sparkle {
+      position: absolute;
+      width: 6px;
+      height: 6px;
+      background: var(--magic-glow);
+      border-radius: 50%;
+      filter: blur(1px);
+      opacity: 0;
+      animation: sparklePop 1.6s ease-out infinite;
+    }
+    .sparkle:nth-child(2) { left: 40%; top: 35%; animation-delay: 0.1s; }
+    .sparkle:nth-child(3) { left: 55%; top: 30%; animation-delay: 0.3s; }
+    .sparkle:nth-child(4) { left: 48%; top: 22%; animation-delay: 0.5s; }
+    .sparkle:nth-child(5) { left: 62%; top: 40%; animation-delay: 0.2s; }
+
+    @keyframes sparklePop {
+      0%   { opacity: 0; transform: scale(0.2) translateY(10px); }
+      30%  { opacity: 1; transform: scale(1.2) translateY(-6px); }
+      100% { opacity: 0; transform: scale(0.4) translateY(-18px); }
+    }
+
+    .url-reveal {
+      position: absolute;
+      top: 28%;
+      left: 50%;
+      transform: translateX(-50%) translateY(20px) scale(0.95);
+      background: linear-gradient(135deg, rgba(34,211,238,0.15), rgba(167,139,250,0.15));
+      border: 1px solid rgba(34,211,238,0.4);
+      color: #cffafe;
+      padding: 10px 16px;
+      border-radius: 999px;
+      font-weight: 700;
+      letter-spacing: 0.4px;
+      white-space: nowrap;
+      box-shadow: 0 10px 30px rgba(34,211,238,0.35);
+      opacity: 0;
+      filter: drop-shadow(0 0 12px rgba(34,211,238,0.6));
+      transition: opacity 0.8s ease, transform 0.8s cubic-bezier(.2,.8,.2,1);
+    }
+
+    .magic-stage.reveal .hat {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+    .magic-stage.reveal .sparkle {
+      opacity: 1;
+    }
+    .magic-stage.reveal .url-reveal {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0) scale(1);
+    }
+
+    .hint {
+      position: absolute;
+      bottom: 14px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 12px;
+      opacity: 0.6;
+      text-align: center;
+      max-width: 80%;
+    }
+  </style>
+</head>
+<body>
+  <div class="stage">
+    <div class="screen" id="screen">
+      <div class="screen-inner">
+        <div class="header-bar"></div>
+        <div class="content-grid">
+          <div class="code-block"></div>
+          <div class="image-block"></div>
+          <div class="code-block" style="grid-column: 1 / -1; min-height: 50px;"></div>
+        </div>
+        <div class="footer-bar"></div>
+      </div>
+
+      <!-- Builders -->
+      <div class="builder b1"></div>
+      <div class="builder b2"></div>
+      <div class="builder b3"></div>
+
+      <!-- Cranes -->
+      <div class="crane"></div>
+      <div class="crane crane2"></div>
+
+      <!-- Lifted code blocks -->
+      <div class="lifted-block l1"></div>
+      <div class="lifted-block l2"></div>
+
+      <!-- Magic reveal -->
+      <div class="magic-stage" id="magicStage">
+        <div class="sparkles">
+          <div class="sparkle"></div>
+          <div class="sparkle"></div>
+          <div class="sparkle"></div>
+          <div class="sparkle"></div>
+          <div class="sparkle"></div>
+        </div>
+        <div class="hat">
+          <div class="hat-band"></div>
+        </div>
+        <div class="url-reveal" id="urlReveal">abcweb.ing</div>
+      </div>
+    </div>
+
+    <div class="hint">Tiny builders construct your site… then a magician reveals abcweb.ing.</div>
+  </div>
+
+  <script>
+    const magicStage = document.getElementById('magicStage');
+    const urlReveal = document.getElementById('urlReveal');
+
+    // Already set in HTML, but you can change it here if needed:
+    urlReveal.textContent = "abcweb.ing";
+
+    function runRevealSequence() {
+      setTimeout(() => {
+        magicStage.classList.add('reveal');
+
+        setTimeout(() => {
+          magicStage.classList.remove('reveal');
+        }, 3500);
+      }, 1800);
+    }
+
+    runRevealSequence();
+    setInterval(() => {
+      setTimeout(runRevealSequence, 800);
+    }, 9000);
+  </script>
+</body>
+</html>
