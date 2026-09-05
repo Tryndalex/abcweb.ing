@@ -41,22 +41,9 @@
         </div>
     </header>
 
-    <!-- Hero Sekcia -->
-    <section class="hero" id="domov">
-        
-        <div class="blob-bg">
-            <div class="blob blob-1"></div>
-            <div class="blob blob-2"></div>
-            <div class="blob blob-3"></div>
-        </div>
-
-        <div class="container hero-container">
-            <div class="hero-content">
-                <h1 data-key="hero-title">Tvoríme weby,<br>ktoré posúvajú váš <br> biznis vpred.</h1>
-                <p data-key="hero-desc">Vytvárame moderné, rýchle a pútavé webové riešenia na mieru, ktoré pomáhajú vášmu podnikaniu rásť.</p>
-                <a href="#kontakt" class="btn btn-accent" data-key="hero-cta">Objednať konzultáciu zadarmo</a>
-            </div>
-        </div>
+    <section class="animation">
+        <iframe src="animation.html" width="100%" height="500px" style="border: none;"></iframe>
+        <iframe src="animationeng.html" width="100%" height="500px" style="border: none;"></iframe>
     </section>
 
     <!-- Sekcia Služby -->
@@ -307,6 +294,46 @@
         </div>
     </section>
 
+    <!-- Portfolio Section -->
+        <section class="portfolio section" id="portfolio">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-tag" data-key="portfolio-tag">Naše práce</span>
+                    <h2 data-key="portfolio-title">Vybrané projekty, na ktorých sme pracovali</h2>
+                    <p data-key="portfolio-desc">Pozrite si ukážky našich nedávnych projektov. Každý web tvoríme s dôrazom na dizajn, rýchlosť a výsledky.</p>
+                </div>
+
+                <div class="portfolio-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-top: 3rem;">
+                    
+                    <!-- Projekt 1 -->
+                    <div class="card portfolio-card">
+                        <div class="portfolio-img-wrapper" style="overflow: hidden; border-radius: 8px; margin-bottom: 1.5rem; background-color: var(--bg-light, #f8f9fa);">
+                            <img src="images/taticlean-logo.png" alt="Projekt 1" style="width: 100%; height: 240px; object-fit: cover; display: block; transition: transform 0.3s ease;">
+                        </div>
+                        <div class="portfolio-content">
+                            <span class="portfolio-category" style="font-size: 0.85rem; font-weight: 600; color: var(--primary-color, #0066ff); text-transform: uppercase; letter-spacing: 0.5px;" data-key="port-p1-cat">Webstránka & Branding</span>
+                            <h3 style="margin: 0.5rem 0;" data-key="port-p1-title">Tati Cleaning</h3>
+                            <p style="color: var(--text-muted, #666); font-size: 0.95rem; margin-bottom: 1.5rem;" data-key="port-p1-desc">Moderná prezentácia pre miestnu firmu v Anglicku s dôrazom na rýchle načítanie a konverzie.</p>
+                            <a href="https://taticlean.co.uk" target="_blank" class="btn btn-outline" style="padding: 0.5rem 1rem; font-size: 0.9rem;" data-key="port-btn-view">Navštíviť web &rarr;</a>
+                        </div>
+                    </div>
+
+                    <!-- Projekt 2 -->
+                    <div class="card portfolio-card">
+                        <div class="portfolio-img-wrapper" style="overflow: hidden; border-radius: 8px; margin-bottom: 1.5rem; background-color: var(--bg-light, #f8f9fa);">
+                            <img src="images/abctip-logo.jpg" alt="Projekt 2" style="width: 100%; height: 240px; object-fit: cover; display: block; transition: transform 0.3s ease;">
+                        </div>
+                        <div class="portfolio-content">
+                            <span class="portfolio-category" style="font-size: 0.85rem; font-weight: 600; color: var(--primary-color, #0066ff); text-transform: uppercase; letter-spacing: 0.5px;" data-key="port-p1-cat">E-Commerce</span>
+                            <h3 style="margin: 0.5rem 0;" data-key="port-p2-title">ABCtip.sk</h3>
+                            <p style="color: var(--text-muted, #666); font-size: 0.95rem; margin-bottom: 1.5rem;" data-key="port-p2-desc">Jednoduchá webová stránka pre seniorov, ktorá im pomáha bezpečne a s istotou objavovať digitálny svet.</p>
+                            <a href="https://abctip.sk" target="_blank" class="btn btn-outline" style="padding: 0.5rem 1rem; font-size: 0.9rem;" data-key="port-btn-view">Navštíviť web &rarr;</a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
     <!-- Contact Section -->
     <section class="contact" id="kontakt">
         <div class="container">
@@ -356,7 +383,7 @@
                     <input type="text" name="_honey" style="display:none">
 
                     <!-- Vypne reCAPTCHA overenie pre čistejší odosielací proces -->
-                    <input type="hidden" name="_captcha" value="false">
+                    <input type="checkbox" name="_captcha" value="false" style="display:none">
 
                     <!-- Predmet e-mailu, ktorý vám príde -->
                     <input type="hidden" name="_subject" value="Nová správa z webu abcweb.ing!">
@@ -399,47 +426,6 @@
             </div>
         </div>
     </section>
-
-    <!-- Portfolio Section -->
-        <section class="portfolio section" id="portfolio">
-            <div class="container">
-                <div class="section-header">
-                    <span class="section-tag" data-key="portfolio-tag">Naše práce</span>
-                    <h2 data-key="portfolio-title">Vybrané projekty, na ktorých sme pracovali</h2>
-                    <p data-key="portfolio-desc">Pozrite si ukážky našich nedávnych projektov. Každý web tvoríme s dôrazom na dizajn, rýchlosť a výsledky.</p>
-                </div>
-
-                <div class="portfolio-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-top: 3rem;">
-                    
-                    <!-- Projekt 1 -->
-                    <div class="card portfolio-card">
-                        <div class="portfolio-img-wrapper" style="overflow: hidden; border-radius: 8px; margin-bottom: 1.5rem; background-color: var(--bg-light, #f8f9fa);">
-                            <img src="images/taticlean-logo.png" alt="Projekt 1" style="width: 100%; height: 240px; object-fit: cover; display: block; transition: transform 0.3s ease;">
-                        </div>
-                        <div class="portfolio-content">
-                            <span class="portfolio-category" style="font-size: 0.85rem; font-weight: 600; color: var(--primary-color, #0066ff); text-transform: uppercase; letter-spacing: 0.5px;" data-key="port-p1-cat">Webstránka & Branding</span>
-                            <h3 style="margin: 0.5rem 0;" data-key="port-p1-title">Tati Cleaning</h3>
-                            <p style="color: var(--text-muted, #666); font-size: 0.95rem; margin-bottom: 1.5rem;" data-key="port-p1-desc">Moderná prezentácia pre miestnu firmu v Anglicku s dôrazom na rýchle načítanie a konverzie.</p>
-                            <a href="https://taticlean.co.uk" target="_blank" class="btn btn-outline" style="padding: 0.5rem 1rem; font-size: 0.9rem;" data-key="port-btn-view">Navštíviť web &rarr;</a>
-                        </div>
-                    </div>
-
-                    <!-- Projekt 2 -->
-                    <div class="card portfolio-card">
-                        <div class="portfolio-img-wrapper" style="overflow: hidden; border-radius: 8px; margin-bottom: 1.5rem; background-color: var(--bg-light, #f8f9fa);">
-                            <img src="images/abctip-logo.jpg" alt="Projekt 2" style="width: 100%; height: 240px; object-fit: cover; display: block; transition: transform 0.3s ease;">
-                        </div>
-                        <div class="portfolio-content">
-                            <span class="portfolio-category" style="font-size: 0.85rem; font-weight: 600; color: var(--primary-color, #0066ff); text-transform: uppercase; letter-spacing: 0.5px;" data-key="port-p1-cat">E-Commerce</span>
-                            <h3 style="margin: 0.5rem 0;" data-key="port-p2-title">ABCtip.sk</h3>
-                            <p style="color: var(--text-muted, #666); font-size: 0.95rem; margin-bottom: 1.5rem;" data-key="port-p2-desc">Jednoduchá webová stránka pre seniorov, ktorá im pomáha bezpečne a s istotou objavovať digitálny svet.</p>
-                            <a href="https://abctip.sk" target="_blank" class="btn btn-outline" style="padding: 0.5rem 1rem; font-size: 0.9rem;" data-key="port-btn-view">Navštíviť web &rarr;</a>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </section>
 
     <!-- Footer Section -->
     <footer class="footer">

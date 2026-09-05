@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Tvorba Webov - Hero Section</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    }
+
+    body {
+      background-color: #0b0f19;
+      color: #f8fafc;
+      overflow-x: hidden;
+    }
+
+    /* Hero Wrapper */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+    }
+
+    /* Pozadie s animovanou mriežkou */
+    .bg-grid {
+      position: absolute;
+      inset: 0;
+      background-image: 
+        linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+      background-size: 40px 40px;
+      z-index: 1;
+    }
+
+    .bg-glow {
+      position: absolute;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(99, 102, 241, 0.15) 0%, rgba(0, 0, 0, 0) 70%);
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    /* Obsah */
+    .hero-container {
+      position: relative;
+      z-index: 2;
+      max-width: 1200px;
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: center;
+    }
+
+    /* Ľavá strana: Texty */
+    .hero-text {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.4rem 0.8rem;
+      background: rgba(99, 102, 241, 0.1);
+      border: 1px solid rgba(99, 102, 241, 0.3);
+      border-radius: 20px;
+      color: #818cf8;
+      font-size: 0.85rem;
+      font-weight: 600;
+      width: fit-content;
+    }
+
+    .badge-dot {
+      width: 8px;
+      height: 8px;
+      background-color: #10b981;
+      border-radius: 50%;
+      box-shadow: 0 0 8px #10b981;
+    }
+
+    h1 {
+      font-size: 3rem;
+      line-height: 1.15;
+      font-weight: 800;
+    }
+
+    .gradient-text {
+      background: linear-gradient(135deg, #818cf8, #c084fc, #38bdf8);
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    /* Písací efekt */
+    .typewriter-container {
+      color: #94a3b8;
+      font-size: 1.2rem;
+      min-height: 3rem;
+    }
+
+    .cursor {
+      display: inline-block;
+      width: 2px;
+      background-color: #818cf8;
+      animation: blink 0.8s infinite;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+
+    .cta-group {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #6366f1, #4f46e5);
+      color: white;
+      padding: 0.8rem 1.8rem;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 4px 14px rgba(99, 102, 241, 0.4);
+      transition: all 0.3s ease;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(99, 102, 241, 0.6);
+    }
+
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.05);
+      color: #e2e8f0;
+      padding: 0.8rem 1.8rem;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      transition: all 0.3s ease;
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.1);
+      color: white;
+    }
+
+    /* Pravá strana: Kódový IDE Box */
+    .code-window {
+      background: #1e1e2e;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+      overflow: hidden;
+      transform: perspective(1000px) rotateY(-5deg) rotateX(2deg);
+      transition: transform 0.5s ease;
+    }
+
+    .code-window:hover {
+      transform: perspective(1000px) rotateY(0deg) rotateX(0deg);
+    }
+
+    .window-header {
+      background: #181825;
+      padding: 0.8rem 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .dot { width: 12px; height: 12px; border-radius: 50%; }
+    .red { background: #f38ba8; }
+    .yellow { background: #f9e2af; }
+    .green { background: #a6e3a1; }
+
+    .window-title {
+      color: #6c7086;
+      font-size: 0.8rem;
+      margin-left: auto;
+      font-family: monospace;
+    }
+
+    .code-body {
+      padding: 1.2rem;
+      font-family: 'Consolas', 'Courier New', monospace;
+      font-size: 0.9rem;
+      line-height: 1.6;
+      color: #cdd6f4;
+    }
+
+    .tag { color: #f38ba8; }
+    .attr { color: #f9e2af; }
+    .val { color: #a6e3a1; }
+    .keyword { color: #cba6f7; }
+
+    /* Náhľad pod kódom */
+    .live-preview {
+      margin-top: 1rem;
+      padding: 1rem;
+      background: #11111b;
+      border-radius: 8px;
+      border: 1px dashed rgba(255, 255, 255, 0.1);
+      text-align: center;
+    }
+
+    .preview-btn {
+      background: #89b4fa;
+      color: #11111b;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+
+    .preview-btn:hover {
+      transform: scale(1.05);
+    }
+
+    /* Responzivita */
+    @media (max-width: 900px) {
+      .hero-container {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+      .badge, .cta-group {
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .code-window {
+        transform: none;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <section class="hero">
+    <div class="bg-grid"></div>
+    <div class="bg-glow"></div>
+
+    <div class="hero-container">
+      
+      <div class="hero-text">
+        <div class="badge">
+          <span class="badge-dot"></span> Dostupné termíny na tento mesiac
+        </div>
+
+        <h1>Meníme nápad na <br><span class="gradient-text">funkčný web</span></h1>
+
+        <div class="typewriter-container">
+          <span id="typewriter"></span><span class="cursor">&nbsp;</span>
+        </div>
+
+      </div>
+
+      <div class="code-window">
+        <div class="window-header">
+          <div class="dot red"></div>
+          <div class="dot yellow"></div>
+          <div class="dot green"></div>
+          <span class="window-title">App.jsx</span>
+        </div>
+        <div class="code-body">
+          <div><span class="keyword">const</span> Website = () => {</div>
+          <div style="padding-left: 1rem;">
+            <span class="keyword">return</span> (
+          </div>
+          <div style="padding-left: 2rem;">
+            &lt;<span class="tag">Hero</span> <span class="attr">speed</span>=<span class="val">"fast"</span>&gt;
+          </div>
+          <div style="padding-left: 3rem;">
+            &lt;<span class="tag">Title</span>&gt;Your new web&lt;/<span class="tag">Title</span>&gt;
+          </div>
+          <div style="padding-left: 2rem;">
+            &lt;/<span class="tag">Hero</span>&gt;
+          </div>
+          <div style="padding-left: 1rem;">);</div>
+          <div>};</div>
+
+    
+    </div>
+  </section>
+
+  <script>
+    // Typing Effect Pre Podnadpis
+    const phrases = [
+      "Tvorba webov na mieru.",
+      "Moderný dizajn a blesková rýchlosť.",
+      "Optimalizované pre mobilné zariadenia.",
+      "Pomáham vašej značke rásť."
+    ];
+
+    let phraseIndex = 0;
+    let charIndex = 0;
+    let isDeleting = false;
+    const target = document.getElementById('typewriter');
+
+    function type() {
+      const currentPhrase = phrases[phraseIndex];
+
+      if (isDeleting) {
+        target.textContent = currentPhrase.substring(0, charIndex - 1);
+        charIndex--;
+      } else {
+        target.textContent = currentPhrase.substring(0, charIndex + 1);
+        charIndex++;
+      }
+
+      let speed = isDeleting ? 40 : 80;
+
+      if (!isDeleting && charIndex === currentPhrase.length) {
+        speed = 2000; // Pauza na konci slova
+        isDeleting = true;
+      } else if (isDeleting && charIndex === 0) {
+        isDeleting = false;
+        phraseIndex = (phraseIndex + 1) % phrases.length;
+        speed = 500;
+      }
+
+      setTimeout(type, speed);
+    }
+
+    document.addEventListener("DOMContentLoaded", type);
+
+    // Malá interakcia pre pravé tlačidlo v ukážke
+    const demoBtn = document.getElementById('demoBtn');
+    demoBtn.addEventListener('click', () => {
+      demoBtn.textContent = "🚀 Web je pripravený!";
+      demoBtn.style.background = "#a6e3a1";
+      setTimeout(() => {
+        demoBtn.textContent = "Klikni na náhľad";
+        demoBtn.style.background = "#89b4fa";
+      }, 2000);
+    });
+  </script>
+</body>
+</html>

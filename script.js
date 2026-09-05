@@ -463,3 +463,12 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
+// iframe content switching based on language selection
+function setLanguage(lang) {
+    const iframe = document.getElementById('contentFrame');
+    if (lang === 'sk') {
+      iframe.src = 'animation.html';
+    } else if (lang === 'en') {
+      iframe.src = 'animationeng.html';
+    }
+  }
