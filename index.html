@@ -493,5 +493,568 @@
     </footer>
 
     <script src="script.js"></script>
+    <!-- KONTANER PRE AI HEAD BOTA -->
+<div id="ai-head-bot-root"></div>
+
+<script>
+(function() {
+  const host = document.getElementById('ai-head-bot-root');
+  const shadow = host.attachShadow({ mode: 'closed' });
+
+  const botSize = 100;
+  const padding = 20;  
+  
+  const maxX = Math.max(0, window.innerWidth - botSize - padding);
+  const maxY = Math.max(0, window.innerHeight - botSize - padding);
+
+  const randomX = Math.floor(Math.random() * (maxX - padding)) + padding;
+  const randomY = Math.floor(Math.random() * (maxY - padding)) + padding;
+
+  const style = document.createElement('style');
+  style.textContent = `
+    :host {
+      all: initial;
+      --cyan: #81efff;
+      --blue: #0099ee;
+      --deep: #020b1d;
+    }
+
+    * { box-sizing: border-box; }
+
+    .scene {
+      position: fixed;
+      top: ${randomY}px;
+      left: ${randomX}px;
+      width: 100px;
+      height: 100px;
+      z-index: 999999;
+      display: grid;
+      place-items: center;
+      isolation: isolate;
+      font-family: "Courier New", monospace;
+      color: var(--cyan);
+      transition: top 0.4s ease-out, left 0.4s ease-out, opacity 0.3s ease-out, transform 0.3s ease-out;
+    }
+
+    /* Animácia pre plynulé zmiznutie po kliknutí na X */
+    .scene.closing {
+      opacity: 0;
+      transform: scale(0.5);
+      pointer-events: none;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: -5px;
+      right: -5px;
+      z-index: 2000;
+      background: rgba(3, 17, 39, 0.9);
+      color: var(--cyan);
+      border: 1px solid var(--cyan);
+      border-radius: 50%;
+      width: 22px;
+      height: 22px;
+      font-size: 12px;
+      font-weight: bold;
+      line-height: 1;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      outline: none;
+      box-shadow: 0 0 8px rgba(129, 239, 255, 0.6);
+      transition: all 0.2s ease;
+      padding: 0;
+    }
+
+    .close-btn:hover {
+      background: #00bfff;
+      color: #020b1d;
+      box-shadow: 0 0 12px #00eaff;
+      transform: scale(1.15);
+    }
+
+    .head {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 1;
+      container-type: size;
+      cursor: pointer;
+      outline: none;
+      background: radial-gradient(circle at 50% 50%, rgba(5, 30, 56, 0.9) 0 34%, rgba(3, 17, 39, 0.44) 58%, transparent 74%);
+    }
+
+    .head:focus-visible {
+      filter: drop-shadow(0 0 14px rgba(129, 239, 255, 0.9));
+    }
+
+    .head::before {
+      content: "";
+      position: absolute;
+      inset: 22%;
+      background: #00bfff;
+      border-radius: 50%;
+      opacity: 0.18;
+      filter: blur(48px);
+      z-index: -1;
+    }
+
+    .atom-orbit {
+      position: absolute;
+      z-index: 7;
+      inset: 25% -13%;
+      height: 50%;
+      transform: rotate(-18deg);
+      pointer-events: none;
+    }
+
+    .orbit-two {
+      inset: 10% 8%;
+      height: 80%;
+      transform: rotate(56deg) scaleX(0.82);
+    }
+
+    .orbit-three {
+      inset: 16% -3%;
+      height: 68%;
+      transform: rotate(116deg) scaleX(0.7);
+    }
+
+    .orbit-four {
+      inset: 30% -18%;
+      height: 40%;
+      transform: rotate(78deg) scaleX(0.92);
+    }
+
+    .orbit-five {
+      inset: 5% 18%;
+      height: 90%;
+      transform: rotate(142deg) scaleX(0.58);
+    }
+
+    .electron {
+      position: absolute;
+      z-index: 2;
+      width: 6cqw;
+      height: 6cqw;
+      border-radius: 50%;
+      background: #ffffff;
+      box-shadow: 0 0 4cqw #ffffff, 0 0 10cqw #00eaff, 0 0 20cqw #00aaff;
+      offset-path: ellipse(50% 50% at 50% 50%);
+      offset-rotate: 0deg;
+      animation: electronOrbit 3.4s linear infinite;
+    }
+
+    .orbit-two .electron { animation-delay: -1.133s; }
+    .orbit-three .electron { animation-delay: -2.266s; }
+    .orbit-four .electron { animation-delay: -0.68s; }
+    .orbit-five .electron { animation-delay: -2.72s; }
+
+    @keyframes electronOrbit {
+      to { offset-distance: 100%; }
+    }
+
+    .ascii-field {
+      position: absolute;
+      inset: -5%;
+      overflow: visible;
+      color: var(--cyan);
+      font-size: clamp(4px, 8cqw, 10px);
+      line-height: 1;
+      letter-spacing: 0.8px;
+      user-select: none;
+      text-shadow: 0 0 7px currentColor, 0 0 14px currentColor;
+      pointer-events: none;
+    }
+
+    .ascii-field span {
+      position: absolute;
+      display: block;
+      white-space: nowrap;
+      transform-origin: center;
+    }
+
+    .face {
+      position: absolute;
+      z-index: 1000;
+      inset: 0;
+      pointer-events: none;
+      isolation: isolate;
+    }
+
+    .face .brow,
+    .face .eye,
+    .face .mouth {
+      transition: transform 0.35s ease, top 0.35s ease, height 0.35s ease, border 0.35s ease;
+    }
+
+    .expression-happy .mouth { transform: rotate(-7deg) scale(1.12, 1.18); }
+    .expression-happy .brow-left { transform: rotate(-17deg); }
+    .expression-happy .brow-right { transform: rotate(17deg); }
+
+    .expression-surprised .eye-right { transform: scale(1.22); }
+    .expression-surprised .eye-left { transform: scale(1.12); }
+    .expression-surprised .mouth {
+      top: 62%;
+      height: 14%;
+      border: clamp(2px, 5cqw, 10px) solid #eaffff;
+      border-radius: 50%;
+      transform: none;
+    }
+
+    .expression-wink .eye-right {
+      top: 46%;
+      height: 3%;
+      border-width: 0 0 clamp(2px, 5cqw, 12px);
+      border-radius: 0 0 50% 50%;
+      box-shadow: 0 0 10px #00eaff;
+    }
+
+    .expression-smile .mouth { transform: rotate(-5deg) scale(1.3, 1.25); }
+    .expression-smile .brow-left { transform: rotate(-22deg); }
+    .expression-smile .brow-right { transform: rotate(22deg); }
+
+    .expression-joyful .brow-left { transform: rotate(-25deg) translateY(-8%); }
+    .expression-joyful .brow-right { transform: rotate(25deg) translateY(-8%); }
+    .expression-joyful .eye-left,
+    .expression-joyful .eye-right { transform: scale(1.12); }
+    .expression-joyful .mouth { transform: rotate(-7deg) scale(1.18, 1.28); }
+
+    .expression-sleepy-smile .eye-left,
+    .expression-sleepy-smile .eye-right {
+      top: 45%;
+      height: 5%;
+    }
+    .expression-sleepy-smile .eye-right {
+      border-width: 0 0 clamp(2px, 5cqw, 12px);
+      border-radius: 0 0 50% 50%;
+      box-shadow: 0 0 10px #00eaff;
+    }
+    .expression-sleepy-smile .mouth { transform: rotate(-7deg) scale(1.1, 1.15); }
+
+    .expression-cool .eye-left,
+    .expression-cool .eye-right { transform: skewX(-16deg); }
+    .expression-cool .mouth { transform: rotate(-7deg) scale(0.82, 0.8); }
+
+    .expression-curious .brow-left { transform: rotate(-28deg) translateY(-8%); }
+    .expression-curious .brow-right { transform: rotate(8deg) translateY(4%); }
+    .expression-curious .eye-right { transform: scale(1.18); }
+    .expression-curious .mouth { transform: rotate(-4deg) scaleX(0.9); }
+
+    .expression-grin .mouth { transform: rotate(-5deg) scale(1.45, 1.2); }
+    .expression-grin .brow-left { transform: rotate(-18deg); }
+    .expression-grin .brow-right { transform: rotate(18deg); }
+
+    .expression-laugh .mouth { transform: rotate(-7deg) scale(1.4, 1.35); }
+    .expression-laugh .eye-left,
+    .expression-laugh .eye-right { transform: scale(1.18); }
+
+    .expression-friendly .eye-left { transform: translateX(5%); }
+    .expression-friendly .mouth { transform: rotate(-4deg) scale(1.15); }
+
+    .expression-excited .eye-left,
+    .expression-excited .eye-right { transform: scale(1.3); }
+    .expression-excited .mouth { transform: rotate(-7deg) scale(1.25, 1.4); }
+
+    .expression-proud .brow-left { transform: rotate(-12deg) translateY(-12%); }
+    .expression-proud .brow-right { transform: rotate(12deg) translateY(-12%); }
+    .expression-proud .mouth { transform: rotate(-3deg) scaleX(1.15); }
+
+    .expression-relaxed .eye-left,
+    .expression-relaxed .eye-right { top: 44%; height: 6%; }
+    .expression-relaxed .eye-right {
+      border-width: 0 0 clamp(2px, 5cqw, 12px);
+      border-radius: 0 0 50% 50%;
+      box-shadow: 0 0 10px #00eaff;
+    }
+
+    .expression-playful .eye-left { transform: rotate(-8deg) scale(1.08); }
+    .expression-playful .eye-right { transform: scale(0.9); }
+    .expression-playful .mouth { transform: rotate(-12deg) scaleX(1.12); }
+
+    .expression-amazed .eye-left,
+    .expression-amazed .eye-right { transform: scale(1.35); }
+    .expression-amazed .mouth {
+      top: 62%;
+      height: 14%;
+      border: clamp(2px, 5cqw, 10px) solid #eaffff;
+      border-radius: 50%;
+      transform: none;
+    }
+
+    .expression-bright .mouth { transform: rotate(-7deg) scale(1.25, 1.3); }
+    .expression-bright .eye-left,
+    .expression-bright .eye-right { transform: scale(1.08); }
+
+    .expression-wink-smile .eye-left { transform: scale(1.08); }
+    .expression-wink-smile .eye-right {
+      top: 46%;
+      height: 3%;
+      border-width: 0 0 clamp(2px, 5cqw, 12px);
+      border-radius: 0 0 50% 50%;
+      box-shadow: 0 0 10px #00eaff;
+    }
+    .expression-wink-smile .mouth { transform: rotate(-6deg) scale(1.22); }
+
+    .expression-round-eyes .eye-left {
+      width: 18%;
+      border: clamp(2px, 5cqw, 14px) solid #eaffff;
+      border-radius: 50%;
+      box-shadow: 0 0 10px #00eaff, inset 0 0 8px #00eaff;
+      transform: none;
+    }
+    .expression-round-eyes .eye-left b,
+    .expression-round-eyes .eye-left i { display: none; }
+
+    .expression-happy .brow,
+    .expression-surprised .brow,
+    .expression-wink .brow,
+    .expression-cool .brow,
+    .expression-curious .brow { display: none; }
+
+    .brow {
+      position: absolute;
+      top: 31%;
+      width: 18%;
+      height: 6%;
+      border-top: 5cqw solid #eaffff;
+      border-radius: 50%;
+      filter: drop-shadow(0 0 9px #00e1ff);
+    }
+
+    .brow-left { left: 24%; transform: rotate(-11deg); }
+    .brow-right { right: 23%; transform: rotate(11deg); }
+
+    .eye {
+      position: absolute;
+      top: 39%;
+      height: 17%;
+      color: #eaffff;
+      filter: drop-shadow(0 0 12px #00dfff);
+    }
+
+    .eye-left {
+      left: 24%;
+      width: 23%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font: 900 clamp(14px, 34cqw, 74px)/1 "Courier New", monospace;
+    }
+
+    .eye-left i {
+      width: 13%;
+      aspect-ratio: 1;
+      border-radius: 50%;
+      background: white;
+      box-shadow: 0 0 8cqw #00eaff;
+    }
+
+    .eye-right {
+      right: 24%;
+      width: 18%;
+      border: clamp(2px, 5cqw, 14px) solid #eaffff;
+      border-radius: 50%;
+      box-shadow: 0 0 10px #00eaff, inset 0 0 8px #00eaff;
+    }
+
+    .mouth {
+      position: absolute;
+      left: 34%;
+      top: 61%;
+      width: 33%;
+      height: 18%;
+      border-bottom: clamp(2px, 5cqw, 12px) solid #eaffff;
+      border-radius: 0 0 65% 55%;
+      transform: rotate(-7deg);
+      filter: drop-shadow(0 0 10px #00eaff);
+    }
+
+    .data-particle {
+      position: absolute;
+      z-index: 5;
+      color: #9ef6ff;
+      font-size: clamp(4px, 8cqw, 11px);
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-shadow: 0 0 8px #00dfff;
+      white-space: nowrap;
+      animation: pulse 2.6s ease-in-out infinite alternate;
+    }
+
+    @keyframes pulse {
+      from { opacity: 0.25; }
+      to { opacity: 1; }
+    }
+  `;
+
+  const scene = document.createElement('main');
+  scene.className = 'scene';
+  scene.setAttribute('aria-label', 'Animovaná AI hlava');
+  scene.innerHTML = `
+    <button class="close-btn" id="closeBotBtn" aria-label="Zatvoriť">✕</button>
+    <section class="head" role="button" tabindex="0" aria-label="Zmeniť výraz AI hlavy">
+      <div class="atom-orbit orbit-one"><span class="electron"></span></div>
+      <div class="atom-orbit orbit-two"><span class="electron"></span></div>
+      <div class="atom-orbit orbit-three"><span class="electron"></span></div>
+      <div class="atom-orbit orbit-four"><span class="electron"></span></div>
+      <div class="atom-orbit orbit-five"><span class="electron"></span></div>
+      <div class="ascii-field" id="asciiField"></div>
+      <div class="face">
+        <span class="brow brow-left"></span>
+        <span class="brow brow-right"></span>
+        <span class="eye eye-left"><b>&gt;</b><i></i><b>^</b></span>
+        <span class="eye eye-right"></span>
+        <span class="mouth"></span>
+      </div>
+      <div id="particles"></div>
+    </section>
+  `;
+
+  shadow.appendChild(style);
+  shadow.appendChild(scene);
+
+  const asciiField = shadow.getElementById('asciiField');
+  const particles = shadow.getElementById('particles');
+  const head = shadow.querySelector('.head');
+  const face = shadow.querySelector('.face');
+  const closeBtn = shadow.getElementById('closeBotBtn');
+  
+  const chars = '01X01  []{}<>/:;*+=-~';
+  const colors = ['#e9ffff', '#9ef6ff', '#54dcff', '#00b7ff', '#1687cf', '#6cafff'];
+  const expressions = [
+    'expression-happy',
+    'expression-surprised',
+    'expression-wink',
+    'expression-smile expression-round-eyes',
+    'expression-joyful expression-round-eyes',
+    'expression-sleepy-smile expression-round-eyes',
+    'expression-cool',
+    'expression-curious',
+    'expression-grin',
+    'expression-laugh expression-round-eyes',
+    'expression-proud expression-round-eyes',
+    'expression-relaxed',
+    'expression-playful',
+    'expression-amazed expression-round-eyes',
+    'expression-bright expression-round-eyes'
+  ];
+  let currentExpression = expressions[0];
+
+  function randomChar() {
+    return chars[Math.floor(Math.random() * chars.length)];
+  }
+
+  function randomColor() {
+    return colors[Math.floor(Math.random() * colors.length)];
+  }
+
+  function moveBotToRandomPosition() {
+    const maxX = Math.max(0, window.innerWidth - botSize - padding);
+    const maxY = Math.max(0, window.innerHeight - botSize - padding);
+
+    const newX = Math.floor(Math.random() * (maxX - padding)) + padding;
+    const newY = Math.floor(Math.random() * (maxY - padding)) + padding;
+
+    scene.style.left = `${newX}px`;
+    scene.style.top = `${newY}px`;
+  }
+
+  function showRandomExpression() {
+    const available = expressions.filter(expression => expression !== currentExpression);
+    const nextExpression = available[Math.floor(Math.random() * available.length)];
+    currentExpression.split(' ').forEach(expression => face.classList.remove(expression));
+    nextExpression.split(' ').forEach(expression => face.classList.add(expression));
+    currentExpression = nextExpression;
+  }
+
+  function changeExpressionOnClick(event) {
+    if (event.type === 'keydown' && event.key !== 'Enter' && event.key !== ' ') return;
+    if (event.type === 'keydown') event.preventDefault();
+    
+    showRandomExpression();
+    moveBotToRandomPosition();
+  }
+
+  // Funkcia pre úplné odstránenie bota zo stránky po kliknutí na X
+  function closeBot(event) {
+    event.stopPropagation(); // Zabráni spusteniu eventu na kliknutie bota
+    scene.classList.add('closing');
+    
+    // Po dokončení fade-out animácie odstráni celý HTML prvok
+    setTimeout(() => {
+      host.remove();
+    }, 300);
+  }
+
+  function scheduleExpressionChange() {
+    const delay = 10000 + Math.random() * 50000;
+    setTimeout(() => {
+      showRandomExpression();
+      scheduleExpressionChange();
+    }, delay);
+  }
+
+  function buildDataFace() {
+    for (let index = 0; index < 170; index += 1) {
+      const fragment = document.createElement('span');
+      const angle = Math.random() * Math.PI * 2;
+      const radius = 0.43 + Math.pow(Math.random(), 0.55) * 0.59;
+      const x = 50 + Math.cos(angle) * radius * 52;
+      const y = 50 + Math.sin(angle) * radius * 49;
+      const length = 1 + Math.floor(Math.random() * 6);
+
+      fragment.className = 'dynamic-fragment';
+      fragment.textContent = Array.from({ length }, randomChar).join('');
+      fragment.style.left = `${x}%`;
+      fragment.style.top = `${y}%`;
+      fragment.style.color = randomColor();
+      fragment.style.opacity = `${0.28 + Math.random() * 0.72}`;
+      fragment.style.fontSize = `${7 + Math.random() * 5}px`;
+      fragment.style.transform = `translate(-50%, -50%) rotate(${Math.random() * 100 - 50}deg)`;
+      asciiField.appendChild(fragment);
+    }
+  }
+
+  function buildParticles() {
+    const particleChars = ['01', 'X0', '[]', '>', '<', '101', 'X', '0101', '*', '::'];
+    for (let index = 0; index < 42; index += 1) {
+      const particle = document.createElement('span');
+      particle.className = 'data-particle';
+      particle.textContent = particleChars[index % particleChars.length];
+      particle.style.left = `${Math.random() * 118 - 9}%`;
+      particle.style.top = `${Math.random() * 118 - 9}%`;
+      particle.style.color = randomColor();
+      particle.style.transform = `rotate(${Math.random() * 100 - 50}deg)`;
+      particle.style.animationDelay = `${(index % 9) * -0.25}s`;
+      particles.appendChild(particle);
+    }
+  }
+
+  buildDataFace();
+  buildParticles();
+  face.classList.add(...currentExpression.split(' '));
+  
+  head.addEventListener('click', changeExpressionOnClick);
+  head.addEventListener('keydown', changeExpressionOnClick);
+  closeBtn.addEventListener('click', closeBot);
+
+  scheduleExpressionChange();
+
+  setInterval(() => {
+    const fragments = shadow.querySelectorAll('.dynamic-fragment, .data-particle');
+    for (let index = 0; index < 34; index += 1) {
+      const fragment = fragments[Math.floor(Math.random() * fragments.length)];
+      if (fragment) {
+        fragment.style.color = randomColor();
+        fragment.style.opacity = `${0.2 + Math.random() * 0.8}`;
+        if (fragment.classList.contains('dynamic-fragment')) {
+          fragment.textContent = Array.from({ length: 1 + Math.floor(Math.random() * 6) }, randomChar).join('');
+        }
+      }
+    }
+  }, 180);
+})();
+</script>
 </body>
 </html>

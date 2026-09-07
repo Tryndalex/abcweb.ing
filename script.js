@@ -123,7 +123,6 @@ const translations = {
         "footer-rights": "© 2026 abcweb.ing. Všetky práva vyhradené.",
         "footer-privacy": "Ochrana osobných údajov",
         "footer-terms": "Všeobecné podmienky",
-        // Prreklad obchodných podmienok
         "legal-tag": "Právne informácie",
         "terms-main-title": "Všeobecné obchodné podmienky",
         "terms-main-desc": "Platné a účinné pre služby poskytované prostredníctvom abcweb.ing.",
@@ -159,8 +158,6 @@ const translations = {
         "t8-title": "8. Záverečné ustanovenia",
         "t8-p1": "8.1. Tieto VOP nadobúdajú platnosť dňom ich zverejnenia na webstránke abcweb.ing.",
         "t8-p2": "8.2. Poskytovateľ si vyhradzuje právo na zmenu týchto VOP. O zmene bude klientov informovať zverejnením aktualizovaného znenia na webe.",
-        // GDPR & Ochrana osobných údajov
-        "footer-privacy": "Ochrana osobných údajov",
         "privacy-tag": "GDPR & Súkromie",
         "privacy-main-title": "Ochrana osobných údajov",
         "privacy-main-desc": "Informácie o tom, ako spracúvame a chráníme vaše osobné údaje.",
@@ -192,7 +189,6 @@ const translations = {
         "p5-l5": "Právo podať sťažnosť na dozorný orgán pre ochranu osobných údajov.",
         "p6-title": "6. Kontakt pre otázky",
         "p6-p1": "Ak máte akékoľvek otázky týkajúce sa spracúvania vašich osobných údajov, kontaktujte nás na e-mailovej adrese info@abcweb.ing.",
-        // portfoliio sk
         "portfolio-tag": "Naše práce",
         "portfolio-title": "Vybrané projekty, na ktorých sme pracovali",
         "portfolio-desc": "Pozrite si ukážky našich nedávnych projektov. Každý web tvoríme s dôrazom na dizajn, rýchlosť a výsledky.",
@@ -203,7 +199,6 @@ const translations = {
         "port-p2-title": "ABC tip",
         "port-p2-desc": "Jednoduchá webová stránka pre seniorov, ktorá im pomáha bezpečne a s istotou objavovať digitálny svet.",
         "port-btn-view": "Navštíviť web →"
-
     },
     en: {
         "nav-home": "Home",
@@ -331,7 +326,6 @@ const translations = {
         "footer-rights": "© 2026 abcweb.ing. All rights reserved.",
         "footer-privacy": "Privacy Policy",
         "footer-terms": "Terms & Conditions",
-        // translation of terms and conditions
         "legal-tag": "Legal Information",
         "terms-main-title": "Terms and Conditions",
         "terms-main-desc": "Valid and effective for services provided via abcweb.ing.",
@@ -367,8 +361,6 @@ const translations = {
         "t8-title": "8. Final Provisions",
         "t8-p1": "8.1. These Terms come into effect upon publication on the abcweb.ing website.",
         "t8-p2": "8.2. The provider reserves the right to modify these Terms, notifying clients via updated website postings.",
-        // Privacy Policy
-        "footer-privacy": "Privacy Policy",
         "privacy-tag": "GDPR & Privacy",
         "privacy-main-title": "Privacy Policy",
         "privacy-main-desc": "Information on how we process and protect your personal data.",
@@ -400,7 +392,6 @@ const translations = {
         "p5-l5": "The right to lodge a complaint with a supervisory data protection authority.",
         "p6-title": "6. Contact Information",
         "p6-p1": "If you have any questions regarding the processing of your personal data, please contact us at info@abcweb.ing.",
-        // portfolio en:
         "portfolio-tag": "Our Portfolio",
         "portfolio-title": "Featured projects we've worked on",
         "portfolio-desc": "Explore showcase of our recent projects. We build every site with a focus on design, speed, and real results.",
@@ -414,6 +405,7 @@ const translations = {
     }
 };
 
+// JEDINÁ ZJEDNOTENÁ FUNKCIA pre nastavenie jazyka
 function setLanguage(lang) {
     const dict = translations[lang];
     if (!dict) return;
@@ -446,10 +438,21 @@ function setLanguage(lang) {
         }
     });
 
+    // 4. Prepinanie obsahu v iframe (animation / animationeng)
+    const iframe = document.getElementById('contentFrame');
+    if (iframe) {
+        if (lang === 'sk') {
+            iframe.src = 'animation.html';
+        } else if (lang === 'en') {
+            iframe.src = 'animationeng.html';
+        }
+    }
+
+    // 5. Uloženie vybraného jazyka do prehliadača
     localStorage.setItem('selected_lang', lang);
 }
 
-// Spustenie pri načítaní
+// Spustenie pri načítaní stránky
 document.addEventListener('DOMContentLoaded', () => {
     const savedLang = localStorage.getItem('selected_lang') || 'sk';
     setLanguage(savedLang);
@@ -463,12 +466,3 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
-// iframe content switching based on language selection
-function setLanguage(lang) {
-    const iframe = document.getElementById('contentFrame');
-    if (lang === 'sk') {
-      iframe.src = 'animation.html';
-    } else if (lang === 'en') {
-      iframe.src = 'animationeng.html';
-    }
-  }

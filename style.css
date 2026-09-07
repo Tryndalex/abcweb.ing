@@ -12,12 +12,39 @@ html {
     scroll-behavior: smooth;
 }
 
-.animation {
+.animation-showcase {
     margin-top: 6rem;
     width: 100%;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px;
+}
+.animation {
+    margin-top: 7rem;
+}
+.animation-frame {
+    min-width: 0;
     height: 500px;
     overflow: hidden;
     position: relative;
+    isolation: isolate;
+    background: #0b0f19;
+}
+
+.animation-frame iframe {
+    display: block;
+    width: 100%;
+    height: 500px;
+    border: 0;
+    position: relative;
+    z-index: 1;
+    background: transparent;
+}
+
+@media (max-width: 768px) {
+    .animation-showcase {
+        grid-template-columns: 1fr;
+    }
 }
 
 body {
@@ -236,129 +263,7 @@ body {
     font-weight: 400;
 }
 
-/* ==========================================
-   EFEKT LÁVOVEJ LAMPY (LAVA LAMP BLOBS)
-   ========================================== */
-.blob-bg {
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 65%;
-    height: 100%;
-    /* Dôležité: Povolí presah bublín na okrajoch aj smerom nadol do ďalšej sekcie */
-    overflow: visible; 
-    pointer-events: none;
-    z-index: 13;
-}
 
-.blob {
-    position: absolute;
-    /* Pôvodný organický tvar namiesto dokonalého kruhu */
-    border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
-    filter: blur(11px);
-    opacity: 0.85;
-    animation: float 14s infinite ease-in-out alternate;
-    will-change: transform, border-radius;
-}
-
-/* Kvapka 1 - Ružovo-fialová */
-.blob-1 {
-    top: 1%;
-    right: -5%;
-    width: 520px;
-    height: 520px;
-    background: linear-gradient(135deg, #f43f5e 0%, #8b5cf6 100%);
-}
-
-/* Kvapka 2 - Modro-tyrkysová */
-.blob-2 {
-    top: 35%;
-    right: 5%;
-    width: 480px;
-    height: 480px;
-    background: linear-gradient(135deg, #06b6d4 0%, #3b82f6 100%);
-    animation-delay: -4s;
-}
-
-/* Kvapka 3 - Oranžovo-žltá */
-.blob-3 {
-    bottom: -5%;
-    right: 10%;
-    width: 520px;
-    height: 420px;
-    background: linear-gradient(135deg, #f97316 0%, #eab308 100%);
-    animation-delay: -8s;
-}
-
-/* Jemná animácia pohybu pre efekt "plávania" */
-@keyframes float {
-    0% {
-        transform: translate(0px, 0px) scale(1);
-        border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
-    }
-    33% {
-        transform: translate(-30px, 20px) scale(1.05);
-        border-radius: 60% 40% 30% 70% / 50% 60% 30% 60%;
-    }
-    66% {
-        transform: translate(25px, -15px) scale(0.95);
-        border-radius: 30% 60% 70% 40% / 60% 30% 60% 40%;
-    }
-    100% {
-        transform: translate(-10px, -30px) scale(1.02);
-        border-radius: 50% 50% 30% 70% / 30% 60% 40% 70%;
-    }
-}
-
-/* ==========================================
-   ANIMÁCIE DEFORMÁCIE A POHYBU (LAVA LAMP)
-   ========================================== */
-
-/* Animácia mení nielen polohu, ale aj tvar (border-radius) */
-@keyframes lava1 {
-    0%, 100% {
-        transform: translate(0, 0) scale(1);
-        border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
-    }
-    25% {
-        transform: translate(-30px, 50px) scale(1.1);
-        border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%;
-    }
-    50% {
-        transform: translate(40px, -20px) scale(0.95);
-        border-radius: 50% 50% 20% 80% / 20% 80% 40% 60%;
-    }
-    75% {
-        transform: translate(-20px, -50px) scale(1.05);
-        border-radius: 70% 30% 50% 50% / 30% 40% 60% 70%;
-    }
-}
-
-@keyframes lava2 {
-    0%, 100% {
-        transform: translate(0, 0) scale(1);
-        border-radius: 40% 60% 50% 50% / 40% 40% 60% 60%;
-    }
-    33% {
-        transform: translate(50px, -40px) scale(1.15);
-        border-radius: 60% 40% 60% 40% / 70% 30% 50% 50%;
-    }
-    66% {
-        transform: translate(-40px, 30px) scale(0.9);
-        border-radius: 30% 70% 40% 60% / 30% 60% 40% 70%;
-    }
-}
-
-@keyframes lava3 {
-    0%, 100% {
-        transform: translate(0, 0) scale(1);
-        border-radius: 50% 50% 70% 30% / 50% 70% 30% 50%;
-    }
-    50% {
-        transform: translate(-60px, -30px) scale(1.1);
-        border-radius: 30% 70% 30% 70% / 70% 30% 70% 30%;
-    }
-}
 
 
 /* ==========================================
@@ -636,7 +541,7 @@ body {
    ========================================== */
 
 .pricing {
-    padding: 100px 0;
+    padding: 80px 0;
     background-color: #f8fafc;
     position: relative;
     z-index: 2;
@@ -644,15 +549,15 @@ body {
 
 .pricing-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 30px;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 20px;
     align-items: stretch;
 }
 
 .price-card {
     background: #ffffff;
-    border-radius: 24px;
-    padding: 40px 32px;
+    border-radius: 16px;
+    padding: 28px 24px;
     border: 1px solid #e2e8f0;
     display: flex;
     flex-direction: column;
@@ -669,7 +574,7 @@ body {
 
 .pricing-note {
     max-width: 800px;
-    margin: 35px auto 0;
+    margin: 24px auto 0;
     padding: 18px 25px;
     background: rgba(255, 255, 255, 0.05);
     border-left: 4px solid var(--accent-color, #007bff);
@@ -682,6 +587,12 @@ body {
 
 .pricing-note strong {
     color: #007bff;
+}
+
+.pricing-care-header {
+    margin-top: 56px;
+    padding-top: 56px;
+    border-top: 1px solid #e2e8f0;
 }
 
 /* Zvýraznená karta */
@@ -706,7 +617,7 @@ body {
 }
 
 .price-header h3 {
-    font-size: 22px;
+    font-size: 20px;
     font-weight: 800;
     color: #0f172a;
     margin-bottom: 8px;
@@ -717,18 +628,18 @@ body {
     color: #64748b;
     min-height: 42px;
     line-height: 1.5;
-    margin-bottom: 24px;
+    margin-bottom: 18px;
 }
 
 .price {
-    margin-bottom: 24px;
+    margin-bottom: 18px;
     display: flex;
     align-items: baseline;
     gap: 8px;
 }
 
 .price .amount {
-    font-size: 42px;
+    font-size: 36px;
     font-weight: 800;
     color: #0f172a;
     letter-spacing: -1px;
@@ -750,13 +661,13 @@ body {
 .price-features {
     list-style: none;
     padding: 0;
-    margin: 0 0 32px 0;
+    margin: 0 0 24px 0;
 }
 
 .price-features li {
     font-size: 14px;
     color: #475569;
-    margin-bottom: 12px;
+    margin-bottom: 9px;
     display: flex;
     align-items: center;
     gap: 8px;
