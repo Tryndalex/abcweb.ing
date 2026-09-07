@@ -510,7 +510,6 @@
   const randomX = Math.floor(Math.random() * (maxX - padding)) + padding;
   const randomY = Math.floor(Math.random() * (maxY - padding)) + padding;
 
-  // Syntéza jemného čiastočne 3D "tweet" zvuku cez Web Audio API
   let audioCtx = null;
 
   function playGentleTweetSound() {
@@ -523,8 +522,6 @@
       }
 
       const now = audioCtx.currentTime;
-
-      // 1. Zvukový oscilátor (jemná sinusoida)
       const osc1 = audioCtx.createOscillator();
       const osc2 = audioCtx.createOscillator();
       const gainNode = audioCtx.createGain();
@@ -532,27 +529,22 @@
       osc1.type = 'sine';
       osc2.type = 'sine';
 
-      // Rýchly, plynulý vzostup frekvencie (pípnutie/tweet)
       osc1.frequency.setValueAtTime(880, now);
       osc1.frequency.exponentialRampToValueAtTime(1760, now + 0.08);
 
       osc2.frequency.setValueAtTime(1320, now);
       osc2.frequency.exponentialRampToValueAtTime(2640, now + 0.08);
 
-      // Obálka hlasitosti (jemný nábeh a rýchly, hladký dozvuk)
       gainNode.gain.setValueAtTime(0, now);
       gainNode.gain.linearRampToValueAtTime(0.08, now + 0.015);
       gainNode.gain.exponentialRampToValueAtTime(0.0001, now + 0.18);
 
-      // 3D Stereo Panner pre pocit priestorovosti
       let pannerNode;
       if (audioCtx.createStereoPanner) {
         pannerNode = audioCtx.createStereoPanner();
-        // Náhodný jemný posun v priestore (vľavo/vpravo)
         pannerNode.pan.setValueAtTime((Math.random() * 0.8) - 0.4, now);
       }
 
-      // Zapojenie audionódov
       osc1.connect(gainNode);
       osc2.connect(gainNode);
 
@@ -567,9 +559,7 @@
       osc2.start(now);
       osc1.stop(now + 0.2);
       osc2.stop(now + 0.2);
-    } catch (e) {
-      // Ak prehliadač blokuje audio bez predchádzajúceho používateľského gesta
-    }
+    } catch (e) {}
   }
 
   const style = document.createElement('style');
@@ -602,18 +592,30 @@
       isolation: isolate;
       font-family: "Courier New", monospace;
       color: var(--cyan);
+    }
+
+    .head {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 1;
+      container-type: size;
+      cursor: pointer;
+      outline: none;
+      background: radial-gradient(circle at 50% 50%, rgba(5, 30, 56, 0.9) 0 34%, rgba(3, 17, 39, 0.44) 58%, transparent 74%);
       transition: transform 0.15s cubic-bezier(0.6, -0.28, 0.735, 0.045), opacity 0.15s ease-in;
       opacity: 1;
       transform: scale(1);
+      touch-action: manipulation;
     }
 
-    .scene.hidden {
+    /* Zmenšuje sa LEN hlava, NIE celé pozadie s výbuchom */
+    .head.hidden {
       opacity: 0;
       transform: scale(0.05);
       pointer-events: none;
     }
 
-    .scene.closing {
+    .scene.closing .head {
       opacity: 0;
       transform: scale(0);
       pointer-events: none;
@@ -648,16 +650,6 @@
       color: #020b1d;
       box-shadow: 0 0 12px #00eaff;
       transform: scale(1.15);
-    }
-
-    .head {
-      position: relative;
-      width: 100%;
-      aspect-ratio: 1;
-      container-type: size;
-      cursor: pointer;
-      outline: none;
-      background: radial-gradient(circle at 50% 50%, rgba(5, 30, 56, 0.9) 0 34%, rgba(3, 17, 39, 0.44) 58%, transparent 74%);
     }
 
     .head:focus-visible {
@@ -738,7 +730,6 @@
       font-size: clamp(4px, 8cqw, 10px);
       line-height: 1;
       letter-spacing: 0.8px;
-      user-select: none;
       text-shadow: 0 0 7px currentColor, 0 0 14px currentColor;
       pointer-events: none;
     }
@@ -958,11 +949,12 @@
       animation: pulse 2.6s ease-in-out infinite alternate;
     }
 
+    /* Výbuch je oddelený v scéne, takže nezmizne pri zmenšení hlavy */
     .burst-container {
       position: absolute;
       inset: -150px;
       pointer-events: none;
-      z-index: 9999;
+      z-index: 99999;
     }
 
     .burst-particle {
@@ -972,7 +964,7 @@
       font-weight: bold;
       color: #81efff;
       text-shadow: 0 0 10px #00eaff, 0 0 20px #00b7ff, 0 0 30px #ffffff;
-      user-select: none;
+      will-change: transform, opacity;
       animation: explode 0.7s cubic-bezier(0.1, 0.8, 0.25, 1) forwards;
     }
 
@@ -1013,8 +1005,8 @@
         <span class="mouth"></span>
       </div>
       <div id="particles"></div>
-      <div class="burst-container" id="burstContainer"></div>
     </section>
+    <div class="burst-container" id="burstContainer"></div>
   `;
 
   shadow.appendChild(style);
@@ -1111,7 +1103,7 @@
     isTransitioning = true;
 
     triggerBurstEffect();
-    scene.classList.add('hidden');
+    head.classList.add('hidden');
 
     const reappearDelay = Math.floor(Math.random() * 3000) + 2000;
 
@@ -1120,14 +1112,13 @@
       showRandomExpression();
 
       setTimeout(() => {
-        // Prehranie zvuku pri zobrazení bota
         playGentleTweetSound();
 
-        scene.style.transition = 'transform 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.3s ease-out';
-        scene.classList.remove('hidden');
+        head.style.transition = 'transform 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.3s ease-out';
+        head.classList.remove('hidden');
         
         setTimeout(() => {
-          scene.style.transition = '';
+          head.style.transition = '';
           isTransitioning = false;
         }, 350);
 
