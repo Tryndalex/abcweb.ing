@@ -495,6 +495,8 @@
     <script src="script.js"></script>
     <!-- KONTANER PRE AI HEAD BOTA -->
 <div id="ai-head-bot-root"></div>
+<!-- KONTANER PRE AI HEAD BOTA -->
+<div id="ai-head-bot-root"></div>
 
 <script>
 (function() {
@@ -519,7 +521,14 @@
       --deep: #020b1d;
     }
 
-    * { box-sizing: border-box; }
+    /* Zrušenie modrého označovania pri dotyku a výberu textu */
+    * { 
+      box-sizing: border-box; 
+      -webkit-tap-highlight-color: transparent; /* Zruší modré zvýraznenie pri dotyku */
+      -webkit-touch-callout: none; /* Zruší pop-up menu pri podržaní prsta */
+      -webkit-user-select: none; /* Safari */
+      user-select: none; /* Zruší výber textu */
+    }
 
     .scene {
       position: fixed;
@@ -662,7 +671,6 @@
       font-size: clamp(4px, 8cqw, 10px);
       line-height: 1;
       letter-spacing: 0.8px;
-      user-select: none;
       text-shadow: 0 0 7px currentColor, 0 0 14px currentColor;
       pointer-events: none;
     }
@@ -976,12 +984,10 @@
     moveBotToRandomPosition();
   }
 
-  // Funkcia pre úplné odstránenie bota zo stránky po kliknutí na X
   function closeBot(event) {
-    event.stopPropagation(); // Zabráni spusteniu eventu na kliknutie bota
+    event.stopPropagation();
     scene.classList.add('closing');
     
-    // Po dokončení fade-out animácie odstráni celý HTML prvok
     setTimeout(() => {
       host.remove();
     }, 300);
