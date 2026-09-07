@@ -494,9 +494,7 @@
 
     <script src="script.js"></script>
     <!-- KONTANER PRE AI HEAD BOTA -->
-<div id="ai-head-bot-root"></div>
-<!-- KONTANER PRE AI HEAD BOTA -->
-<div id="ai-head-bot-root"></div>
+    <div id="ai-head-bot-root"></div>
 
 <script>
 (function() {
@@ -512,6 +510,68 @@
   const randomX = Math.floor(Math.random() * (maxX - padding)) + padding;
   const randomY = Math.floor(Math.random() * (maxY - padding)) + padding;
 
+  // Syntéza jemného čiastočne 3D "tweet" zvuku cez Web Audio API
+  let audioCtx = null;
+
+  function playGentleTweetSound() {
+    try {
+      if (!audioCtx) {
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      }
+      if (audioCtx.state === 'suspended') {
+        audioCtx.resume();
+      }
+
+      const now = audioCtx.currentTime;
+
+      // 1. Zvukový oscilátor (jemná sinusoida)
+      const osc1 = audioCtx.createOscillator();
+      const osc2 = audioCtx.createOscillator();
+      const gainNode = audioCtx.createGain();
+
+      osc1.type = 'sine';
+      osc2.type = 'sine';
+
+      // Rýchly, plynulý vzostup frekvencie (pípnutie/tweet)
+      osc1.frequency.setValueAtTime(880, now);
+      osc1.frequency.exponentialRampToValueAtTime(1760, now + 0.08);
+
+      osc2.frequency.setValueAtTime(1320, now);
+      osc2.frequency.exponentialRampToValueAtTime(2640, now + 0.08);
+
+      // Obálka hlasitosti (jemný nábeh a rýchly, hladký dozvuk)
+      gainNode.gain.setValueAtTime(0, now);
+      gainNode.gain.linearRampToValueAtTime(0.08, now + 0.015);
+      gainNode.gain.exponentialRampToValueAtTime(0.0001, now + 0.18);
+
+      // 3D Stereo Panner pre pocit priestorovosti
+      let pannerNode;
+      if (audioCtx.createStereoPanner) {
+        pannerNode = audioCtx.createStereoPanner();
+        // Náhodný jemný posun v priestore (vľavo/vpravo)
+        pannerNode.pan.setValueAtTime((Math.random() * 0.8) - 0.4, now);
+      }
+
+      // Zapojenie audionódov
+      osc1.connect(gainNode);
+      osc2.connect(gainNode);
+
+      if (pannerNode) {
+        gainNode.connect(pannerNode);
+        pannerNode.connect(audioCtx.destination);
+      } else {
+        gainNode.connect(audioCtx.destination);
+      }
+
+      osc1.start(now);
+      osc2.start(now);
+      osc1.stop(now + 0.2);
+      osc2.stop(now + 0.2);
+    } catch (e) {
+      // Ak prehliadač blokuje audio bez predchádzajúceho používateľského gesta
+    }
+  }
+
   const style = document.createElement('style');
   style.textContent = `
     :host {
@@ -521,14 +581,7 @@
       --deep: #020b1d;
     }
 
-    /* Zrušenie modrého označovania pri dotyku a výberu textu */
-    * { 
-      box-sizing: border-box; 
-      -webkit-tap-highlight-color: transparent; /* Zruší modré zvýraznenie pri dotyku */
-      -webkit-touch-callout: none; /* Zruší pop-up menu pri podržaní prsta */
-      -webkit-user-select: none; /* Safari */
-      user-select: none; /* Zruší výber textu */
-    }
+    * { box-sizing: border-box; }
 
     .scene {
       position: fixed;
@@ -542,13 +595,20 @@
       isolation: isolate;
       font-family: "Courier New", monospace;
       color: var(--cyan);
-      transition: top 0.4s ease-out, left 0.4s ease-out, opacity 0.3s ease-out, transform 0.3s ease-out;
+      transition: transform 0.15s cubic-bezier(0.6, -0.28, 0.735, 0.045), opacity 0.15s ease-in;
+      opacity: 1;
+      transform: scale(1);
     }
 
-    /* Animácia pre plynulé zmiznutie po kliknutí na X */
+    .scene.hidden {
+      opacity: 0;
+      transform: scale(0.05);
+      pointer-events: none;
+    }
+
     .scene.closing {
       opacity: 0;
-      transform: scale(0.5);
+      transform: scale(0);
       pointer-events: none;
     }
 
@@ -671,6 +731,7 @@
       font-size: clamp(4px, 8cqw, 10px);
       line-height: 1;
       letter-spacing: 0.8px;
+      user-select: none;
       text-shadow: 0 0 7px currentColor, 0 0 14px currentColor;
       pointer-events: none;
     }
@@ -890,6 +951,35 @@
       animation: pulse 2.6s ease-in-out infinite alternate;
     }
 
+    .burst-container {
+      position: absolute;
+      inset: -150px;
+      pointer-events: none;
+      z-index: 9999;
+    }
+
+    .burst-particle {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      font-weight: bold;
+      color: #81efff;
+      text-shadow: 0 0 10px #00eaff, 0 0 20px #00b7ff, 0 0 30px #ffffff;
+      user-select: none;
+      animation: explode 0.7s cubic-bezier(0.1, 0.8, 0.25, 1) forwards;
+    }
+
+    @keyframes explode {
+      0% {
+        opacity: 1;
+        transform: translate(-50%, -50%) translate(0, 0) scale(2);
+      }
+      100% {
+        opacity: 0;
+        transform: translate(-50%, -50%) translate(var(--dx), var(--dy)) scale(0.1);
+      }
+    }
+
     @keyframes pulse {
       from { opacity: 0.25; }
       to { opacity: 1; }
@@ -916,6 +1006,7 @@
         <span class="mouth"></span>
       </div>
       <div id="particles"></div>
+      <div class="burst-container" id="burstContainer"></div>
     </section>
   `;
 
@@ -924,12 +1015,13 @@
 
   const asciiField = shadow.getElementById('asciiField');
   const particles = shadow.getElementById('particles');
+  const burstContainer = shadow.getElementById('burstContainer');
   const head = shadow.querySelector('.head');
   const face = shadow.querySelector('.face');
   const closeBtn = shadow.getElementById('closeBotBtn');
   
-  const chars = '01X01  []{}<>/:;*+=-~';
-  const colors = ['#e9ffff', '#9ef6ff', '#54dcff', '#00b7ff', '#1687cf', '#6cafff'];
+  const chars = '01X01 []{}<>/:;*+=-~';
+  const colors = ['#ffffff', '#e9ffff', '#9ef6ff', '#54dcff', '#00b7ff', '#1687cf', '#6cafff'];
   const expressions = [
     'expression-happy',
     'expression-surprised',
@@ -948,6 +1040,7 @@
     'expression-bright expression-round-eyes'
   ];
   let currentExpression = expressions[0];
+  let isTransitioning = false;
 
   function randomChar() {
     return chars[Math.floor(Math.random() * chars.length)];
@@ -976,27 +1069,82 @@
     currentExpression = nextExpression;
   }
 
+  function triggerBurstEffect() {
+    const particleCount = 64;
+    const burstChars = ['0', '1', 'X', '*', '+', '#', '<', '>', '{', '}', '::', '010', '101', 'X0'];
+    
+    for (let i = 0; i < particleCount; i++) {
+      const p = document.createElement('span');
+      p.className = 'burst-particle';
+      p.textContent = burstChars[Math.floor(Math.random() * burstChars.length)];
+      p.style.color = randomColor();
+      p.style.fontSize = `${10 + Math.random() * 12}px`;
+
+      const angle = Math.random() * Math.PI * 2;
+      const distance = 120 + Math.random() * 160;
+      const dx = `${Math.cos(angle) * distance}px`;
+      const dy = `${Math.sin(angle) * distance}px`;
+
+      p.style.setProperty('--dx', dx);
+      p.style.setProperty('--dy', dy);
+
+      burstContainer.appendChild(p);
+    }
+
+    setTimeout(() => {
+      burstContainer.innerHTML = '';
+    }, 700);
+  }
+
   function changeExpressionOnClick(event) {
     if (event.type === 'keydown' && event.key !== 'Enter' && event.key !== ' ') return;
     if (event.type === 'keydown') event.preventDefault();
     
-    showRandomExpression();
-    moveBotToRandomPosition();
+    if (isTransitioning) return;
+    isTransitioning = true;
+
+    triggerBurstEffect();
+    scene.classList.add('hidden');
+
+    const reappearDelay = Math.floor(Math.random() * 3000) + 2000;
+
+    setTimeout(() => {
+      moveBotToRandomPosition();
+      showRandomExpression();
+
+      setTimeout(() => {
+        // Prehranie zvuku pri zobrazení bota
+        playGentleTweetSound();
+
+        scene.style.transition = 'transform 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.3s ease-out';
+        scene.classList.remove('hidden');
+        
+        setTimeout(() => {
+          scene.style.transition = '';
+          isTransitioning = false;
+        }, 350);
+
+      }, reappearDelay);
+
+    }, 150);
   }
 
   function closeBot(event) {
     event.stopPropagation();
+    triggerBurstEffect();
     scene.classList.add('closing');
     
     setTimeout(() => {
       host.remove();
-    }, 300);
+    }, 200);
   }
 
   function scheduleExpressionChange() {
     const delay = 10000 + Math.random() * 50000;
     setTimeout(() => {
-      showRandomExpression();
+      if (!isTransitioning) {
+        showRandomExpression();
+      }
       scheduleExpressionChange();
     }, delay);
   }
