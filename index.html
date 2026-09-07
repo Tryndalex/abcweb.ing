@@ -581,7 +581,14 @@
       --deep: #020b1d;
     }
 
-    * { box-sizing: border-box; }
+    /* Zrušenie modrého označovania pri dotyku a výberu textu */
+    * { 
+      box-sizing: border-box; 
+      -webkit-tap-highlight-color: transparent; /* Zruší modré zvýraznenie pri dotyku */
+      -webkit-touch-callout: none; /* Zruší pop-up menu pri podržaní prsta */
+      -webkit-user-select: none; /* Safari */
+      user-select: none; /* Zruší výber textu */
+    }
 
     .scene {
       position: fixed;
