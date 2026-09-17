@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="sk">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>abcweb.ing — Cenník služieb Slovensko</title>
+  <style>
+    :root {
+      --ink: #17151d;
+      --purple: #7139d8;
+      --soft-purple: #f3efff;
+      --line: #e6e2eb;
+      --muted: #657080;
+      --paper: #ffffff;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: #ecebf0;
+      color: var(--ink);
+      font-family: Inter, Arial, Helvetica, sans-serif;
+      font-size: 14px;
+      line-height: 1.45;
+    }
+    .page {
+      width: 210mm;
+      min-height: 297mm;
+      margin: 16px auto;
+      padding: 15mm 14mm 17mm;
+      background: var(--paper);
+      box-shadow: 0 6px 28px rgba(25, 16, 44, .12);
+      position: relative;
+    }
+    .brand {
+      margin: 0;
+      font-size: 31px;
+      line-height: 1;
+      font-weight: 850;
+      letter-spacing: -2px;
+    }
+    .brand .purple { color: var(--purple); }
+    .tagline { margin: 6px 0 30px; color: var(--muted); font-size: 12px; }
+    .hero {
+      padding: 28px 30px;
+      border-radius: 18px;
+      color: #fff;
+      background: linear-gradient(135deg, #17151d 0%, #25202f 74%, #46208c 130%);
+    }
+    h1 { margin: 0 0 10px; font-size: 37px; line-height: 1.1; letter-spacing: -1.2px; }
+    .hero p { margin: 0; max-width: 660px; color: #ded5f2; font-size: 15px; }
+    .notice {
+      margin: 20px 0 24px;
+      padding: 12px 15px;
+      border-left: 4px solid var(--purple);
+      background: var(--soft-purple);
+      color: #433965;
+      border-radius: 0 8px 8px 0;
+      font-size: 12px;
+    }
+    section { margin-top: 27px; page-break-inside: avoid; }
+    h2 { margin: 0 0 6px; font-size: 22px; letter-spacing: -.4px; }
+    .intro { margin: 0 0 12px; color: var(--muted); }
+    table { width: 100%; border-collapse: separate; border-spacing: 0; border: 1px solid var(--line); border-radius: 11px; overflow: hidden; }
+    th { padding: 10px 9px; background: var(--ink); color: #fff; text-align: left; font-size: 11px; letter-spacing: .1px; }
+    td { padding: 10px 9px; vertical-align: top; border-top: 1px solid var(--line); }
+    tr:first-child td { border-top: 0; }
+    tbody tr:nth-child(even) td { background: #fbfaff; }
+    td strong { font-size: 13px; }
+    .price { color: var(--purple); font-size: 15px; font-weight: 800; white-space: nowrap; }
+    .small { margin: 8px 0 0; color: var(--muted); font-size: 11px; }
+    .page-two { page-break-before: always; }
+    .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 13px; }
+    .card { padding: 16px; border: 1px solid var(--line); border-radius: 12px; background: #fff; }
+    .card h3 { margin: 0 0 8px; font-size: 16px; }
+    .card p { margin: 0; color: #414957; }
+    ul { margin: 8px 0 0; padding-left: 20px; }
+    li { margin: 5px 0; }
+    .closing { margin-top: 27px; padding: 18px 20px; border-radius: 13px; background: var(--ink); color: #fff; }
+    .closing p { margin: 0; color: #e3dbf4; font-size: 14px; }
+    .footer { position: absolute; bottom: 8mm; left: 14mm; right: 14mm; display: flex; justify-content: space-between; color: #7a8391; font-size: 10px; }
+    @media screen and (max-width: 800px) {
+      body { background: #fff; }
+      .page { width: 100%; min-height: auto; margin: 0; padding: 25px 18px 50px; box-shadow: none; }
+      .footer { position: static; margin-top: 30px; }
+      h1 { font-size: 31px; }
+      .hero { padding: 23px 20px; }
+      table, thead, tbody, th, td, tr { display: block; }
+      thead { display: none; }
+      tr { border-top: 1px solid var(--line); }
+      tr:first-child { border-top: 0; }
+      td { border: 0; padding: 5px 10px; }
+      td:first-child { padding-top: 12px; }
+      td:last-child { padding-bottom: 12px; }
+      .grid { grid-template-columns: 1fr; }
+    }
+    @media print {
+      @page { size: A4; margin: 0; }
+      body { background: #fff; }
+      .page { width: 210mm; min-height: 297mm; margin: 0; box-shadow: none; page-break-after: always; }
+      .page:last-child { page-break-after: auto; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header>
+      <p class="brand">abcweb<span class="purple">.ing</span></p>
+      <p class="tagline">Webové stránky a digitálna prezentácia pre firmy</p>
+    </header>
+
+    <div class="hero">
+      <h1>Cenník služieb Slovensko</h1>
+      <p>Profesionálne webové riešenia, zriadenie online profilov a správa sociálnych sietí pre malé a stredné firmy.</p>
+    </div>
+
+    <div class="notice"><strong>Transparentné ceny.</strong> Uvedené sumy sú orientačné a závisia od rozsahu projektu. Ceny sú bez DPH; ak nie som platiteľom DPH, DPH sa neúčtuje.</div>
+
+    <section>
+      <h2>Tvorba webových stránok</h2>
+      <p class="intro">Každý web je responzívny, optimalizovaný pre mobilné zariadenia a pripravený na vyhľadávanie v Google.</p>
+      <table>
+        <thead><tr><th>Balík</th><th>Rozsah</th><th>Čo zahŕňa</th><th>Cena</th></tr></thead>
+        <tbody>
+          <tr><td><strong>ŠTART</strong><br><span class="small">Webová vizitka</span></td><td>1 stránka, 4–6 sekcií</td><td>Moderný dizajn, služby, kontaktný formulár, mapa, základné SEO a mobilná verzia</td><td class="price">od 690 €</td></tr>
+          <tr><td><strong>FIRMA</strong><br><span class="small">Firemná prezentácia</span></td><td>5–7 podstránok, galéria do 50 fotiek</td><td>Redakčný systém, služby, referencie, kontaktný formulár, analytika a základné zaškolenie</td><td class="price">od 1 490 €</td></tr>
+          <tr><td><strong>PROFI</strong><br><span class="small">Web s realizáciami</span></td><td>8–12 podstránok, galéria do 150 fotiek</td><td>Vlastný dizajn, kategórie realizácií, optimalizácia fotografií, galéria, lokálne SEO a meranie dopytov</td><td class="price">od 2 490 €</td></tr>
+          <tr><td><strong>PREMIUM</strong><br><span class="small">Riešenie na mieru</span></td><td>15+ podstránok alebo individuálny rozsah</td><td>UX návrh, viacjazyčnosť, blog, integrácie, pokročilé SEO a analytika</td><td class="price">od 4 500 €</td></tr>
+        </tbody>
+      </table>
+      <p class="small">V cene nie je doména, hosting, platené licencie, profesionálne fotenie, copywriting ani reklamný rozpočet.</p>
+    </section>
+
+    <section>
+      <h2>Zriadenie online profilov</h2>
+      <table>
+        <thead><tr><th>Služba</th><th>Čo zahŕňa</th><th>Cena</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Google Firemný profil</strong></td><td>Založenie alebo prevzatie profilu, údaje o firme, kategórie, služby, popis, CTA, nahratie do 15 fotiek a pomoc s overením</td><td class="price">90 €</td></tr>
+          <tr><td><strong>Facebook stránka</strong></td><td>Nastavenie stránky, kontakty, kategória, profilová a titulná grafika, CTA tlačidlo, prepojenie s Instagramom a 2 úvodné príspevky</td><td class="price">90 €</td></tr>
+          <tr><td><strong>Instagram Business</strong></td><td>Business profil, bio, kontakty, prepojenie s Meta Business Suite, základný vizuál a 3 úvodné príspevky</td><td class="price">90 €</td></tr>
+          <tr><td><strong>Kompletný štart</strong><br><span class="small">Google + Facebook + Instagram</span></td><td>Kompletné nastavenie, optimalizácia a prepojenie všetkých troch kanálov</td><td class="price">240 €</td></tr>
+        </tbody>
+      </table>
+      <p class="small">Založenie profilov je bezplatné; účtuje sa odborné nastavenie, optimalizácia a príprava úvodného obsahu.</p>
+    </section>
+
+    <section>
+      <h2>Údržba a správa webu</h2>
+      <table>
+        <thead><tr><th>Balík</th><th>Obsah služby</th><th>Cena / mesiac</th></tr></thead>
+        <tbody>
+          <tr><td><strong>BEZPEČNOSŤ</strong></td><td>Aktualizácie systému a doplnkov, týždenné zálohy, monitoring dostupnosti a základná bezpečnostná kontrola</td><td class="price">39 € mesačne</td></tr>
+          <tr><td><strong>STAROSTLIVOSŤ</strong></td><td>Všetko z balíka Bezpečnosť, denné zálohy, drobné obsahové úpravy do 1 hodiny mesačne a mesačný report</td><td class="price">79 € mesačne</td></tr>
+          <tr><td><strong>PRIORITA</strong></td><td>Všetko z balíka Starostlivosť, úpravy obsahu do 3 hodín mesačne, základný SEO dohľad a prioritná podpora</td><td class="price">139 € mesačne</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <div class="footer"><span>abcweb.ing</span><span>1 / 2</span></div>
+  </main>
+
+  <main class="page page-two">
+    <header>
+      <p class="brand">abcweb<span class="purple">.ing</span></p>
+      <p class="tagline">Cenník služieb Slovensko</p>
+    </header>
+
+    <section>
+      <h2>Správa Facebooku a Instagramu</h2>
+      <p class="intro">Reklamný rozpočet pre Meta Ads nie je zahrnutý v mesačnej cene správy.</p>
+      <table>
+        <thead><tr><th>Balík</th><th>Obsah služby</th><th>Cena / mesiac</th></tr></thead>
+        <tbody>
+          <tr><td><strong>ŠTART</strong></td><td>Facebook + Instagram, obsahový plán, 6 príspevkov mesačne, jednoduché grafiky z dodaných podkladov, publikovanie a základný report</td><td class="price">249 €</td></tr>
+          <tr><td><strong>RAST</strong></td><td>Facebook + Instagram, 12 príspevkov mesačne, 4 krátke Reels z dodaných videí alebo fotiek, grafiky, copywriting, moderovanie správ a komentárov počas pracovných dní a mesačný report</td><td class="price">499 €</td></tr>
+          <tr><td><strong>PROFI</strong></td><td>Facebook + Instagram, 16 príspevkov mesačne, 8 Reels, obsahová stratégia, fotenie alebo natáčanie na mieste do 1 hodiny v rámci Bratislavy, moderovanie a podrobný report</td><td class="price">899 €</td></tr>
+        </tbody>
+      </table>
+      <p class="small">Pri balíkoch RAST a PROFI sa finálny rozsah prispôsobí dostupnosti fotografií a videí. Výjazdy mimo Bratislavy sa účtujú individuálne.</p>
+    </section>
+
+    <section>
+      <h2>Doplnkové služby</h2>
+      <div class="grid">
+        <div class="card">
+          <h3>Obsah a vizuály</h3>
+          <p>Fotenie realizácií: <strong>od 150 € / hod.</strong><br>Tvorba jedného Reels: <strong>od 80 €</strong><br>Promo video: <strong>od 300 €</strong><br>Copywriting na web: <strong>od 0,10 € / slovo</strong></p>
+        </div>
+        <div class="card">
+          <h3>Marketing a technika</h3>
+          <p>Správa Meta Ads: <strong>od 150 € / mesiac</strong><br>Správa Google Ads: <strong>od 200 € / mesiac</strong><br>Doména + hosting + SSL: <strong>od 90 € / rok</strong><br>Práce nad paušál: <strong>35 € / hod.</strong></p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Podmienky spolupráce</h2>
+      <ul>
+        <li>Pri tvorbe webu je štandardná platba 50 % záloha pred začatím práce a 50 % doplatok pred spustením.</li>
+        <li>Mesačné služby sa fakturujú vopred na príslušné obdobie.</li>
+        <li>Správu sociálnych sietí odporúčam objednať minimálne na 3 mesiace, aby mal obsah a meranie výsledkov zmysel.</li>
+        <li>Presnú cenu potvrdím po bezplatnej úvodnej konzultácii a odsúhlasení rozsahu.</li>
+      </ul>
+    </section>
+
+    <div class="closing"><p><strong>abcweb.ing</strong> — prehľadné weby, ktoré dôveryhodne prezentujú vašu firmu a pomáhajú získavať nové dopyty.</p></div>
+    <div class="footer"><span>abcweb.ing</span><span>2 / 2</span></div>
+  </main>
+</body>
+</html>
