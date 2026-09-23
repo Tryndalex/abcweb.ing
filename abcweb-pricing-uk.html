@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>abcweb.ing — UK Service Pricing</title>
+  <style>
+    :root {
+      --ink: #17151d;
+      --purple: #7139d8;
+      --soft-purple: #f3efff;
+      --line: #e6e2eb;
+      --muted: #657080;
+      --paper: #ffffff;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: #ecebf0;
+      color: var(--ink);
+      font-family: Inter, Arial, Helvetica, sans-serif;
+      font-size: 14px;
+      line-height: 1.45;
+    }
+    .page {
+      width: 210mm;
+      min-height: 297mm;
+      margin: 16px auto;
+      padding: 15mm 14mm 17mm;
+      background: var(--paper);
+      box-shadow: 0 6px 28px rgba(25, 16, 44, .12);
+      position: relative;
+    }
+    .brand {
+      margin: 0;
+      font-size: 31px;
+      line-height: 1;
+      font-weight: 850;
+      letter-spacing: -2px;
+    }
+    .brand .purple { color: var(--purple); }
+    .tagline { margin: 6px 0 30px; color: var(--muted); font-size: 12px; }
+    .hero {
+      padding: 28px 30px;
+      border-radius: 18px;
+      color: #fff;
+      background: linear-gradient(135deg, #17151d 0%, #25202f 74%, #46208c 130%);
+    }
+    h1 { margin: 0 0 10px; font-size: 37px; line-height: 1.1; letter-spacing: -1.2px; }
+    .hero p { margin: 0; max-width: 660px; color: #ded5f2; font-size: 15px; }
+    .notice {
+      margin: 20px 0 24px;
+      padding: 12px 15px;
+      border-left: 4px solid var(--purple);
+      background: var(--soft-purple);
+      color: #433965;
+      border-radius: 0 8px 8px 0;
+      font-size: 12px;
+    }
+    section { margin-top: 27px; page-break-inside: avoid; }
+    h2 { margin: 0 0 6px; font-size: 22px; letter-spacing: -.4px; }
+    .intro { margin: 0 0 12px; color: var(--muted); }
+    table { width: 100%; border-collapse: separate; border-spacing: 0; border: 1px solid var(--line); border-radius: 11px; overflow: hidden; }
+    th { padding: 10px 9px; background: var(--ink); color: #fff; text-align: left; font-size: 11px; letter-spacing: .1px; }
+    td { padding: 10px 9px; vertical-align: top; border-top: 1px solid var(--line); }
+    tr:first-child td { border-top: 0; }
+    tbody tr:nth-child(even) td { background: #fbfaff; }
+    td strong { font-size: 13px; }
+    .price { color: var(--purple); font-size: 15px; font-weight: 800; white-space: nowrap; }
+    .small { margin: 8px 0 0; color: var(--muted); font-size: 11px; }
+    .page-two { page-break-before: always; }
+    .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 13px; }
+    .card { padding: 16px; border: 1px solid var(--line); border-radius: 12px; background: #fff; }
+    .card h3 { margin: 0 0 8px; font-size: 16px; }
+    .card p { margin: 0; color: #414957; }
+    ul { margin: 8px 0 0; padding-left: 20px; }
+    li { margin: 5px 0; }
+    .closing { margin-top: 27px; padding: 18px 20px; border-radius: 13px; background: var(--ink); color: #fff; }
+    .closing p { margin: 0; color: #e3dbf4; font-size: 14px; }
+    .footer { position: absolute; bottom: 8mm; left: 14mm; right: 14mm; display: flex; justify-content: space-between; color: #7a8391; font-size: 10px; }
+    @media screen and (max-width: 800px) {
+      body { background: #fff; }
+      .page { width: 100%; min-height: auto; margin: 0; padding: 25px 18px 50px; box-shadow: none; }
+      .footer { position: static; margin-top: 30px; }
+      h1 { font-size: 31px; }
+      .hero { padding: 23px 20px; }
+      table, thead, tbody, th, td, tr { display: block; }
+      thead { display: none; }
+      tr { border-top: 1px solid var(--line); }
+      tr:first-child { border-top: 0; }
+      td { border: 0; padding: 5px 10px; }
+      td:first-child { padding-top: 12px; }
+      td:last-child { padding-bottom: 12px; }
+      .grid { grid-template-columns: 1fr; }
+    }
+    @media print {
+      @page { size: A4; margin: 0; }
+      body { background: #fff; }
+      .page { width: 210mm; min-height: 297mm; margin: 0; box-shadow: none; page-break-after: always; }
+      .page:last-child { page-break-after: auto; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header>
+      <p class="brand">abcweb<span class="purple">.ing</span></p>
+      <p class="tagline">Websites and digital solutions for businesses</p>
+    </header>
+
+    <div class="hero">
+      <h1>UK Service Pricing</h1>
+      <p>Professional web solutions, online profile setup and social media management for small and medium-sized businesses.</p>
+    </div>
+
+    <div class="notice"><strong>Transparent pricing.</strong> The prices shown are indicative and depend on the scope of the project. Prices exclude VAT; if I am not VAT registered, VAT is not charged.</div>
+
+    <section>
+      <h2>Website Development</h2>
+      <p class="intro">Every website is responsive, mobile-optimised and prepared for Google search.</p>
+      <table>
+        <thead><tr><th>Package</th><th>Scope</th><th>What's included</th><th>Price</th></tr></thead>
+        <tbody>
+          <tr><td><strong>START</strong><br><span class="small">Business card website</span></td><td>1 page, 4–6 sections</td><td>Modern design, services, contact form, map, basic SEO and mobile version</td><td class="price">from £690</td></tr>
+          <tr><td><strong>BUSINESS</strong><br><span class="small">Business website</span></td><td>5–7 pages, gallery with up to 50 photos</td><td>Content management system, services, testimonials, contact form, analytics and basic training</td><td class="price">from £1,490</td></tr>
+          <tr><td><strong>PRO</strong><br><span class="small">Website with projects</span></td><td>8–12 pages, gallery with up to 150 photos</td><td>Custom design, project categories, photo optimisation, gallery, local SEO and lead tracking</td><td class="price">from £2,490</td></tr>
+          <tr><td><strong>PREMIUM</strong><br><span class="small">Custom solution</span></td><td>15+ pages or a tailored scope</td><td>UX design, multilingual support, blog, integrations, advanced SEO and analytics</td><td class="price">from £4,500</td></tr>
+        </tbody>
+      </table>
+      <p class="small">The price does not include domain, hosting, paid licences, professional photography, copywriting or advertising budget.</p>
+    </section>
+
+    <section>
+      <h2>Online Profile Setup</h2>
+      <table>
+        <thead><tr><th>Service</th><th>What's included</th><th>Price</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Google Business Profile</strong></td><td>Profile setup or takeover, business details, categories, services, description, CTA, upload of up to 15 photos and verification support</td><td class="price">£90</td></tr>
+          <tr><td><strong>Facebook Page</strong></td><td>Page setup, contact details, category, profile and cover graphics, CTA button, Instagram connection and 2 introductory posts</td><td class="price">£90</td></tr>
+          <tr><td><strong>Instagram Business</strong></td><td>Business profile, bio, contact details, connection to Meta Business Suite, basic visual setup and 3 introductory posts</td><td class="price">£90</td></tr>
+          <tr><td><strong>Complete Start</strong><br><span class="small">Google + Facebook + Instagram</span></td><td>Complete setup, optimisation and connection of all three channels</td><td class="price">£240</td></tr>
+        </tbody>
+      </table>
+      <p class="small">Creating the profiles is free; the fee covers professional setup, optimisation and preparation of introductory content.</p>
+    </section>
+
+    <section>
+      <h2>Website Maintenance & Management</h2>
+      <table>
+        <thead><tr><th>Package</th><th>Service contents</th><th>Price / month</th></tr></thead>
+        <tbody>
+          <tr><td><strong>SECURITY</strong></td><td>System and plugin updates, weekly backups, uptime monitoring and basic security checks</td><td class="price">£39 per month</td></tr>
+          <tr><td><strong>CARE</strong></td><td>Everything in the Security package, daily backups, minor content updates up to 1 hour per month and a monthly report</td><td class="price">£79 per month</td></tr>
+          <tr><td><strong>PRIORITY</strong></td><td>Everything in the Care package, content updates up to 3 hours per month, basic SEO monitoring and priority support</td><td class="price">£139 per month</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <div class="footer"><span>abcweb.ing</span><span>1 / 2</span></div>
+  </main>
+
+  <main class="page page-two">
+    <header>
+      <p class="brand">abcweb<span class="purple">.ing</span></p>
+      <p class="tagline">UK Service Pricing</p>
+    </header>
+
+    <section>
+      <h2>Facebook & Instagram Management</h2>
+      <p class="intro">The Meta Ads advertising budget is not included in the monthly management fee.</p>
+      <table>
+        <thead><tr><th>Package</th><th>Service contents</th><th>Price / month</th></tr></thead>
+        <tbody>
+          <tr><td><strong>START</strong></td><td>Facebook + Instagram, content plan, 6 posts per month, simple graphics from supplied materials, publishing and a basic report</td><td class="price">£249</td></tr>
+          <tr><td><strong>GROWTH</strong></td><td>Facebook + Instagram, 12 posts per month, 4 short Reels from supplied videos or photos, graphics, copywriting, moderation of messages and comments during business days and a monthly report</td><td class="price">£499</td></tr>
+          <tr><td><strong>PRO</strong></td><td>Facebook + Instagram, 16 posts per month, 8 Reels, content strategy, photography or filming on site for up to 1 hour within Reading, moderation and a detailed report</td><td class="price">£899</td></tr>
+        </tbody>
+      </table>
+      <p class="small">For the GROWTH and PRO packages, the final scope is adjusted to the availability of photos and videos. Travel outside Reading is charged separately.</p>
+    </section>
+
+    <section>
+      <h2>Additional Services</h2>
+      <div class="grid">
+        <div class="card">
+          <h3>Content & Visuals</h3>
+          <p>Project photography: <strong>from £150 / hour</strong><br>Single Reel creation: <strong>from £80</strong><br>Promo video: <strong>from £300</strong><br>Website copywriting: <strong>from £0.10 / word</strong></p>
+        </div>
+        <div class="card">
+          <h3>Marketing & Technical Services</h3>
+          <p>Meta Ads management: <strong>from £150 / month</strong><br>Google Ads management: <strong>from £200 / month</strong><br>Domain + hosting + SSL: <strong>from £90 / year</strong><br>Work outside the package: <strong>£35 / hour</strong></p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Terms of Cooperation</h2>
+      <ul>
+        <li>For website development, the standard payment is a 50% deposit before work begins and the remaining 50% before launch.</li>
+        <li>Monthly services are invoiced in advance for the relevant period.</li>
+        <li>I recommend ordering social media management for at least 3 months so that the content and results tracking can deliver meaningful results.</li>
+        <li>I will confirm the exact price after a free initial consultation and agreement on the scope.</li>
+      </ul>
+    </section>
+
+    <div class="closing"><p><strong>abcweb.ing</strong> — clear, professional websites that present your business credibly and help generate new enquiries.</p></div>
+    <div class="footer"><span>abcweb.ing</span><span>2 / 2</span></div>
+  </main>
+</body>
+</html>

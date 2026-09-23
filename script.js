@@ -401,7 +401,10 @@ const translations = {
         "port-p2-cat": "E-Commerce",
         "port-p2-title": "ABC tip",
         "port-p2-desc": "A simple website for seniors in Slovakia that helps them explore the digital world safely and confidently",
-        "port-btn-view": "Visit website →"
+        "port-btn-view": "Visit website →",
+        "port-p3-cat": "Restaurant Website", 
+        "port-p3-title": "Wrap & Roll", 
+        "port-p3-desc": "A Vietnamese restaurant in the heart of Helsinki.",
     }
 };
 

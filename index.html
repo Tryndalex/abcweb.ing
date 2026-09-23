@@ -26,7 +26,7 @@
                 <a href="#domov" class="active" data-key="nav-home">Domov</a>
                 <a href="#sluzby" data-key="nav-services">Služby</a>
                 <a href="#pristop" data-key="nav-approach">Náš prístup</a>
-                <a href="https://abcweb.ing/cennik.html" data-key="nav-pricing">Cenník</a>
+                <a id="pricingLink" href="abcweb-pricing-uk.html" data-key="nav-pricing">Cenník</a>
                 <a href="#portfolio" data-key="nav-portfolio">Portfólio</a>
             </nav>
             
@@ -255,11 +255,11 @@
                     <div class="form-row">
                         <div class="form-group">
                             <label for="name" data-key="form-label-name">Vaše meno</label>
-                            <input type="text" id="name" name="name" placeholder="Nick" required>
+                            <input type="text" id="name" name="name" placeholder="Nick">
                         </div>
                         <div class="form-group">
                             <label for="email" data-key="form-label-email">Váš email</label>
-                            <input type="email" id="email" name="email" placeholder="nick@example.com" required>
+                            <input type="email" id="email" name="email" placeholder="nick@example.com">
                         </div>
                     </div>
 
@@ -279,7 +279,12 @@
 
                     <div class="form-group">
                         <label for="message" data-key="form-label-message">Vaša správa</label>
-                        <textarea id="message" data-key="form-placeholder-message" name="message" rows="5" placeholder="Napíšte nám viac o..." required></textarea>
+                        <textarea id="message"
+                        data-key-placeholder="form-placeholder-message"
+                        name="message"
+                        rows="5"
+                        placeholder="Napíšte nám viac o..."
+                      ></textarea>
                     </div>
 
                     <button type="submit" data-key="form-btn-submit" class="btn btn-accent btn-full">Poslať správ</button>
@@ -362,7 +367,7 @@
   const host = document.getElementById('ai-head-bot-root');
   const shadow = host.attachShadow({ mode: 'closed' });
 
-  const botSize = 100;
+  const botSize = 70;
   const padding = 20;  
   
   const maxX = Math.max(0, window.innerWidth - botSize - padding);
@@ -445,14 +450,57 @@
       position: fixed;
       top: ${randomY}px;
       left: ${randomX}px;
-      width: 100px;
-      height: 100px;
+      width: 70px;
+      height: 70px;
       z-index: 999999;
       display: grid;
       place-items: center;
       isolation: isolate;
       font-family: "Courier New", monospace;
       color: var(--cyan);
+    }
+
+    .hello-bubble {
+      position: absolute;
+      left: 50%;
+      bottom: calc(100% + 10px);
+      transform: translateX(-50%);
+      z-index: 3000;
+      padding: 5px 9px;
+      border: 1px solid var(--cyan);
+      border-radius: 12px;
+      background: rgba(3, 17, 39, 0.94);
+      color: #eaffff;
+      font: 700 10px/1.2 "Courier New", monospace;
+      white-space: nowrap;
+      box-shadow: 0 0 10px rgba(0, 234, 255, 0.45);
+      opacity: 1;
+      pointer-events: none;
+      animation: helloBubble 5s ease forwards;
+    }
+
+    .hello-bubble::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      bottom: -5px;
+      width: 8px;
+      height: 8px;
+      background: rgba(3, 17, 39, 0.94);
+      border-right: 1px solid var(--cyan);
+      border-bottom: 1px solid var(--cyan);
+      transform: translateX(-50%) rotate(45deg);
+    }
+
+    @keyframes helloBubble {
+      0%, 65% { opacity: 1; }
+      100% { opacity: 0; visibility: hidden; }
+    }
+
+    .hello-bubble.hidden {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
     }
 
     .head {
@@ -470,13 +518,15 @@
     }
 
     /* Zmenšuje sa LEN hlava, NIE celé pozadie s výbuchom */
-    .head.hidden {
+    .head.hidden,
+    .close-btn.hidden {
       opacity: 0;
       transform: scale(0.05);
       pointer-events: none;
     }
 
-    .scene.closing .head {
+    .scene.closing .head,
+    .scene.closing .close-btn {
       opacity: 0;
       transform: scale(0);
       pointer-events: none;
@@ -491,9 +541,9 @@
       color: var(--cyan);
       border: 1px solid var(--cyan);
       border-radius: 50%;
-      width: 22px;
-      height: 22px;
-      font-size: 12px;
+      width: 11px;
+      height: 11px;
+      font-size: 6px;
       font-weight: bold;
       line-height: 1;
       cursor: pointer;
@@ -850,6 +900,7 @@
   scene.className = 'scene';
   scene.setAttribute('aria-label', 'Animovaná AI hlava');
   scene.innerHTML = `
+    <div class="hello-bubble" aria-hidden="true">Hello!</div>
     <button class="close-btn" id="closeBotBtn" aria-label="Zatvoriť">✕</button>
     <section class="head" role="button" tabindex="0" aria-label="Zmeniť výraz AI hlavy">
       <div class="atom-orbit orbit-one"><span class="electron"></span></div>
@@ -879,6 +930,7 @@
   const head = shadow.querySelector('.head');
   const face = shadow.querySelector('.face');
   const closeBtn = shadow.getElementById('closeBotBtn');
+  const helloBubble = shadow.querySelector('.hello-bubble');
   
   const chars = '01X01 []{}<>/:;*+=-~';
   const colors = ['#ffffff', '#e9ffff', '#9ef6ff', '#54dcff', '#00b7ff', '#1687cf', '#6cafff'];
@@ -964,7 +1016,9 @@
     isTransitioning = true;
 
     triggerBurstEffect();
+    helloBubble.classList.add('hidden');
     head.classList.add('hidden');
+    closeBtn.classList.add('hidden');
 
     const reappearDelay = Math.floor(Math.random() * 3000) + 2000;
 
@@ -977,6 +1031,7 @@
 
         head.style.transition = 'transform 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.3s ease-out';
         head.classList.remove('hidden');
+        closeBtn.classList.remove('hidden');
         
         setTimeout(() => {
           head.style.transition = '';
@@ -1069,5 +1124,49 @@
   }, 180);
 })();
 </script>
+
+<script>
+/*
+  Country-based pricing link:
+  Slovakia (SK) -> cennik.html
+  Elsewhere       -> abcweb-pricing-uk.html
+
+  Default is UK pricing so the correct non-Slovakia page is still available
+  if the geolocation service is unavailable.
+*/
+(function () {
+  const pricingLink = document.getElementById('pricingLink');
+  if (!pricingLink) return;
+
+  const slovakPricing = 'cennik.html';
+  const internationalPricing = 'abcweb-pricing-uk.html';
+
+  // Default for all countries outside Slovakia.
+  pricingLink.href = internationalPricing;
+
+  fetch('https://ipapi.co/json/', {
+    method: 'GET',
+    cache: 'no-store'
+  })
+    .then(response => {
+      if (!response.ok) throw new Error('Country lookup failed');
+      return response.json();
+    })
+    .then(data => {
+      const countryCode = String(data.country_code || '').toUpperCase();
+
+      if (countryCode === 'SK') {
+        pricingLink.href = slovakPricing;
+      } else {
+        pricingLink.href = internationalPricing;
+      }
+    })
+    .catch(() => {
+      // Keep the default UK/international pricing link.
+      pricingLink.href = internationalPricing;
+    });
+})();
+</script>
+
 </body>
 </html>
