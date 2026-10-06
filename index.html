@@ -1,1172 +1,1900 @@
 <!DOCTYPE html>
-<html lang="sk">
+<html lang="en">
+
 <head>
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-9RT343C3H6"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-9RT343C3H6');
+</script>
+
     <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>abcweb.ing | Tvorivosť a technológie spojené</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+    <title>ABCweb.ing | Official Website</title>
+
+    <meta name="description"
+        content="ABCweb.ing — dark, powerful and modern digital experience.">
+
+    <meta property="og:title" content="ABCweb.ing | Web Design &amp; Digital Solutions">
+    <meta property="og:description"
+        content="Modern websites and digital solutions, designed to help businesses grow.">
+    <meta property="og:image" content="https://abcweb.ing/images/abcweb-open-graph.png">
+    <meta property="og:image:alt" content="ABCweb.ing — modern websites, built for growth">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://abcweb.ing/">
+    <meta name="twitter:card" content="summary_large_image">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+        integrity="sha384-PPIZEGYM1v8zp5Py7UjFb79S58UeqCL9pYVnVPURKEqvioPROaVAJKKLzvH2rDnI"
+        crossorigin="anonymous">
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+
+            font-family: Arial, sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+
+            background: #070707;
+            color: #f1f1f1e5;
+        }
+
+
+        body {
+            min-height: 100vh;
+        }
+
+
+        /* =========================================================
+           HEADER
+        ========================================================= */
+
+        .header {
+            position: fixed;
+
+            top: 0;
+            left: 0;
+
+            width: 100%;
+
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+
+            color: #fff;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            padding: 1rem 2rem;
+
+            z-index: 1000;
+        }
+
+        .header-inner {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .header,
+        .header * {
+            -webkit-user-select: none;
+            user-select: none;
+        }
+
+
+        .logo {
+            position: relative;
+            text-decoration: none;
+            color: #fff;
+            font-size: 1.15rem;
+            font-weight: 700;
+            letter-spacing: 0.12rem;
+            white-space: nowrap;
+            transition: transform 300ms ease, text-shadow 300ms ease;
+        }
+
+        .logo:hover {
+            transform: translateY(-1px);
+            text-shadow: 0 0 18px rgba(0,229,255,.35);
+        }
+
+        .logo::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: -5px;
+            width: 24px;
+            height: 2px;
+            background: linear-gradient(90deg, #00e5ff, #8b5cf6);
+            border-radius: 10px;
+            transition: width 300ms cubic-bezier(.16,1,.3,1), box-shadow 300ms cubic-bezier(.16,1,.3,1);
+        }
+
+        .logo:hover::after {
+            width: 100%;
+            box-shadow: 0 0 12px rgba(0,229,255,.55);
+        }
+
+        .main-nav {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 5px;
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 999px;
+            background: rgba(255,255,255,0.025);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+
+        .main-nav a {
+            padding: 9px 15px;
+            border-radius: 999px;
+            color: rgba(255,255,255,0.65);
+            font-size: 0.78rem;
+            font-weight: 600;
+            letter-spacing: 0.08rem;
+            text-transform: uppercase;
+            text-decoration: none;
+            transition: color 300ms ease, background 300ms ease, transform 300ms ease;
+        }
+
+        .main-nav a:hover,
+        .main-nav a.active {
+            color: #fff;
+            background: linear-gradient(135deg, rgba(0,229,255,0.12), rgba(139,92,246,0.14));
+            box-shadow: inset 0 0 0 1px rgba(255,255,255,0.07), 0 0 18px rgba(0,229,255,0.06);
+        }
+
+        .menu-toggle {
+            display: none;
+            position: relative;
+            z-index: 2001;
+            width: 42px;
+            height: 42px;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid transparent;
+            border-radius: 50%;
+            background:
+                linear-gradient(#0d0d0f, #0d0d0f) padding-box,
+                linear-gradient(135deg, #00e5ff, #8b5cf6) border-box;
+            color: #fff;
+            cursor: pointer;
+            transition: transform 300ms ease, box-shadow 300ms ease;
+        }
+
+        .menu-toggle:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 24px rgba(0,229,255,0.1);
+        }
+
+        .menu-toggle i {
+            font-size: 16px;
+            pointer-events: none;
+        }
+
+        .mobile-nav {
+            position: fixed;
+            top: 86px;
+            left: 15px;
+            right: 15px;
+            z-index: 2000;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            width: auto;
+            padding: 10px;
+            background-color: #0d0d0f;
+            background-image:
+                radial-gradient(circle at 50% 0%, rgba(0,229,255,0.15), transparent 38%),
+                radial-gradient(circle at 58% 0%, rgba(139,92,246,0.11), transparent 52%);
+            border: 1px solid transparent;
+            border-radius: 20px;
+            border-image: linear-gradient(135deg, #00e5ff, #8b5cf6) 1;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.75);
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+            transform: translateY(-10px) scale(.98);
+            transition: opacity 300ms ease, transform 300ms ease, visibility 300ms ease;
+        }
+
+        .mobile-nav.open {
+            opacity: 1;
+            visibility: visible;
+            pointer-events: auto;
+            transform: translateY(0) scale(1);
+        }
+
+        .mobile-nav a {
+            position: relative;
+            padding: 15px 17px;
+            border-radius: 13px;
+            color: #eee;
+            font-size: 0.82rem;
+            font-weight: 600;
+            letter-spacing: 0.09rem;
+            text-transform: uppercase;
+            text-decoration: none;
+            transition: color 250ms ease, background 250ms ease, padding-left 250ms ease;
+        }
+
+        .mobile-nav a:hover,
+        .mobile-nav a.active {
+            color: #fff;
+            background: linear-gradient(90deg, rgba(0,229,255,0.11), rgba(139,92,246,0.11));
+            box-shadow: inset 2px 0 0 #00e5ff;
+        }
+
+
+        /* =========================================================
+           HERO
+        ========================================================= */
+
+        .hero {
+            position: relative;
+
+            width: 100%;
+            height: 100vh;
+            height: 100dvh;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            overflow: hidden;
+        }
+
+
+        .hero::before {
+            content: "";
+
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+
+
+            pointer-events: none;
+        }
+
+        .hero-background {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+            z-index: 0;
+        }
+
+
+        /* =========================================================
+           HERO CONTENT
+        ========================================================= */
+
+        .hero-content {
+            padding: 2rem;
+
+            position: relative;
+
+            z-index: 2;
+            isolation: isolate;
+            overflow: visible;
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+
+            text-align: center;
+
+            color: #fafafa;
+            animation: hero-content-float 8s ease-in-out infinite;
+
+            border: 1px solid rgba(255, 255, 255, 0);
+
+            background: rgba(92, 31, 172, 0.05);
+
+            border-radius: 50%;
+
+            aspect-ratio: 1 / 1;
+
+            backdrop-filter: blur(16px) saturate(140%);
+            -webkit-backdrop-filter: blur(16px) saturate(140%);
+            box-shadow:
+                0 12px 36px rgba(0, 0, 0, 0.18),
+                inset 10px 14px 30px rgba(255, 255, 255, 0.1),
+                inset -14px -18px 34px rgba(0, 0, 0, 0.32);
+        }
+
+        .hero-floater {
+            position: absolute;
+            z-index: -1;
+            width: var(--size);
+            height: var(--size);
+            border: 1px solid var(--edge);
+            border-radius: 50%;
+            background: var(--color);
+            backdrop-filter: blur(10px) saturate(140%);
+            -webkit-backdrop-filter: blur(10px) saturate(140%);
+            box-shadow:
+                0 0 26px var(--glow),
+                0 8px 28px rgba(0, 0, 0, 0.2),
+                inset 0 0 22px rgba(255, 255, 255, 0.16),
+                inset -14px -18px 34px rgba(0, 0, 0, 0.28);
+            pointer-events: none;
+            animation: hero-float var(--duration) ease-in-out infinite;
+        }
+
+        .hero-floater-one {
+            --size: 58px;
+            --color: rgba(13, 217, 253, 0.32);
+            --edge: rgba(13, 217, 253, 0.48);
+            --glow: rgba(13, 217, 253, 0.28);
+            --duration: 7s;
+            top: 7%;
+            right: -8%;
+        }
+
+        .hero-floater-two {
+            --size: 42px;
+            --color: rgba(217, 241, 3, 0.28);
+            --edge: rgba(217, 241, 3, 0.42);
+            --glow: rgba(217, 241, 3, 0.24);
+            --duration: 8.5s;
+            top: 58%;
+            left: -11%;
+            animation-delay: -2s;
+        }
+
+        .hero-floater-three {
+            --size: 68px;
+            --color: rgba(255, 70, 140, 0.3);
+            --edge: rgba(255, 70, 140, 0.46);
+            --glow: rgba(255, 70, 140, 0.26);
+            --duration: 9s;
+            right: 12%;
+            bottom: -8%;
+            animation-delay: -4s;
+        }
+
+        .hero-floater-four {
+            --size: 32px;
+            --color: rgba(0, 255, 170, 0.28);
+            --edge: rgba(0, 255, 170, 0.44);
+            --glow: rgba(0, 255, 170, 0.24);
+            --duration: 6.5s;
+            top: 17%;
+            left: 9%;
+            animation-delay: -1s;
+        }
+
+        @keyframes hero-float {
+            0%,
+            100% {
+                transform: translate3d(0, 0, 0);
+            }
+
+            50% {
+                transform: translate3d(8px, -14px, 0);
+            }
+        }
+
+        @keyframes hero-content-float {
+            0%,
+            100% {
+                transform: translate3d(0, 0, 0);
+            }
+
+            50% {
+                transform: translate3d(0, -7px, 0);
+            }
+        }
+
+        @keyframes mobile-orbit-float {
+            0%,
+            100% {
+                transform: translate3d(0, 0, 0);
+            }
+
+            50% {
+                transform: translate3d(0, -5px, 0);
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .hero-content,
+            .hero-floater {
+                animation: none;
+            }
+        }
+
+
+        .hero-subtitle {
+            margin: 0 0 0.5rem;
+
+            letter-spacing: 0.38rem;
+
+            text-transform: uppercase;
+
+            font-size: 0.75rem;
+
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+
+        .hero-content h1 {
+            margin-top: 0.5rem;
+
+            font-size: clamp(1.5rem, 4vw, 3rem);
+
+            line-height: 0.96;
+
+            letter-spacing: 0.12rem;
+
+            text-transform: uppercase;
+
+            color: #f5f3f3;
+
+            text-shadow:
+                0 8px 24px rgba(0, 0, 0, 0.45);
+        }
+
+
+        .hero-text {
+            margin: 1.25rem 0 1.75rem;
+
+            font-size: 1.1rem;
+
+            color: rgba(17, 205, 218, 0.85);
+        }
+
+        /* =========================================================
+           stop / play button
+        ========================================================= */
+        .animation-control-group {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            flex-shrink: 0;
+            position: absolute;
+            bottom: 42px;
+            left: 90%;
+            z-index: 4;
+            transform: translateX(-50%);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+                padding: 0.5rem 1.5rem;
+                border-radius: 999px;
+                background: rgba(132, 243, 4, 0.25);
+        }
+
+        .animation-hint {
+            display: flex;
+            width: 2rem;
+            height: 2rem;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            line-height: 1;
+            user-select: none;
+            -webkit-user-select: none;
+            color: #ffffffb4;
+        }
+
+        .animation-hint-arrow {
+            color: #ffffff3d;
+            font-size: 1.2rem;
+        }
+
+        .animation-control {
+            width: 2.5rem;                                                  
+            height: 2.5rem;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border: 1px solid rgba(255, 255, 255, 0);
+            border-radius: 50%;
+
+            background: rgba(161, 20, 20, 0.733);
+            color: #ffffff;
+
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+
+            cursor: pointer;
+
+            transition:
+                transform 250ms ease,
+                background 250ms ease,
+                border-color 250ms ease;
+        }
+
+        .animation-control:hover {
+            transform: scale(1.08);
+            background: rgba(20, 20, 20, 0.75);
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .animation-control i {
+            font-size: 1.2rem;
+        }
+
+        @media (max-width: 600px) {
+            .animation-control-group {
+                gap: 0.25rem;
+                bottom: 50px;
+                left: 50%;
+                
+            }
+
+            .animation-hint,
+            .animation-control {
+                width: 38px;
+                height: 38px;
+            }
+
+            @media (max-width: 800px) {
+                .header {
+                    padding: 0.9rem 1.1rem;
+                }
+
+                .main-nav {
+                    display: none;
+                }
+
+                .menu-toggle {
+                    display: flex;
+                }
+            }
+
+            .animation-hint {
+                font-size: 2.2rem;
+            }
+
+            .animation-hint-arrow {
+                font-size: 1.15rem;
+            }
+        }
+
+
+
+        /* =========================================================
+           SHARED CIRCLE STYLE AND ORBIT INTERACTIONS
+        ========================================================= */
+
+        .circle-orbit {
+            position: absolute;
+            z-index: 3;
+            width: 190px;
+            height: 190px;
+        }
+
+        .circle-card,
+        .service-orbit-center,
+        .orbit-child {
+            position: absolute;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid rgba(255, 255, 255, 0);
+            border-radius: 50%;
+            color: #fff;
+            text-align: center;
+            text-decoration: none;
+            backdrop-filter: blur(14px) saturate(140%);
+            -webkit-backdrop-filter: blur(14px) saturate(140%);
+            box-shadow:
+                0 12px 36px rgba(0, 0, 0, 0.18),
+                inset 0 0 24px rgba(255, 255, 255, 0.04);
+            transition:
+                transform 550ms cubic-bezier(.16,1,.3,1),
+                background-color 300ms ease,
+                box-shadow 300ms ease;
+        }
+
+        .circle-card {
+            z-index: 2;
+            font-size: 0.9rem;
+            font-weight: 700;
+            letter-spacing: 0.12rem;
+            will-change: transform;
+        }
+
+        .about-orbit {
+            top: 18%;
+            left: 14%;
+            animation: float1 9s ease-in-out infinite;
+        }
+
+        .about-orbit .card-1 {
+            top: 50%;
+            left: 50%;
+            width: 140px;
+            height: 140px;
+            background: rgba(3, 241, 142, 0.08);
+            transform: translate(-50%, -50%);
+        }
+
+        .contact-orbit {
+            bottom: 15%;
+            left: 20%;
+            animation: float3 10s ease-in-out infinite;
+        }
+
+        .contact-orbit .card-3 {
+            top: 50%;
+            left: 50%;
+            width: 115px;
+            height: 115px;
+            background: rgba(24, 119, 242, 0.12);
+            transform: translate(-50%, -50%);
+        }
+
+        .projects-orbit {
+            right: 17%;
+            bottom: 12%;
+            animation: float4 14s ease-in-out infinite;
+        }
+
+        .projects-orbit .card-4 {
+            top: 50%;
+            left: 50%;
+            width: 165px;
+            height: 165px;
+            background: rgba(255, 180, 0, 0.1);
+            transform: translate(-50%, -50%);
+        }
+
+        .services-orbit {
+            top: 12%;
+            right: 10%;
+            animation: float2 12s ease-in-out infinite;
+        }
+
+        .about-orbit .card-1:hover,
+        .about-orbit .card-1:focus-visible {
+            transform: translate(-50%, -50%) scale(1.06);
+        }
+
+        .service-orbit-menu {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            display: grid;
+            width: min(34vw, 420px);
+            aspect-ratio: 1;
+            place-items: center;
+            transform: translate(-50%, -50%);
+        }
+
+        .service-orbit-center {
+            z-index: 2;
+            width: 140px;
+            aspect-ratio: 1;
+            background-color: rgba(194, 82, 170, 0.12);
+            font-size: 0.9rem;
+            font-weight: 700;
+            letter-spacing: 0.12rem;
+        }
+
+        .orbit-child {
+            --x: 0px;
+            --y: 0px;
+            --size: 58px;
+            z-index: 1;
+            top: 50%;
+            left: 50%;
+            width: var(--size);
+            height: var(--size);
+            padding: 6px;
+            flex-direction: column;
+            gap: 4px;
+            background-color: var(--circle-color, rgba(255, 255, 255, 0.1));
+            font-size: 9px;
+            font-weight: 700;
+            line-height: 1.2;
+            letter-spacing: 0.015em;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
+            opacity: 0;
+            pointer-events: none;
+            transform: translate(-50%, -50%) translate(0, 0) scale(0.25);
+            transition:
+                opacity 220ms ease var(--delay, 0ms),
+                transform 650ms cubic-bezier(.16,1,.3,1) var(--delay, 0ms),
+                background-color 250ms ease,
+                box-shadow 250ms ease;
+        }
+
+        .services-orbit .service-orbit-design {
+            --x: -115px;
+            --y: -90px;
+            --size: 62px;
+            --circle-color: rgba(244, 230, 198, 0.2);
+        }
+
+        .about-orbit .about-approach {
+            --x: -105px;
+            --y: -55px;
+            --size: 62px;
+            --circle-color: rgba(217, 241, 3, 0.16);
+        }
+
+        .about-orbit .about-portfolio {
+            --x: 95px;
+            --y: -75px;
+            --size: 72px;
+            --circle-color: rgba(13, 217, 253, 0.16);
+        }
+
+        .about-orbit .about-pricing {
+            --x: 40px;
+            --y: 95px;
+            --size: 58px;
+            --circle-color: rgba(255, 70, 140, 0.18);
+        }
+
+        .services-orbit .service-orbit-development {
+            --x: 97.5px;
+            --y: -92.5px;
+            --size: 74px;
+            --circle-color: rgba(83, 255, 77, 0.15);
+        }
+
+        .services-orbit .service-orbit-seo {
+            --x: 130px;
+            --y: 27.5px;
+            --size: 63px;
+            --circle-color: rgba(228, 224, 212, 0.2);
+        }
+
+        .services-orbit .service-orbit-social {
+            --x: 52.5px;
+            --y: 115px;
+            --size: 58px;
+            --circle-color: rgba(214, 232, 188, 0.2);
+        }
+
+        .services-orbit .service-orbit-ai {
+            --x: -105px;
+            --y: 92.5px;
+            --size: 71px;
+            --circle-color: rgba(244, 198, 214, 0.2);
+        }
+
+        .projects-orbit .project-1 {
+            --x: -120px;
+            --y: 0px;
+            --size: 64px;
+            --circle-color: rgba(255, 180, 0, 0.18);
+        }
+
+        .projects-orbit .project-2 {
+            --x: -105px;
+            --y: 60px;
+            --size: 56px;
+            --circle-color: rgba(13, 217, 253, 0.18);
+        }
+
+        .projects-orbit .project-3 {
+            --x: -65px;
+            --y: 110px;
+            --size: 60px;
+            --circle-color: rgba(0, 255, 170, 0.16);
+        }
+
+        .projects-orbit .project-4 {
+            --x: 0px;
+            --y: 125px;
+            --size: 68px;
+            --circle-color: rgba(255, 70, 140, 0.18);
+        }
+
+        .contact-orbit .contact-1 {
+            --x: -105px;
+            --y: -105px;
+            --size: 54px;
+            --circle-color: rgba(24, 119, 242, 0.2);
+        }
+
+        .contact-orbit .contact-2 {
+            --x: -145px;
+            --y: -50px;
+            --size: 62px;
+            --circle-color: rgba(225, 48, 108, 0.2);
+        }
+
+        .contact-orbit .contact-3 {
+            --x: -155px;
+            --y: 15px;
+            --size: 50px;
+            --circle-color: rgba(255, 255, 255, 0.16);
+        }
+
+        .contact-orbit .contact-4 {
+            --x: -145px;
+            --y: 80px;
+            --size: 58px;
+            --circle-color: rgba(0, 180, 255, 0.2);
+        }
+
+        .contact-orbit .contact-5 {
+            --x: -105px;
+            --y: 135px;
+            --size: 66px;
+            --circle-color: rgba(37, 211, 102, 0.2);
+        }
+
+        .circle-orbit:hover .orbit-child,
+        .circle-orbit:focus-within .orbit-child,
+        .circle-orbit.active .orbit-child {
+            opacity: 0.9;
+            pointer-events: auto;
+            transform:
+                translate(-50%, -50%)
+                translate(var(--x), var(--y))
+                scale(1);
+        }
+
+        .circle-card:hover,
+        .circle-card:focus-visible,
+        .service-orbit-center:hover,
+        .service-orbit-center:focus-visible {
+            z-index: 4;
+            box-shadow:
+                0 0 30px rgba(255, 255, 255, 0.12),
+                inset 0 0 24px rgba(255, 255, 255, 0.1);
+            transform: scale(1.06);
+        }
+
+        .contact-orbit .card-3:hover,
+        .contact-orbit .card-3:focus-visible,
+        .projects-orbit .card-4:hover,
+        .projects-orbit .card-4:focus-visible {
+            transform: translate(-50%, -50%) scale(1.06);
+        }
+
+        .circle-orbit .orbit-child:hover,
+        .circle-orbit .orbit-child:focus-visible {
+            z-index: 5;
+            outline: none;
+            opacity: 0.9;
+            background-color: rgba(255, 255, 255, 0.28);
+            box-shadow:
+                0 0 28px rgba(255, 255, 255, 0.18),
+                inset 0 0 24px rgba(255, 255, 255, 0.1);
+            transform:
+                translate(-50%, -50%)
+                translate(var(--x), var(--y))
+                scale(1.7);
+        }
+
+        .about-orbit .card-1,
+        .services-orbit .service-orbit-center,
+        .contact-orbit .card-3,
+        .projects-orbit .card-4 {
+            box-shadow:
+                0 12px 36px rgba(0, 0, 0, 0.18),
+                inset 8px 10px 18px rgba(255, 255, 255, 0.16),
+                inset -10px -12px 22px rgba(0, 0, 0, 0.3);
+        }
+
+        .contact-orbit .orbit-child i {
+            font-size: 18px;
+            line-height: 1;
+        }
+
+
+        /* =========================================================
+           CONTACT ICONS
+        ========================================================= */
+
+       
+
+
+        /* =========================================================
+           FLOAT ANIMATIONS
+        ========================================================= */
+
+        @keyframes float1 {
+
+            0%,
+            100% {
+
+                transform:
+                    translate3d(0, 0, 0);
+            }
+
+            50% {
+
+                transform:
+                    translate3d(
+                        20px,
+                        -30px,
+                        0
+                    );
+            }
+        }
+
+        @keyframes float2 {
+
+            0%,
+            100% {
+
+                transform:
+                    translate3d(0, 0, 0);
+            }
+
+            50% {
+
+                transform:
+                    translate3d(
+                        -18px,
+                        18px,
+                        0
+                    );
+            }
+        }
+
+
+        @keyframes float3 {
+
+            0%,
+            100% {
+
+                transform:
+                    translate3d(0, 0, 0);
+            }
+
+            50% {
+
+                transform:
+                    translate3d(
+                        25px,
+                        -20px,
+                        0
+                    );
+            }
+        }
+
+
+        @keyframes float4 {
+
+            0%,
+            100% {
+
+                transform:
+                    translate3d(0, 0, 0);
+            }
+
+            50% {
+
+                transform:
+                    translate3d(
+                        -20px,
+                        -25px,
+                        0
+                    );
+            }
+        }
+
+
+        /* =========================================================
+           FOOTER
+        ========================================================= */
+
+        .footer {
+
+            position: fixed;
+
+            bottom: 10px;
+
+            left: 0;
+
+            width: 100%;
+
+            text-align: center;
+
+            z-index: 5;
+
+            pointer-events: none;
+
+            font-size: 11px;
+
+            opacity: 0.45;
+        }
+
+
+        /* =========================================================
+           MOBILE
+        ========================================================= */
+
+        @media (max-width: 600px) {
+
+            html,
+            body {
+                width: 100%;
+                height: 100%;
+                min-height: 0;
+                overflow: hidden;
+            }
+
+            .hero {
+                height: 100vh;
+                height: 100dvh;
+                min-height: 0;
+            }
+
+            *,
+            *::before,
+            *::after {
+                -webkit-tap-highlight-color: transparent;
+                -webkit-touch-callout: none;
+                -webkit-user-select: none;
+                user-select: none;
+            }
+
+    
+            .header {
+
+                padding:
+                    0.9rem 1rem;
+            }
+
+            .about-orbit {
+                top: 4%;
+                left: calc(25% - 95px);
+                animation: mobile-orbit-float 5.5s ease-in-out infinite;
+            }
+
+            .services-orbit {
+                top: 5%;
+                right: calc(25% - 95px);
+                animation: mobile-orbit-float 6s ease-in-out infinite -1.5s;
+            }
+
+            .contact-orbit {
+                bottom: 18%;
+                left: calc(25% - 80px);
+                animation: mobile-orbit-float 6.5s ease-in-out infinite -3s;
+            }
+
+            .projects-orbit {
+                right: calc(25% - 89px);
+                bottom: 25%;
+                animation: mobile-orbit-float 5.8s ease-in-out infinite -4.5s;
+            }
+
+
+
+
+
+            .hero-content {
+                width: min(78vw, 70dvh, 360px);
+                height: min(78vw, 70dvh, 360px);
+                min-width: 0;
+                min-height: 0;
+                flex: 0 0 auto;
+                bottom: 50px;
+            }
+
+            .hero-floater-one {
+                --size: 28px;
+                right: -15%;
+            }
+
+            .hero-floater-two {
+                --size: 22px;
+                left: -15%;
+            }
+
+            .hero-floater-three {
+                --size: 28px;
+                right: 8%;
+            }
+
+            .hero-floater-four {
+                --size: 26px;
+            }
+
+
+            .service-orbit-menu {
+    
+                transform: translate(-50%, -50%);
+            }
+
+            .service-orbit-center {
+                width: 80px;
+                font-size: 0.8rem;
+            }
+
+            .services-orbit .service-orbit-design {
+                --x: -64.1px;
+                --y: -37px;
+            }
+
+            .services-orbit .service-orbit-development {
+                --x: 0px;
+                --y: -74px;
+            }
+
+            .services-orbit .service-orbit-seo {
+                --x: 64.1px;
+                --y: -37px;
+            }
+
+            .services-orbit .service-orbit-social {
+                --x: 64.1px;
+                --y: 37px;
+            }
+
+            .services-orbit .service-orbit-ai {
+                --x: -64.1px;
+                --y: 37px;
+            }
+
+            .about-orbit .card-1 {
+                width: 80px;
+                height: 80px;
+            }
+
+            .about-orbit .about-approach {
+                --x: -64.1px;
+                --y: 37px;
+            }
+
+            .about-orbit .about-portfolio {
+                --x: 64.1px;
+                --y: -37px;
+            }
+
+            .about-orbit .about-pricing {
+                --x: 0px;
+                --y: 74px;
+            }
+
+            .contact-orbit .card-3,
+            .projects-orbit .card-4 {
+                width: 90px;
+                height: 90px;
+            }
+
+            .orbit-child {
+                --size: 44px;
+                font-size: 8px;
+            }
+
+            .projects-orbit .project-1 {
+                --x: -64.1px;
+                --y: -37px;
+            }
+
+            .projects-orbit .project-2 {
+                --x: -64.1px;
+                --y: 37px;
+            }
+
+            .projects-orbit .project-3 {
+                --x: 0px;
+                --y: 74px;
+            }
+
+            .projects-orbit .project-4 {
+                --x: 64.1px;
+                --y: -37px;
+            }
+
+            .contact-orbit .contact-1 {
+                --x: -64.1px;
+                --y: -37px;
+            }
+
+            .contact-orbit .contact-2 {
+                --x: -64.1px;
+                --y: 37px;
+            }
+
+            .contact-orbit .contact-3 {
+                --x: 0px;
+                --y: 74px;
+            }
+
+            .contact-orbit .contact-4 {
+                --x: 64.1px;
+                --y: 37px;
+            }
+
+            .contact-orbit .contact-5 {
+                --x: 64.1px;
+                --y: -37px;
+            }
+
+            .circle-orbit .orbit-child {
+                --size: 44px;
+            }
+
+            .contact-orbit .orbit-child i {
+                font-size: 14px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .about-orbit,
+            .services-orbit,
+            .contact-orbit,
+            .projects-orbit {
+                animation: none;
+            }
+        }
+        
+        .cookie-banner {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 2000;
+
+    display: none; /* zobrazíme cez JS, ak nie je súhlas */
+
+    padding: 1rem;
+    background: rgba(7, 7, 7, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    color: #f1f1f1;
+    font-family: Arial, sans-serif;
+    font-size: 0.9rem;
+    line-height: 1.4;
+  }
+
+  .cookie-content {
+    max-width: 900px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem 1rem;
+  }
+
+  .cookie-text {
+    flex: 1 1 260px;
+    margin: 0;
+    color: #eaeaea;
+  }
+
+  .cookie-link {
+    color: #11cdda;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+
+  .cookie-link:hover,
+  .cookie-link:focus {
+    color: #4de8f5;
+  }
+
+  .cookie-buttons {
+    flex: 0 0 auto;
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  .cookie-btn {
+    appearance: none;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 999px;
+    padding: 0.55rem 1rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    cursor: pointer;
+    transition:
+      transform 200ms ease,
+      background-color 200ms ease,
+      border-color 200ms ease,
+      color 200ms ease;
+    white-space: nowrap;
+  }
+
+  .cookie-btn:hover {
+    transform: translateY(-1px);
+  }
+
+  .cookie-btn-primary {
+    background: rgba(17, 205, 218, 0.18);
+    border-color: rgba(17, 205, 218, 0.45);
+    color: #e0fbfd;
+  }
+
+  .cookie-btn-primary:hover,
+  .cookie-btn-primary:focus {
+    background: rgba(17, 205, 218, 0.28);
+    border-color: rgba(17, 205, 218, 0.7);
+    color: #ffffff;
+  }
+
+  .cookie-btn-secondary {
+    background: rgba(255, 255, 255, 0.04);
+    border-color: rgba(255, 255, 255, 0.18);
+    color: #eaeaea;
+  }
+
+  .cookie-btn-secondary:hover,
+  .cookie-btn-secondary:focus {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.35);
+    color: #ffffff;
+  }
+
+  @media (max-width: 600px) {
+    .cookie-banner {
+      padding: 0.75rem;
+      font-size: 0.85rem;
+    }
+
+    .cookie-content {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0.6rem;
+    }
+
+    .cookie-buttons {
+      justify-content: stretch;
+    }
+
+    .cookie-btn {
+      flex: 1 1 0;
+      text-align: center;
+    }
+  }
+    </style>
+
 </head>
+
+
 <body>
 
-    <!-- Navigácia -->
-    <header class="navbar">
-        <div class="container nav-container">
-            <a href="#" class="logo">abcweb<span>.ing</span></a>
 
-            <button class="menu-toggle" type="button" aria-label="Otvoriť menu" aria-expanded="false">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
+    <!-- =========================================================
+         HEADER
+    ========================================================= -->
 
-            <nav class="nav-links">
-                <a href="#domov" class="active" data-key="nav-home">Domov</a>
-                <a href="#sluzby" data-key="nav-services">Služby</a>
-                <a href="#pristop" data-key="nav-approach">Náš prístup</a>
-                <a id="pricingLink" href="abcweb-pricing-uk.html" data-key="nav-pricing">Cenník</a>
-                <a href="#portfolio" data-key="nav-portfolio">Portfólio</a>
+    <header class="header">
+        <div class="header-inner">
+            <a href="index.html" class="logo">ABCweb.ing</a>
+
+            <nav class="main-nav" aria-label="Main navigation">
+                <a href="index.html" class="active" aria-current="page">Home</a>
+                <a href="about.html">About</a>
+                <a href="services.html">Services</a>
+                <a href="projects.html">Projects</a>
+                <a href="contact.html">Contact</a>
             </nav>
-            
-            <div class="nav-actions">
-                <!-- Prepínač jazykov -->
-                <div class="lang-switch">
-                    <button class="lang-btn active" onclick="setLanguage('sk')">SK</button>
-                    <span class="lang-divider">|</span>
-                    <button class="lang-btn" onclick="setLanguage('en')">EN</button>
-                </div>
-                <a href="#kontakt" class="btn btn-primary nav-btn" data-key="nav-cta">Objednať</a>
-            </div>
+
+            <button
+                class="menu-toggle"
+                id="menuToggle"
+                type="button"
+                aria-label="Open menu"
+                aria-expanded="false"
+                aria-controls="mobileNav">
+                <i class="fas fa-bars"></i>
+            </button>
         </div>
     </header>
 
-    <section class="animation">
-        <iframe id="contentFrame" src="animation.html" width="100%" height="500px" style="border: none;"></iframe>
+    <nav class="mobile-nav" id="mobileNav" aria-label="Mobile navigation">
+        <a href="index.html" class="active" aria-current="page">Home</a>
+        <a href="about.html">About</a>
+        <a href="services.html">Services</a>
+        <a href="projects.html">Projects</a>
+        <a href="contact.html">Contact</a>
+    </nav>
+
     
-    </section>
 
-    <!-- Sekcia Služby -->
-    <section class="services" id="sluzby">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-tag" data-key="services-tag">Čo robíme</span>
-                <h2 data-key="services-title">Komplexné riešenia pre váš digitálny úspech</h2>
-                <p data-key="services-desc">Od prvotného nápadu až po finálne spustenie. Navrhujeme a vyvíjame weby, ktoré prinášajú reálne výsledky.</p>
-            </div>
 
-            <div class="services-grid">
-                <!-- Karta 1 -->
-                <div class="service-card">
-                    <div class="service-icon icon-blue">
-                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
-                    </div>
-                    <h3 data-key="s1-title">Webstránky na mieru</h3>
-                    <p data-key="s1-desc">Moderný, rýchly a responzívny dizajn prispôsobený vašim potrebám a cieľovej skupine.</p>
-                </div>
+    <!-- =========================================================
+         HERO
+    ========================================================= -->
 
-                <!-- Karta 2 -->
-                <div class="service-card">
-                    <div class="service-icon icon-purple">
-                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
-                    </div>
-                    <h3 data-key="s2-title">E-shopy & Rýchly predaj</h3>
-                    <p data-key="s2-desc">Výkonné internetové obchody s jednoduchou správou produktov a bezpečným platobným systémom.</p>
-                </div>
+    <section id="home" class="hero">
+        
 
-                <!-- Karta 3 -->
-                <div class="service-card">
-                    <div class="service-icon icon-pink">
-                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
-                    </div>
-                    <h3 data-key="s3-title">SEO & Výkonnostný marketing</h3>
-                    <p data-key="s3-desc">Optimalizácia pre vyhľadávače (Google), aby vás zákazníci našli na prvých priečkach.</p>
-                </div>
 
-                <!-- Karta 4 -->
-                <div class="service-card">
-                    <div class="service-icon icon-orange">
-                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg>
-                    </div>
-                    <h3 data-key="s4-title">Redizajn & Správa webu</h3>
-                    <p data-key="s4-desc">Osvieženie starého webu do moderného šatu, pravidelné aktualizácie, údržba a bezpečnosť.</p>
-                </div>
-            </div>
+        <!-- =====================================================
+             ABOUT
+        ===================================================== -->
+
+        <div class="circle-orbit about-orbit">
+            <a href="about.html" class="circle-card card-1">
+                <span>ABOUT</span>
+            </a>
+            <a href="pristup.html" class="orbit-child about-approach" style="--delay: 0ms">
+                Approach
+            </a>
+            <a href="portfolio.html" class="orbit-child about-portfolio" style="display: none; --delay: 45ms">
+                Portfolio
+            </a>
+            <a href="cennik.html" class="orbit-child about-pricing" style="display: none; --delay: 90ms">
+                Pricing
+            </a>
         </div>
-    </section>
 
-<!-- Sekcia Náš prístup -->
-    <section class="approach" id="pristop">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-tag" data-key="approach-tag">Ako pracujeme</span>
-                <h2 data-key="approach-title">Jednoduchý proces k vášmu novému webu</h2>
-                <p data-key="approach-desc">Prevádzame vás celým procesom krok za krokom, bez zbytočného technického žargónu.</p>
-            </div>
 
-            <!-- Titulný obrázok sekcie -->
-            <div class="approach-hero-image">
-                <img src="4stage.png" alt="4 kroky procesu tvorby webu" class="approach-img">
-            </div>
+        <!-- =====================================================
+             SERVICES
+        ===================================================== -->
 
-            <div class="process-steps">
-                <!-- Krok 1 -->
-                <div class="step-card">
-                    <div class="step-number num-blue">01</div>
-                    <h3 data-key="step1-title">Konzultácia & Stratégia</h3>
-                    <p  data-key="step1-desc">Spoznáme vaše podnikanie, ciele a cieľovú skupinu. Definujeme rozsah projektu a pripravíme jasný plán.</p>
-                </div>
+        <div class="circle-orbit services-orbit">
 
-                <!-- Krok 2 -->
-                <div class="step-card">
-                    <div class="step-number num-purple">02</div>
-                    <h3  data-key="step2-title">Dizajn & UX</h3>
-                    <p  data-key="step2-desc">Vytvoríme vizuálny návrh na mieru s dôrazom na estetiku, prehľadnosť a zážitok návštevníka.</p>
-                </div>
+            <nav class="service-orbit-menu" aria-label="Services">
+                <a href="services.html" class="service-orbit-center">
+                    Services
+                </a>
+                <a href="design.html" class="orbit-child service-orbit-design" style="--delay: 0ms">
+                    Design
+                </a>
+                <a href="development.html" class="orbit-child service-orbit-development" style="--delay: 35ms">
+                    Development
+                </a>
+                <a href="seo.html" class="orbit-child service-orbit-seo" style="--delay: 70ms">
+                    SEO
+                </a>
+                <a href="services.html" class="orbit-child service-orbit-social" style="--delay: 105ms">
+                    Social Media
+                </a>
+                <a href="AI.html" class="orbit-child service-orbit-ai" style="--delay: 140ms">
+                    AI implementation
+                </a>
+            </nav>
 
-                <!-- Krok 3 -->
-                <div class="step-card">
-                    <div class="step-number num-cyan">03</div>
-                    <h3  data-key="step3-title">Vývoj & Testovanie</h3>
-                    <p  data-key="step3-desc">Návrh premeníme na čistý, rýchly a responzívny kód. Dôkladne otestujeme funkčnosť na všetkých zariadeniach.</p>
-                </div>
-
-                <!-- Krok 4 -->
-                <div class="step-card">
-                    <div class="step-number num-orange">04</div>
-                    <h3  data-key="step4-title">Spustenie & Podpora</h3>
-                    <p  data-key="step4-desc">Web nasadíme na vašu doménu, zaškolíme vás do obsluhy a zostávame vám k dispozícii pre ďalší rozvoj.</p>
-                </div>
-            </div>
         </div>
-    </section>
 
-    <!-- Portfolio Section -->
-        <section class="portfolio section" id="portfolio">
-            <div class="container">
-                <div class="section-header">
-                    <span class="section-tag" data-key="portfolio-tag">Naše práce</span>
-                    <h2 data-key="portfolio-title">Vybrané projekty, na ktorých sme pracovali</h2>
-                    <p data-key="portfolio-desc">Pozrite si ukážky našich nedávnych projektov. Každý web tvoríme s dôrazom na dizajn, rýchlosť a výsledky.</p>
-                </div>
 
-                <div class="portfolio-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-top: 3rem;">
-                    
-                    <!-- Projekt 1 -->
-                    <div class="card portfolio-card">
-                        <div class="portfolio-img-wrapper" style="overflow: hidden; border-radius: 8px; margin-bottom: 1.5rem; background-color: var(--bg-light, #f8f9fa);">
-                            <img src="images/taticlean-logo.png" alt="Projekt 1" style="width: 100%; height: 240px; object-fit: cover; display: block; transition: transform 0.3s ease;">
-                        </div>
-                        <div class="portfolio-content">
-                            <span class="portfolio-category" style="font-size: 0.85rem; font-weight: 600; color: var(--primary-color, #0066ff); text-transform: uppercase; letter-spacing: 0.5px;" data-key="port-p1-cat">Webstránka & Branding</span>
-                            <h3 style="margin: 0.5rem 0;" data-key="port-p1-title">Tati Cleaning</h3>
-                            <p style="color: var(--text-muted, #666); font-size: 0.95rem; margin-bottom: 1.5rem;" data-key="port-p1-desc">Moderná prezentácia pre miestnu firmu v Anglicku s dôrazom na rýchle načítanie a konverzie.</p>
-                            <a href="https://taticlean.co.uk" target="_blank" class="btn btn-outline" style="padding: 0.5rem 1rem; font-size: 0.9rem;" data-key="port-btn-view">Navštíviť web &rarr;</a>
-                        </div>
-                    </div>
+        <!-- =====================================================
+             CONTACT
+        ===================================================== -->
 
-                    <!-- Projekt 2 -->
-                    <div class="card portfolio-card">
-                        <div class="portfolio-img-wrapper" style="overflow: hidden; border-radius: 8px; margin-bottom: 1.5rem; background-color: var(--bg-light, #f8f9fa);">
-                            <img src="images/abctip-logo.jpg" alt="Projekt 2" style="width: 100%; height: 240px; object-fit: cover; display: block; transition: transform 0.3s ease;">
-                        </div>
-                        <div class="portfolio-content">
-                            <span class="portfolio-category" style="font-size: 0.85rem; font-weight: 600; color: var(--primary-color, #0066ff); text-transform: uppercase; letter-spacing: 0.5px;" data-key="port-p1-cat">E-Commerce</span>
-                            <h3 style="margin: 0.5rem 0;" data-key="port-p2-title">ABCtip.sk</h3>
-                            <p style="color: var(--text-muted, #666); font-size: 0.95rem; margin-bottom: 1.5rem;" data-key="port-p2-desc">Jednoduchá webová stránka pre seniorov, ktorá im pomáha bezpečne a s istotou objavovať digitálny svet.</p>
-                            <a href="https://abctip.sk" target="_blank" class="btn btn-outline" style="padding: 0.5rem 1rem; font-size: 0.9rem;" data-key="port-btn-view">Navštíviť web &rarr;</a>
-                        </div>
-                    </div>
+        <div class="circle-orbit contact-orbit">
 
-                    <!-- Projekt 3 -->
-                    <div class="card portfolio-card">
-                        <div class="portfolio-img-wrapper" style="overflow: hidden; border-radius: 8px; margin-bottom: 1.5rem; background-color: var(--bg-light, #f8f9fa);">
-                            <img src="images/logo-clear.png" alt="Projekt 2" style="width: 80%; height: 250px; object-fit: cover; display: block; transition: transform 0.3s ease;">
-                        </div>
-                        <div class="portfolio-content">
-                            <span class="portfolio-category" style="font-size: 0.85rem; font-weight: 600; color: var(--primary-color, #0066ff); text-transform: uppercase; letter-spacing: 0.5px;" data-key="port-p3-cat">E-Commerce</span>
-                            <h3 style="margin: 0.5rem 0;" data-key="port-p3-title">Wrap & Roll</h3>
-                            <p style="color: var(--text-muted, #666); font-size: 0.95rem; margin-bottom: 1.5rem;" data-key="port-p3-desc">Vietnamská kuchyňa v srdci Helsink. </p>
-                            <a href="https://tryndalex.github.io/WrapAndRoll/" target="_blank" class="btn btn-outline" style="padding: 0.5rem 1rem; font-size: 0.9rem;" data-key="port-btn-view">Navštíviť web &rarr;</a>
-                        </div>
-                    </div>
 
-                </div>
-            </div>
-        </section>
-    <!-- Contact Section -->
-    <section class="contact" id="kontakt">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-tag" data-key="contact-tag">Ozvite sa</span>
-                <h2 data-key="contact-title">Vybudujme spoločne niečo skvelé.</h2>
-                <p data-key="contact-desc">Máte na mysli nejaký projekt alebo chcete prediskutovať, ako môžeme pomôcť vašej firme rásť? Pošlite nám správu.</p>
-            </div>
+            <a
+                href="contact.html"
+                class="circle-card card-3">
 
-            <div class="contact-wrapper">
-                <!-- Contact Info Cards -->
-                <div class="contact-info">
-                    <div class="info-card">
-                        <div class="info-icon icon-blue">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
-                        </div>
-                        <div>
-                            <h3>Email</h3>
-                            <a href="mailto:info@abcweb.ing">info@abcweb.ing</a>
-                        </div>
-                    </div>
+                <span>
+                    CONTACT
+                </span>
 
-                    <div class="info-card">
-                        <div class="info-icon icon-purple">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
-                        </div>
-                        <div>
-                            <h3 data-key="contact-phone-title">Zavolajte nám</h3>
-                            <a href="tel:+447748608115">+44 7748 60815</a>
-                        </div>
-                    </div>
+            </a>
 
-                    <div class="info-card">
-                        <div class="info-icon icon-orange">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
-                        </div>
-                        <div>
-                            <h3 data-key="contact-hours-title">Pracovné hodiny</h3>
-                            <p data-key="contact-hours-val">Pondelok - Piatok: 9:00 - 18:00</p>
-                        </div>
-                    </div>
-                </div>
 
-                <!-- Contact Form -->
-                <form class="contact-form" action="https://formsubmit.co/alexander.bohus@gmail.com" method="POST">
-                    <!-- Zbráni spamu (Honeypot) -->
-                    <input type="text" name="_honey" style="display:none">
+            <!-- FACEBOOK -->
 
-                    <!-- Vypne reCAPTCHA overenie pre čistejší odosielací proces -->
-                    <input type="checkbox" name="_captcha" value="false" style="display:none">
+            <a
+                href="#"
+                class="orbit-child contact-1"
+                aria-label="Facebook">
 
-                    <!-- Predmet e-mailu, ktorý vám príde -->
-                    <input type="hidden" name="_subject" value="Nová správa z webu abcweb.ing!">
+                <i class="fab fa-facebook-f"></i>
 
-                    <!-- Stránka, na ktorú používateľa presmeruje po odoslaní (voliteľné) -->
-                    <input type="hidden" name="_next" value="https://abcweb.ing/thankyou.html">
+            </a>
 
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="name" data-key="form-label-name">Vaše meno</label>
-                            <input type="text" id="name" name="name" placeholder="Nick">
-                        </div>
-                        <div class="form-group">
-                            <label for="email" data-key="form-label-email">Váš email</label>
-                            <input type="email" id="email" name="email" placeholder="nick@example.com">
-                        </div>
-                    </div>
 
-                    <div class="form-group">
-                        <label for="package" data-key="form-label-package">Otázka alebo záujem o</label>
-                        <select id="package" name="package">
-                            <option value="general" data-key="opt-general">Všeobecná otázky</option>
-                            <option value="starter" data-key="opt-starter">Starter (£350)</option>
-                            <option value="business">Business (£1,100)</option>
-                            <option value="ecommerce">E-Commerce (£2,100)</option>
-                            <option value="custom" data-key="opt-custom">Projekt na mierut</option>
-                            <option value="basic-care" data-key="opt-basic-care">Basic Care (£35 / mesiac)</option>
-                            <option value="pro-care" data-key="opt-pro-care">Pro Care (£75 / mesiac)</option>
-                            <option value="premium-care" data-key="opt-premium-care">Premium Care (£140 / mesiac)</option>
-                        </select>
-                    </div>
+            <!-- INSTAGRAM -->
 
-                    <div class="form-group">
-                        <label for="message" data-key="form-label-message">Vaša správa</label>
-                        <textarea id="message"
-                        data-key-placeholder="form-placeholder-message"
-                        name="message"
-                        rows="5"
-                        placeholder="Napíšte nám viac o..."
-                      ></textarea>
-                    </div>
+            <a
+                href="#"
+                class="orbit-child contact-2"
+                aria-label="Instagram">
 
-                    <button type="submit" data-key="form-btn-submit" class="btn btn-accent btn-full">Poslať správ</button>
-                </form>
-            </div>
+                <i class="fab fa-instagram"></i>
+
+            </a>
+
+
+            <!-- EMAIL -->
+
+            <a
+                href="mailto:info@abcweb.ing"
+                class="orbit-child contact-3"
+                aria-label="Email">
+
+                <i class="fas fa-envelope"></i>
+
+            </a>
+
+
+            <!-- TELEPHONE -->
+
+            <a
+                href="tel:+44748608115"
+                class="orbit-child contact-4"
+                aria-label="Telephone">
+
+                <i class="fas fa-phone"></i>
+
+            </a>
+
+
+            <!-- WHATSAPP -->
+
+            <a
+                href="https://wa.me/44748608115"
+                class="orbit-child contact-5"
+                target="_blank"
+                rel="noopener"
+                aria-label="WhatsApp">
+
+                <i class="fab fa-whatsapp"></i>
+
+            </a>
+
+
         </div>
+
+
+        <!-- =====================================================
+             PROJECTS
+        ===================================================== -->
+
+        <div class="circle-orbit projects-orbit">
+
+
+            <a
+                href="projects.html"
+                class="circle-card card-4">
+
+                <span>
+                    PROJECTS
+                </span>
+
+            </a>
+
+
+            <!-- TATICLEAN -->
+
+            <a
+                href="https://taticlean.co.uk"
+                class="orbit-child project-1"
+                target="_blank"
+                rel="noopener">
+
+                TATICLEAN
+
+            </a>
+
+
+            <!-- ABCTIP -->
+
+            <a
+                href="https://abctip.sk"
+                class="orbit-child project-2"
+                target="_blank"
+                rel="noopener">
+
+                ABCTIP
+
+            </a>
+
+
+            <!-- KELTEX -->
+
+            <a
+                href="https://keltex.sk"
+                class="orbit-child project-3"
+                target="_blank"
+                rel="noopener">
+
+                KELTEX
+
+            </a>
+
+
+            <!-- WRAP & ROLL -->
+
+            <a
+                href="https://tryndalex.github.io/WrapAndRoll/"
+                class="orbit-child project-4">
+
+                WRAP&ROLL
+
+            </a>
+
+
+        </div>
+
+        <!-- =====================================================
+             HERO CONTENT
+        ===================================================== -->
+
+        <div class="hero-content">
+
+            <span class="hero-floater hero-floater-one" aria-hidden="true"></span>
+            <span class="hero-floater hero-floater-two" aria-hidden="true"></span>
+            <span class="hero-floater hero-floater-three" aria-hidden="true"></span>
+            <span class="hero-floater hero-floater-four" aria-hidden="true"></span>
+
+            <p class="hero-subtitle">
+                WELCOME TO
+            </p>
+
+
+            <h1>
+                ABCweb.ing
+            </h1>
+
+
+            <p class="hero-text">
+                Web, SEO, <br> Social Media, AI, <br> e-commerce,
+            </p>
+
+
+            
+
+        </div>
+
+
+        <iframe
+            class="hero-background"
+            src="fluid.html"
+            title="Animated background"
+            aria-hidden="true">
+        </iframe>
+
+        <div class="animation-control-group">
+            <span class="animation-hint" aria-hidden="true">😵‍💫</span>
+            <i class="animation-hint-arrow fas fa-arrow-right" aria-hidden="true"></i>
+            <button
+                id="animationControl"
+                class="animation-control"
+                type="button"
+                aria-label="Pause animation">
+                <i class="fas fa-pause"></i>
+            </button>
+        </div>
+
     </section>
 
-    <!-- Footer Section -->
+    <!-- =========================================================
+         FOOTER
+    ========================================================= -->
+
     <footer class="footer">
-        <div class="container">
-            <div class="footer-top">
-                <!-- Stĺpec 1: O nás / Brand -->
-                <div class="footer-brand">
-                    <a href="#" class="footer-logo">abcweb<span>.ing</span></a>
-                    <p class="footer-text" data-key="footer-desc">
-                        Navrhujeme a vyvíjame moderné webové stránky a e-shopy na mieru, ktoré menia návštevníkov na platiacich zákazníkov.
-                    </p>
-                    <div class="social-links">
-                        <a href="#" aria-label="LinkedIn" class="social-btn">
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
-                        </a>
-                        <a href="#" aria-label="Facebook" class="social-btn">
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
-                        </a>
-                        <a href="#" aria-label="Instagram" class="social-btn">
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
-                        </a>
-                    </div>
-                </div>
 
-                <!-- Stĺpec 2: Navigácia -->
-                <div class="footer-links">
-                    <h4 data-key="footer-nav-title">Navigácia</h4>
-                    <ul>
-                        <li><a  data-key="footer-services-title" href="#sluzby">Služby</a></li>
-                        <li><a  data-key="footer-how-we-work" href="#pristop">Náš prístup</a></li>
-                        <li><a data-key="footer-price-title" href="#cenik">Cenník</a></li>
-                        <li><a data-key="footer-contact-title" href="#kontakt">Kontakt</a></li>
-                    </ul>
-                </div>
+        <p>
+            © 2026 ABCweb.ing. All rights reserved.
+        </p>
 
-                <!-- Stĺpec 3: Balíčky -->
-                <div class="footer-links">
-                    <h4 data-key="footer-services-title" >Služby</h4>
-                    <ul>
-                        <li><a href="#cenik">Starter Web</a></li>
-                        <li><a href="#cenik">Business Web</a></li>
-                        <li><a href="#cenik">E-Commerce</a></li>
-                        <li><a data-key="s1-title" href="#kontakt">Riešenia na mieru</a></li>
-                    </ul>
-                </div>
-
-                <!-- Stĺpec 4: Kontakt -->
-                <div class="footer-contact">
-                    <h4 data-key="nav-contact">Kontakt</h4>
-                    <p data-key="footer-contact-desc">Máte otázky alebo záujem o spoluprácu?</p>
-                    <a href="mailto:info@abcweb.ing" class="footer-email">info@abcweb.ing</a>
-                    <a href="tel:+441234567890" class="footer-phone">+44 7748 608115</a>
-                </div>
-            </div>
-
-            <!-- Spodná čiara & Copyright -->
-            <div class="footer-bottom">
-                <p data-key="footer-rights">&copy; 2026 abcweb.ing. Všetky práva vyhradené.</p>
-                <div class="legal-links">
-                    <a href="privacy.html" data-key="footer-privacy">Ochrana osobných údajov</a>
-                    <a href="terms.html" data-key="footer-terms">Všeobecné podmienky</a>
-                </div>
-            </div>
-        </div>
     </footer>
 
-    <script src="script.js"></script>
-    <!-- KONTANER PRE AI HEAD BOTA -->
-    <div id="ai-head-bot-root"></div>
-
-<script>
-(function() {
-  const host = document.getElementById('ai-head-bot-root');
-  const shadow = host.attachShadow({ mode: 'closed' });
-
-  const botSize = 70;
-  const padding = 20;  
-  
-  const maxX = Math.max(0, window.innerWidth - botSize - padding);
-  const maxY = Math.max(0, window.innerHeight - botSize - padding);
-
-  const randomX = Math.floor(Math.random() * (maxX - padding)) + padding;
-  const randomY = Math.floor(Math.random() * (maxY - padding)) + padding;
-
-  let audioCtx = null;
-
-  function playGentleTweetSound() {
-    try {
-      if (!audioCtx) {
-        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-      }
-      if (audioCtx.state === 'suspended') {
-        audioCtx.resume();
-      }
-
-      const now = audioCtx.currentTime;
-      const osc1 = audioCtx.createOscillator();
-      const osc2 = audioCtx.createOscillator();
-      const gainNode = audioCtx.createGain();
-
-      osc1.type = 'sine';
-      osc2.type = 'sine';
-
-      osc1.frequency.setValueAtTime(880, now);
-      osc1.frequency.exponentialRampToValueAtTime(1760, now + 0.08);
-
-      osc2.frequency.setValueAtTime(1320, now);
-      osc2.frequency.exponentialRampToValueAtTime(2640, now + 0.08);
-
-      gainNode.gain.setValueAtTime(0, now);
-      gainNode.gain.linearRampToValueAtTime(0.08, now + 0.015);
-      gainNode.gain.exponentialRampToValueAtTime(0.0001, now + 0.18);
-
-      let pannerNode;
-      if (audioCtx.createStereoPanner) {
-        pannerNode = audioCtx.createStereoPanner();
-        pannerNode.pan.setValueAtTime((Math.random() * 0.8) - 0.4, now);
-      }
-
-      osc1.connect(gainNode);
-      osc2.connect(gainNode);
-
-      if (pannerNode) {
-        gainNode.connect(pannerNode);
-        pannerNode.connect(audioCtx.destination);
-      } else {
-        gainNode.connect(audioCtx.destination);
-      }
-
-      osc1.start(now);
-      osc2.start(now);
-      osc1.stop(now + 0.2);
-      osc2.stop(now + 0.2);
-    } catch (e) {}
-  }
-
-  const style = document.createElement('style');
-  style.textContent = `
-    :host {
-      all: initial;
-      --cyan: #81efff;
-      --blue: #0099ee;
-      --deep: #020b1d;
-    }
-
-    /* Zrušenie modrého označovania pri dotyku a výberu textu */
-    * { 
-      box-sizing: border-box; 
-      -webkit-tap-highlight-color: transparent; /* Zruší modré zvýraznenie pri dotyku */
-      -webkit-touch-callout: none; /* Zruší pop-up menu pri podržaní prsta */
-      -webkit-user-select: none; /* Safari */
-      user-select: none; /* Zruší výber textu */
-    }
-
-    .scene {
-      position: fixed;
-      top: ${randomY}px;
-      left: ${randomX}px;
-      width: 70px;
-      height: 70px;
-      z-index: 999999;
-      display: grid;
-      place-items: center;
-      isolation: isolate;
-      font-family: "Courier New", monospace;
-      color: var(--cyan);
-    }
-
-    .hello-bubble {
-      position: absolute;
-      left: 50%;
-      bottom: calc(100% + 10px);
-      transform: translateX(-50%);
-      z-index: 3000;
-      padding: 5px 9px;
-      border: 1px solid var(--cyan);
-      border-radius: 12px;
-      background: rgba(3, 17, 39, 0.94);
-      color: #eaffff;
-      font: 700 10px/1.2 "Courier New", monospace;
-      white-space: nowrap;
-      box-shadow: 0 0 10px rgba(0, 234, 255, 0.45);
-      opacity: 1;
-      pointer-events: none;
-      animation: helloBubble 5s ease forwards;
-    }
-
-    .hello-bubble::after {
-      content: "";
-      position: absolute;
-      left: 50%;
-      bottom: -5px;
-      width: 8px;
-      height: 8px;
-      background: rgba(3, 17, 39, 0.94);
-      border-right: 1px solid var(--cyan);
-      border-bottom: 1px solid var(--cyan);
-      transform: translateX(-50%) rotate(45deg);
-    }
-
-    @keyframes helloBubble {
-      0%, 65% { opacity: 1; }
-      100% { opacity: 0; visibility: hidden; }
-    }
-
-    .hello-bubble.hidden {
-      opacity: 0;
-      visibility: hidden;
-      pointer-events: none;
-    }
-
-    .head {
-      position: relative;
-      width: 100%;
-      aspect-ratio: 1;
-      container-type: size;
-      cursor: pointer;
-      outline: none;
-      background: radial-gradient(circle at 50% 50%, rgba(5, 30, 56, 0.9) 0 34%, rgba(3, 17, 39, 0.44) 58%, transparent 74%);
-      transition: transform 0.15s cubic-bezier(0.6, -0.28, 0.735, 0.045), opacity 0.15s ease-in;
-      opacity: 1;
-      transform: scale(1);
-      touch-action: manipulation;
-    }
-
-    /* Zmenšuje sa LEN hlava, NIE celé pozadie s výbuchom */
-    .head.hidden,
-    .close-btn.hidden {
-      opacity: 0;
-      transform: scale(0.05);
-      pointer-events: none;
-    }
-
-    .scene.closing .head,
-    .scene.closing .close-btn {
-      opacity: 0;
-      transform: scale(0);
-      pointer-events: none;
-    }
-
-    .close-btn {
-      position: absolute;
-      top: -5px;
-      right: -5px;
-      z-index: 2000;
-      background: rgba(3, 17, 39, 0.9);
-      color: var(--cyan);
-      border: 1px solid var(--cyan);
-      border-radius: 50%;
-      width: 11px;
-      height: 11px;
-      font-size: 6px;
-      font-weight: bold;
-      line-height: 1;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      outline: none;
-      box-shadow: 0 0 8px rgba(129, 239, 255, 0.6);
-      transition: all 0.2s ease;
-      padding: 0;
-    }
-
-    .close-btn:hover {
-      background: #00bfff;
-      color: #020b1d;
-      box-shadow: 0 0 12px #00eaff;
-      transform: scale(1.15);
-    }
-
-    .head:focus-visible {
-      filter: drop-shadow(0 0 14px rgba(129, 239, 255, 0.9));
-    }
-
-    .head::before {
-      content: "";
-      position: absolute;
-      inset: 22%;
-      background: #00bfff;
-      border-radius: 50%;
-      opacity: 0.18;
-      filter: blur(48px);
-      z-index: -1;
-    }
-
-    .atom-orbit {
-      position: absolute;
-      z-index: 7;
-      inset: 25% -13%;
-      height: 50%;
-      transform: rotate(-18deg);
-      pointer-events: none;
-    }
-
-    .orbit-two {
-      inset: 10% 8%;
-      height: 80%;
-      transform: rotate(56deg) scaleX(0.82);
-    }
-
-    .orbit-three {
-      inset: 16% -3%;
-      height: 68%;
-      transform: rotate(116deg) scaleX(0.7);
-    }
-
-    .orbit-four {
-      inset: 30% -18%;
-      height: 40%;
-      transform: rotate(78deg) scaleX(0.92);
-    }
-
-    .orbit-five {
-      inset: 5% 18%;
-      height: 90%;
-      transform: rotate(142deg) scaleX(0.58);
-    }
-
-    .electron {
-      position: absolute;
-      z-index: 2;
-      width: 6cqw;
-      height: 6cqw;
-      border-radius: 50%;
-      background: #ffffff;
-      box-shadow: 0 0 4cqw #ffffff, 0 0 10cqw #00eaff, 0 0 20cqw #00aaff;
-      offset-path: ellipse(50% 50% at 50% 50%);
-      offset-rotate: 0deg;
-      animation: electronOrbit 3.4s linear infinite;
-    }
-
-    .orbit-two .electron { animation-delay: -1.133s; }
-    .orbit-three .electron { animation-delay: -2.266s; }
-    .orbit-four .electron { animation-delay: -0.68s; }
-    .orbit-five .electron { animation-delay: -2.72s; }
-
-    @keyframes electronOrbit {
-      to { offset-distance: 100%; }
-    }
-
-    .ascii-field {
-      position: absolute;
-      inset: -5%;
-      overflow: visible;
-      color: var(--cyan);
-      font-size: clamp(4px, 8cqw, 10px);
-      line-height: 1;
-      letter-spacing: 0.8px;
-      text-shadow: 0 0 7px currentColor, 0 0 14px currentColor;
-      pointer-events: none;
-    }
-
-    .ascii-field span {
-      position: absolute;
-      display: block;
-      white-space: nowrap;
-      transform-origin: center;
-    }
-
-    .face {
-      position: absolute;
-      z-index: 1000;
-      inset: 0;
-      pointer-events: none;
-      isolation: isolate;
-    }
-
-    .face .brow,
-    .face .eye,
-    .face .mouth {
-      transition: transform 0.35s ease, top 0.35s ease, height 0.35s ease, border 0.35s ease;
-    }
-
-    .expression-happy .mouth { transform: rotate(-7deg) scale(1.12, 1.18); }
-    .expression-happy .brow-left { transform: rotate(-17deg); }
-    .expression-happy .brow-right { transform: rotate(17deg); }
-
-    .expression-surprised .eye-right { transform: scale(1.22); }
-    .expression-surprised .eye-left { transform: scale(1.12); }
-    .expression-surprised .mouth {
-      top: 62%;
-      height: 14%;
-      border: clamp(2px, 5cqw, 10px) solid #eaffff;
-      border-radius: 50%;
-      transform: none;
-    }
-
-    .expression-wink .eye-right {
-      top: 46%;
-      height: 3%;
-      border-width: 0 0 clamp(2px, 5cqw, 12px);
-      border-radius: 0 0 50% 50%;
-      box-shadow: 0 0 10px #00eaff;
-    }
-
-    .expression-smile .mouth { transform: rotate(-5deg) scale(1.3, 1.25); }
-    .expression-smile .brow-left { transform: rotate(-22deg); }
-    .expression-smile .brow-right { transform: rotate(22deg); }
-
-    .expression-joyful .brow-left { transform: rotate(-25deg) translateY(-8%); }
-    .expression-joyful .brow-right { transform: rotate(25deg) translateY(-8%); }
-    .expression-joyful .eye-left,
-    .expression-joyful .eye-right { transform: scale(1.12); }
-    .expression-joyful .mouth { transform: rotate(-7deg) scale(1.18, 1.28); }
-
-    .expression-sleepy-smile .eye-left,
-    .expression-sleepy-smile .eye-right {
-      top: 45%;
-      height: 5%;
-    }
-    .expression-sleepy-smile .eye-right {
-      border-width: 0 0 clamp(2px, 5cqw, 12px);
-      border-radius: 0 0 50% 50%;
-      box-shadow: 0 0 10px #00eaff;
-    }
-    .expression-sleepy-smile .mouth { transform: rotate(-7deg) scale(1.1, 1.15); }
-
-    .expression-cool .eye-left,
-    .expression-cool .eye-right { transform: skewX(-16deg); }
-    .expression-cool .mouth { transform: rotate(-7deg) scale(0.82, 0.8); }
-
-    .expression-curious .brow-left { transform: rotate(-28deg) translateY(-8%); }
-    .expression-curious .brow-right { transform: rotate(8deg) translateY(4%); }
-    .expression-curious .eye-right { transform: scale(1.18); }
-    .expression-curious .mouth { transform: rotate(-4deg) scaleX(0.9); }
-
-    .expression-grin .mouth { transform: rotate(-5deg) scale(1.45, 1.2); }
-    .expression-grin .brow-left { transform: rotate(-18deg); }
-    .expression-grin .brow-right { transform: rotate(18deg); }
-
-    .expression-laugh .mouth { transform: rotate(-7deg) scale(1.4, 1.35); }
-    .expression-laugh .eye-left,
-    .expression-laugh .eye-right { transform: scale(1.18); }
-
-    .expression-friendly .eye-left { transform: translateX(5%); }
-    .expression-friendly .mouth { transform: rotate(-4deg) scale(1.15); }
-
-    .expression-excited .eye-left,
-    .expression-excited .eye-right { transform: scale(1.3); }
-    .expression-excited .mouth { transform: rotate(-7deg) scale(1.25, 1.4); }
-
-    .expression-proud .brow-left { transform: rotate(-12deg) translateY(-12%); }
-    .expression-proud .brow-right { transform: rotate(12deg) translateY(-12%); }
-    .expression-proud .mouth { transform: rotate(-3deg) scaleX(1.15); }
-
-    .expression-relaxed .eye-left,
-    .expression-relaxed .eye-right { top: 44%; height: 6%; }
-    .expression-relaxed .eye-right {
-      border-width: 0 0 clamp(2px, 5cqw, 12px);
-      border-radius: 0 0 50% 50%;
-      box-shadow: 0 0 10px #00eaff;
-    }
-
-    .expression-playful .eye-left { transform: rotate(-8deg) scale(1.08); }
-    .expression-playful .eye-right { transform: scale(0.9); }
-    .expression-playful .mouth { transform: rotate(-12deg) scaleX(1.12); }
-
-    .expression-amazed .eye-left,
-    .expression-amazed .eye-right { transform: scale(1.35); }
-    .expression-amazed .mouth {
-      top: 62%;
-      height: 14%;
-      border: clamp(2px, 5cqw, 10px) solid #eaffff;
-      border-radius: 50%;
-      transform: none;
-    }
-
-    .expression-bright .mouth { transform: rotate(-7deg) scale(1.25, 1.3); }
-    .expression-bright .eye-left,
-    .expression-bright .eye-right { transform: scale(1.08); }
-
-    .expression-wink-smile .eye-left { transform: scale(1.08); }
-    .expression-wink-smile .eye-right {
-      top: 46%;
-      height: 3%;
-      border-width: 0 0 clamp(2px, 5cqw, 12px);
-      border-radius: 0 0 50% 50%;
-      box-shadow: 0 0 10px #00eaff;
-    }
-    .expression-wink-smile .mouth { transform: rotate(-6deg) scale(1.22); }
-
-    .expression-round-eyes .eye-left {
-      width: 18%;
-      border: clamp(2px, 5cqw, 14px) solid #eaffff;
-      border-radius: 50%;
-      box-shadow: 0 0 10px #00eaff, inset 0 0 8px #00eaff;
-      transform: none;
-    }
-    .expression-round-eyes .eye-left b,
-    .expression-round-eyes .eye-left i { display: none; }
-
-    .expression-happy .brow,
-    .expression-surprised .brow,
-    .expression-wink .brow,
-    .expression-cool .brow,
-    .expression-curious .brow { display: none; }
-
-    .brow {
-      position: absolute;
-      top: 31%;
-      width: 18%;
-      height: 6%;
-      border-top: 5cqw solid #eaffff;
-      border-radius: 50%;
-      filter: drop-shadow(0 0 9px #00e1ff);
-    }
-
-    .brow-left { left: 24%; transform: rotate(-11deg); }
-    .brow-right { right: 23%; transform: rotate(11deg); }
-
-    .eye {
-      position: absolute;
-      top: 39%;
-      height: 17%;
-      color: #eaffff;
-      filter: drop-shadow(0 0 12px #00dfff);
-    }
-
-    .eye-left {
-      left: 24%;
-      width: 23%;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      font: 900 clamp(14px, 34cqw, 74px)/1 "Courier New", monospace;
-    }
-
-    .eye-left i {
-      width: 13%;
-      aspect-ratio: 1;
-      border-radius: 50%;
-      background: white;
-      box-shadow: 0 0 8cqw #00eaff;
-    }
-
-    .eye-right {
-      right: 24%;
-      width: 18%;
-      border: clamp(2px, 5cqw, 14px) solid #eaffff;
-      border-radius: 50%;
-      box-shadow: 0 0 10px #00eaff, inset 0 0 8px #00eaff;
-    }
-
-    .mouth {
-      position: absolute;
-      left: 34%;
-      top: 61%;
-      width: 33%;
-      height: 18%;
-      border-bottom: clamp(2px, 5cqw, 12px) solid #eaffff;
-      border-radius: 0 0 65% 55%;
-      transform: rotate(-7deg);
-      filter: drop-shadow(0 0 10px #00eaff);
-    }
-
-    .data-particle {
-      position: absolute;
-      z-index: 5;
-      color: #9ef6ff;
-      font-size: clamp(4px, 8cqw, 11px);
-      font-weight: 700;
-      letter-spacing: 1px;
-      text-shadow: 0 0 8px #00dfff;
-      white-space: nowrap;
-      animation: pulse 2.6s ease-in-out infinite alternate;
-    }
-
-    /* Výbuch je oddelený v scéne, takže nezmizne pri zmenšení hlavy */
-    .burst-container {
-      position: absolute;
-      inset: -150px;
-      pointer-events: none;
-      z-index: 99999;
-    }
-
-    .burst-particle {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      font-weight: bold;
-      color: #81efff;
-      text-shadow: 0 0 10px #00eaff, 0 0 20px #00b7ff, 0 0 30px #ffffff;
-      will-change: transform, opacity;
-      animation: explode 0.7s cubic-bezier(0.1, 0.8, 0.25, 1) forwards;
-    }
-
-    @keyframes explode {
-      0% {
-        opacity: 1;
-        transform: translate(-50%, -50%) translate(0, 0) scale(2);
-      }
-      100% {
-        opacity: 0;
-        transform: translate(-50%, -50%) translate(var(--dx), var(--dy)) scale(0.1);
-      }
-    }
-
-    @keyframes pulse {
-      from { opacity: 0.25; }
-      to { opacity: 1; }
-    }
-  `;
-
-  const scene = document.createElement('main');
-  scene.className = 'scene';
-  scene.setAttribute('aria-label', 'Animovaná AI hlava');
-  scene.innerHTML = `
-    <div class="hello-bubble" aria-hidden="true">Hello!</div>
-    <button class="close-btn" id="closeBotBtn" aria-label="Zatvoriť">✕</button>
-    <section class="head" role="button" tabindex="0" aria-label="Zmeniť výraz AI hlavy">
-      <div class="atom-orbit orbit-one"><span class="electron"></span></div>
-      <div class="atom-orbit orbit-two"><span class="electron"></span></div>
-      <div class="atom-orbit orbit-three"><span class="electron"></span></div>
-      <div class="atom-orbit orbit-four"><span class="electron"></span></div>
-      <div class="atom-orbit orbit-five"><span class="electron"></span></div>
-      <div class="ascii-field" id="asciiField"></div>
-      <div class="face">
-        <span class="brow brow-left"></span>
-        <span class="brow brow-right"></span>
-        <span class="eye eye-left"><b>&gt;</b><i></i><b>^</b></span>
-        <span class="eye eye-right"></span>
-        <span class="mouth"></span>
-      </div>
-      <div id="particles"></div>
-    </section>
-    <div class="burst-container" id="burstContainer"></div>
-  `;
-
-  shadow.appendChild(style);
-  shadow.appendChild(scene);
-
-  const asciiField = shadow.getElementById('asciiField');
-  const particles = shadow.getElementById('particles');
-  const burstContainer = shadow.getElementById('burstContainer');
-  const head = shadow.querySelector('.head');
-  const face = shadow.querySelector('.face');
-  const closeBtn = shadow.getElementById('closeBotBtn');
-  const helloBubble = shadow.querySelector('.hello-bubble');
-  
-  const chars = '01X01 []{}<>/:;*+=-~';
-  const colors = ['#ffffff', '#e9ffff', '#9ef6ff', '#54dcff', '#00b7ff', '#1687cf', '#6cafff'];
-  const expressions = [
-    'expression-happy',
-    'expression-surprised',
-    'expression-wink',
-    'expression-smile expression-round-eyes',
-    'expression-joyful expression-round-eyes',
-    'expression-sleepy-smile expression-round-eyes',
-    'expression-cool',
-    'expression-curious',
-    'expression-grin',
-    'expression-laugh expression-round-eyes',
-    'expression-proud expression-round-eyes',
-    'expression-relaxed',
-    'expression-playful',
-    'expression-amazed expression-round-eyes',
-    'expression-bright expression-round-eyes'
-  ];
-  let currentExpression = expressions[0];
-  let isTransitioning = false;
-
-  function randomChar() {
-    return chars[Math.floor(Math.random() * chars.length)];
-  }
-
-  function randomColor() {
-    return colors[Math.floor(Math.random() * colors.length)];
-  }
-
-  function moveBotToRandomPosition() {
-    const maxX = Math.max(0, window.innerWidth - botSize - padding);
-    const maxY = Math.max(0, window.innerHeight - botSize - padding);
-
-    const newX = Math.floor(Math.random() * (maxX - padding)) + padding;
-    const newY = Math.floor(Math.random() * (maxY - padding)) + padding;
-
-    scene.style.left = `${newX}px`;
-    scene.style.top = `${newY}px`;
-  }
-
-  function showRandomExpression() {
-    const available = expressions.filter(expression => expression !== currentExpression);
-    const nextExpression = available[Math.floor(Math.random() * available.length)];
-    currentExpression.split(' ').forEach(expression => face.classList.remove(expression));
-    nextExpression.split(' ').forEach(expression => face.classList.add(expression));
-    currentExpression = nextExpression;
-  }
-
-  function triggerBurstEffect() {
-    const particleCount = 64;
-    const burstChars = ['0', '1', 'X', '*', '+', '#', '<', '>', '{', '}', '::', '010', '101', 'X0'];
-    
-    for (let i = 0; i < particleCount; i++) {
-      const p = document.createElement('span');
-      p.className = 'burst-particle';
-      p.textContent = burstChars[Math.floor(Math.random() * burstChars.length)];
-      p.style.color = randomColor();
-      p.style.fontSize = `${10 + Math.random() * 12}px`;
-
-      const angle = Math.random() * Math.PI * 2;
-      const distance = 120 + Math.random() * 160;
-      const dx = `${Math.cos(angle) * distance}px`;
-      const dy = `${Math.sin(angle) * distance}px`;
-
-      p.style.setProperty('--dx', dx);
-      p.style.setProperty('--dy', dy);
-
-      burstContainer.appendChild(p);
-    }
-
-    setTimeout(() => {
-      burstContainer.innerHTML = '';
-    }, 700);
-  }
-
-  function changeExpressionOnClick(event) {
-    if (event.type === 'keydown' && event.key !== 'Enter' && event.key !== ' ') return;
-    if (event.type === 'keydown') event.preventDefault();
-    
-    if (isTransitioning) return;
-    isTransitioning = true;
-
-    triggerBurstEffect();
-    helloBubble.classList.add('hidden');
-    head.classList.add('hidden');
-    closeBtn.classList.add('hidden');
-
-    const reappearDelay = Math.floor(Math.random() * 3000) + 2000;
-
-    setTimeout(() => {
-      moveBotToRandomPosition();
-      showRandomExpression();
-
-      setTimeout(() => {
-        playGentleTweetSound();
-
-        head.style.transition = 'transform 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.3s ease-out';
-        head.classList.remove('hidden');
-        closeBtn.classList.remove('hidden');
-        
-        setTimeout(() => {
-          head.style.transition = '';
-          isTransitioning = false;
-        }, 350);
-
-      }, reappearDelay);
-
-    }, 150);
-  }
-
-  function closeBot(event) {
-    event.stopPropagation();
-    triggerBurstEffect();
-    scene.classList.add('closing');
-    
-    setTimeout(() => {
-      host.remove();
-    }, 200);
-  }
-
-  function scheduleExpressionChange() {
-    const delay = 10000 + Math.random() * 50000;
-    setTimeout(() => {
-      if (!isTransitioning) {
-        showRandomExpression();
-      }
-      scheduleExpressionChange();
-    }, delay);
-  }
-
-  function buildDataFace() {
-    for (let index = 0; index < 170; index += 1) {
-      const fragment = document.createElement('span');
-      const angle = Math.random() * Math.PI * 2;
-      const radius = 0.43 + Math.pow(Math.random(), 0.55) * 0.59;
-      const x = 50 + Math.cos(angle) * radius * 52;
-      const y = 50 + Math.sin(angle) * radius * 49;
-      const length = 1 + Math.floor(Math.random() * 6);
-
-      fragment.className = 'dynamic-fragment';
-      fragment.textContent = Array.from({ length }, randomChar).join('');
-      fragment.style.left = `${x}%`;
-      fragment.style.top = `${y}%`;
-      fragment.style.color = randomColor();
-      fragment.style.opacity = `${0.28 + Math.random() * 0.72}`;
-      fragment.style.fontSize = `${7 + Math.random() * 5}px`;
-      fragment.style.transform = `translate(-50%, -50%) rotate(${Math.random() * 100 - 50}deg)`;
-      asciiField.appendChild(fragment);
-    }
-  }
-
-  function buildParticles() {
-    const particleChars = ['01', 'X0', '[]', '>', '<', '101', 'X', '0101', '*', '::'];
-    for (let index = 0; index < 42; index += 1) {
-      const particle = document.createElement('span');
-      particle.className = 'data-particle';
-      particle.textContent = particleChars[index % particleChars.length];
-      particle.style.left = `${Math.random() * 118 - 9}%`;
-      particle.style.top = `${Math.random() * 118 - 9}%`;
-      particle.style.color = randomColor();
-      particle.style.transform = `rotate(${Math.random() * 100 - 50}deg)`;
-      particle.style.animationDelay = `${(index % 9) * -0.25}s`;
-      particles.appendChild(particle);
-    }
-  }
-
-  buildDataFace();
-  buildParticles();
-  face.classList.add(...currentExpression.split(' '));
-  
-  head.addEventListener('click', changeExpressionOnClick);
-  head.addEventListener('keydown', changeExpressionOnClick);
-  closeBtn.addEventListener('click', closeBot);
-
-  scheduleExpressionChange();
-
-  setInterval(() => {
-    const fragments = shadow.querySelectorAll('.dynamic-fragment, .data-particle');
-    for (let index = 0; index < 34; index += 1) {
-      const fragment = fragments[Math.floor(Math.random() * fragments.length)];
-      if (fragment) {
-        fragment.style.color = randomColor();
-        fragment.style.opacity = `${0.2 + Math.random() * 0.8}`;
-        if (fragment.classList.contains('dynamic-fragment')) {
-          fragment.textContent = Array.from({ length: 1 + Math.floor(Math.random() * 6) }, randomChar).join('');
-        }
-      }
-    }
-  }, 180);
-})();
-</script>
-
-<script>
-/*
-  Country-based pricing link:
-  Slovakia (SK) -> cennik.html
-  Elsewhere       -> abcweb-pricing-uk.html
-
-  Default is UK pricing so the correct non-Slovakia page is still available
-  if the geolocation service is unavailable.
-*/
-(function () {
-  const pricingLink = document.getElementById('pricingLink');
-  if (!pricingLink) return;
-
-  const slovakPricing = 'cennik.html';
-  const internationalPricing = 'abcweb-pricing-uk.html';
-
-  // Default for all countries outside Slovakia.
-  pricingLink.href = internationalPricing;
-
-  fetch('https://ipapi.co/json/', {
-    method: 'GET',
-    cache: 'no-store'
-  })
-    .then(response => {
-      if (!response.ok) throw new Error('Country lookup failed');
-      return response.json();
-    })
-    .then(data => {
-      const countryCode = String(data.country_code || '').toUpperCase();
-
-      if (countryCode === 'SK') {
-        pricingLink.href = slovakPricing;
-      } else {
-        pricingLink.href = internationalPricing;
-      }
-    })
-    .catch(() => {
-      // Keep the default UK/international pricing link.
-      pricingLink.href = internationalPricing;
-    });
-})();
-</script>
+
+    <!-- =========================================================
+         JAVASCRIPT
+    ========================================================= -->
+
+    <script>
+
+        /*
+         * Všetky tri skupiny:
+         * SERVICES
+         * PROJECTS
+         * CONTACT
+         */
+
+        const orbits = document.querySelectorAll('.circle-orbit');
+        let touchInput = window.matchMedia('(hover: none)').matches;
+        const mobileViewport = window.matchMedia('(max-width: 600px)');
+
+        document.addEventListener('contextmenu', (event) => {
+            if (mobileViewport.matches) {
+                event.preventDefault();
+            }
+        });
+
+        document.addEventListener('pointerdown', (event) => {
+            touchInput =
+                event.pointerType === 'touch' ||
+                window.matchMedia('(hover: none)').matches;
+        });
+
+        document.addEventListener('click', (event) => {
+            const target = event.target;
+
+            if (!(target instanceof Element)) {
+                return;
+            }
+
+            const center = target.closest(
+                '.circle-orbit > .circle-card, .circle-orbit .service-orbit-center'
+            );
+
+            if (center && touchInput && event.detail > 0) {
+                const orbit = center.closest('.circle-orbit');
+
+                if (!orbit.classList.contains('active')) {
+                    event.preventDefault();
+                    orbits.forEach((item) => {
+                        item.classList.toggle('active', item === orbit);
+                    });
+                    return;
+                }
+            }
+
+            if (!target.closest('.circle-orbit')) {
+                orbits.forEach((orbit) => orbit.classList.remove('active'));
+            }
+        });
+                const fluidFrame = document.querySelector('.hero-background');
+        const animationControl = document.getElementById('animationControl');
+                const menuToggle = document.getElementById('menuToggle');
+                const mobileNav = document.getElementById('mobileNav');
+
+                menuToggle.addEventListener('click', () => {
+                    const isOpen = mobileNav.classList.toggle('open');
+                    menuToggle.setAttribute('aria-expanded', String(isOpen));
+                    menuToggle.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+                    menuToggle.innerHTML = isOpen
+                        ? '<i class="fas fa-xmark"></i>'
+                        : '<i class="fas fa-bars"></i>';
+                });
+
+                function closeMobileMenu() {
+                    mobileNav.classList.remove('open');
+                    menuToggle.setAttribute('aria-expanded', 'false');
+                    menuToggle.setAttribute('aria-label', 'Open menu');
+                    menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
+                }
+
+                mobileNav.querySelectorAll('a').forEach((link) => {
+                    link.addEventListener('click', closeMobileMenu);
+                });
+
+                document.addEventListener('click', (event) => {
+                    if (
+                        event.target instanceof Node &&
+                        !menuToggle.contains(event.target) &&
+                        !mobileNav.contains(event.target)
+                    ) {
+                        closeMobileMenu();
+                    }
+                });
+
+                let animationPaused = false;
+
+        animationControl.addEventListener('click', () => {
+            animationPaused = !animationPaused;
+
+            fluidFrame.contentWindow.postMessage(
+                {
+                    type: animationPaused ? 'pause' : 'play'
+                },
+                '*'
+            );
+
+            animationControl.innerHTML = animationPaused
+                ? '<i class="fas fa-play"></i>'
+                : '<i class="fas fa-pause"></i>';
+
+            animationControl.setAttribute(
+                'aria-label',
+                animationPaused ? 'Play animation' : 'Pause animation'
+            );
+        });
+
+    </script>
+
+    <!-- COOKIE BANNER -->
+        <div id="cookie-banner" class="cookie-banner" role="region" aria-label="Cookies">
+            <div class="cookie-content">
+                <p class="cookie-text">
+                This website uses cookies to analyse traffic (Google Analytics).
+                They help us understand how visitors use the site.
+                <a href="privacy.html" class="cookie-link">Learn more</a>.
+                </p>
+                <div class="cookie-buttons">
+                <button id="cookie-decline" class="cookie-btn cookie-btn-secondary" type="button">
+                    Decline
+                </button>
+                    <button id="cookie-accept" class="cookie-btn cookie-btn-primary" type="button">
+                        Accept
+                    </button>
+                </div>
+            </div>
+        </div>
+    <script>
+        (function () {
+            const banner = document.getElementById('cookie-banner');
+            const acceptBtn = document.getElementById('cookie-accept');
+            const declineBtn = document.getElementById('cookie-decline');
+
+            const CONSENT_KEY = 'abcweb-ga-consent';
+
+            function showBanner() {
+            banner.style.display = 'block';
+            }
+
+            function hideBanner() {
+            banner.style.display = 'none';
+            }
+
+            function getConsent() {
+            try {
+                return localStorage.getItem(CONSENT_KEY);
+            } catch {
+                return null;
+            }
+            }
+
+            function setConsent(value) {
+            try {
+                localStorage.setItem(CONSENT_KEY, value);
+            } catch {}
+            }
+
+            function loadGoogleAnalytics() {
+            // Sem vlož štandardný GA4 kód, ktorý ti dal Google.
+            // Príklad (nahraď G-XXXXXXXXXX svojím ID):
+            /*
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-XXXXXXXXXX');
+
+            const s = document.createElement('script');
+            s.async = true;
+            s.src = 'https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX';
+            document.head.appendChild(s);
+            */
+            }
+
+            const consent = getConsent();
+
+            if (!consent) {
+            // Žiadny záznam súhlasu → zobraz banner
+            showBanner();
+            } else if (consent === 'granted') {
+            // Už bol daný súhlas → načítaj GA
+            loadGoogleAnalytics();
+            }
+            // ak 'denied', GA nenačítame a banner nezobrazujeme
+
+            acceptBtn.addEventListener('click', function () {
+            setConsent('granted');
+            hideBanner();
+            loadGoogleAnalytics();
+            });
+
+            declineBtn.addEventListener('click', function () {
+            setConsent('denied');
+            hideBanner();
+            });
+        })();
+    </script>
 
 </body>
+
 </html>
