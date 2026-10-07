@@ -2,15 +2,13 @@
 <html lang="en">
 
 <head>
-    <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-9RT343C3H6"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-9RT343C3H6');
-</script>
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-T2QD6R6F');</script>
+<!-- End Google Tag Manager -->
 
     <meta charset="UTF-8">
 
@@ -293,8 +291,9 @@
         ========================================================= */
 
         .hero-content {
-            padding: 2rem;
 
+    
+            padding: 1.5rem;
             position: relative;
 
             z-index: 2;
@@ -313,7 +312,7 @@
 
             border: 1px solid rgba(255, 255, 255, 0);
 
-            background: rgba(92, 31, 172, 0.05);
+            background: rgba(138, 92, 246, 0.33);
 
             border-radius: 50%;
 
@@ -424,7 +423,8 @@
 
         @media (prefers-reduced-motion: reduce) {
             .hero-content,
-            .hero-floater {
+            .hero-floater,
+            .hero-content h1 span {
                 animation: none;
             }
         }
@@ -444,7 +444,8 @@
 
 
         .hero-content h1 {
-            margin-top: 0.5rem;
+            margin-top: 2rem;
+            vertical-align: middle;
 
             font-size: clamp(1.5rem, 4vw, 3rem);
 
@@ -455,9 +456,25 @@
             text-transform: uppercase;
 
             color: #f5f3f3;
+            
 
             text-shadow:
                 0 8px 24px rgba(0, 0, 0, 0.45);
+        }
+
+        .hero-content h1 span {
+            background: linear-gradient(90deg, #fff, #00e5ff, #fff);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: gradientMove 6s linear infinite;
+        }
+
+        @keyframes gradientMove {
+            to {
+                background-position: 200% center;
+            }
         }
 
 
@@ -465,6 +482,7 @@
             margin: 1.25rem 0 1.75rem;
 
             font-size: 1.1rem;
+            line-height: 1.5;
 
             color: rgba(17, 205, 218, 0.85);
         }
@@ -633,7 +651,7 @@
             left: 50%;
             width: 140px;
             height: 140px;
-            background: rgba(3, 241, 142, 0.08);
+            background: #00e5ff85;
             transform: translate(-50%, -50%);
         }
 
@@ -648,7 +666,7 @@
             left: 50%;
             width: 115px;
             height: 115px;
-            background: rgba(24, 119, 242, 0.12);
+            background: rgba(24, 119, 242, 0.3);
             transform: translate(-50%, -50%);
         }
 
@@ -663,7 +681,7 @@
             left: 50%;
             width: 165px;
             height: 165px;
-            background: rgba(255, 180, 0, 0.1);
+            background: rgba(255, 180, 0, 0.3);
             transform: translate(-50%, -50%);
         }
 
@@ -693,7 +711,7 @@
             z-index: 2;
             width: 140px;
             aspect-ratio: 1;
-            background-color: rgba(194, 82, 170, 0.12);
+            background-color: rgba(255, 3, 129, 0.379);
             font-size: 0.9rem;
             font-weight: 700;
             letter-spacing: 0.12rem;
@@ -711,7 +729,7 @@
             padding: 6px;
             flex-direction: column;
             gap: 4px;
-            background-color: var(--circle-color, rgba(255, 255, 255, 0.1));
+            background-color: var(--circle-color, rgba(255, 255, 255, 0.31));
             font-size: 9px;
             font-weight: 700;
             line-height: 1.2;
@@ -731,119 +749,120 @@
             --x: -115px;
             --y: -90px;
             --size: 62px;
-            --circle-color: rgba(244, 230, 198, 0.2);
+            --circle-color: rgba(244, 230, 198, 0.3);
         }
 
         .about-orbit .about-approach {
             --x: -105px;
             --y: -55px;
             --size: 62px;
-            --circle-color: rgba(217, 241, 3, 0.16);
+            --circle-color: rgba(217, 241, 3, 0.3);
+            display: none;
         }
 
         .about-orbit .about-portfolio {
             --x: 95px;
             --y: -75px;
             --size: 72px;
-            --circle-color: rgba(13, 217, 253, 0.16);
+            --circle-color: rgba(13, 217, 253, 0.3);
         }
 
         .about-orbit .about-pricing {
             --x: 40px;
             --y: 95px;
             --size: 58px;
-            --circle-color: rgba(255, 70, 140, 0.18);
+            --circle-color: rgba(223, 14, 94, 0.3);
         }
 
         .services-orbit .service-orbit-development {
             --x: 97.5px;
             --y: -92.5px;
             --size: 74px;
-            --circle-color: rgba(83, 255, 77, 0.15);
+            --circle-color: rgba(83, 255, 77, 0.3);
         }
 
         .services-orbit .service-orbit-seo {
             --x: 130px;
             --y: 27.5px;
             --size: 63px;
-            --circle-color: rgba(228, 224, 212, 0.2);
+            --circle-color: rgba(236, 180, 10, 0.3);
         }
 
         .services-orbit .service-orbit-social {
             --x: 52.5px;
             --y: 115px;
             --size: 58px;
-            --circle-color: rgba(214, 232, 188, 0.2);
+            --circle-color: rgba(136, 218, 22, 0.3);
         }
 
         .services-orbit .service-orbit-ai {
             --x: -105px;
             --y: 92.5px;
             --size: 71px;
-            --circle-color: rgba(244, 198, 214, 0.2);
+            --circle-color: rgba(15, 93, 156, 0.3);
         }
 
         .projects-orbit .project-1 {
             --x: -120px;
             --y: 0px;
             --size: 64px;
-            --circle-color: rgba(255, 180, 0, 0.18);
+            --circle-color: rgba(19, 243, 243, 0.3);
         }
 
         .projects-orbit .project-2 {
             --x: -105px;
             --y: 60px;
             --size: 56px;
-            --circle-color: rgba(13, 217, 253, 0.18);
+            --circle-color: rgba(13, 217, 253, 0.3);
         }
 
         .projects-orbit .project-3 {
             --x: -65px;
             --y: 110px;
             --size: 60px;
-            --circle-color: rgba(0, 255, 170, 0.16);
+            --circle-color: rgba(0, 255, 170, 0.3);
         }
 
         .projects-orbit .project-4 {
             --x: 0px;
             --y: 125px;
             --size: 68px;
-            --circle-color: rgba(255, 70, 140, 0.18);
+            --circle-color: rgba(255, 70, 140, 0.3);
         }
 
         .contact-orbit .contact-1 {
             --x: -105px;
             --y: -105px;
             --size: 54px;
-            --circle-color: rgba(24, 119, 242, 0.2);
+            --circle-color: rgba(24, 119, 242, 0.3);
         }
 
         .contact-orbit .contact-2 {
             --x: -145px;
             --y: -50px;
             --size: 62px;
-            --circle-color: rgba(225, 48, 108, 0.2);
+            --circle-color: rgba(225, 48, 108, 0.3);
         }
 
         .contact-orbit .contact-3 {
             --x: -155px;
             --y: 15px;
             --size: 50px;
-            --circle-color: rgba(255, 255, 255, 0.16);
+            --circle-color: rgba(255, 255, 255, 0.3);
         }
 
         .contact-orbit .contact-4 {
             --x: -145px;
             --y: 80px;
             --size: 58px;
-            --circle-color: rgba(0, 180, 255, 0.2);
+            --circle-color: rgba(0, 180, 255, 0.3);
         }
 
         .contact-orbit .contact-5 {
             --x: -105px;
             --y: 135px;
             --size: 66px;
-            --circle-color: rgba(37, 211, 102, 0.2);
+            --circle-color: rgba(37, 211, 102, 0.3);
         }
 
         .circle-orbit:hover .orbit-child,
@@ -1097,6 +1116,7 @@
                 min-height: 0;
                 flex: 0 0 auto;
                 bottom: 50px;
+                
             }
 
             .hero-floater-one {
@@ -1375,7 +1395,10 @@
 
 
 <body>
-
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-T2QD6R6F"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
 
     <!-- =========================================================
          HEADER
@@ -1644,7 +1667,7 @@
 
 
             <h1>
-                ABCweb.ing
+                <span>ABCweb.ing</span>
             </h1>
 
 
@@ -1855,41 +1878,6 @@
             } catch {}
             }
 
-            function loadGoogleAnalytics() {
-           
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'G-9RT343C3H6');
-
-            const s = document.createElement('script');
-            s.async = true;
-            s.src = 'https://www.googletagmanager.com/gtag/js?id=G-9RT343C3H6';
-            document.head.appendChild(s);
-           
-            }
-
-            const consent = getConsent();
-
-            if (!consent) {
-            // Žiadny záznam súhlasu → zobraz banner
-            showBanner();
-            } else if (consent === 'granted') {
-            // Už bol daný súhlas → načítaj GA
-            loadGoogleAnalytics();
-            }
-            // ak 'denied', GA nenačítame a banner nezobrazujeme
-
-            acceptBtn.addEventListener('click', function () {
-            setConsent('granted');
-            hideBanner();
-            loadGoogleAnalytics();
-            });
-
-            declineBtn.addEventListener('click', function () {
-            setConsent('denied');
-            hideBanner();
-            });
         })();
     </script>
 
