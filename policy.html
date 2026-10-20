@@ -802,6 +802,7 @@
             }
         }
     </style>
+    <link rel="stylesheet" href="brand-theme.css">
 </head>
 
 <body>
@@ -997,10 +998,10 @@
             <article class="privacy-card">
                 <h2>10. Cookies and third-party resources</h2>
                 <p>
-                    ABCweb.ing is not currently designed around advertising or tracking cookies. Some third-party services or resources used by the website may process limited technical information, such as an IP address, as part of delivering their content or functionality.
+                    We use Google Analytics 4 to understand how visitors use this website. Google Analytics is loaded only after you accept analytics cookies using the consent banner; if you decline, analytics is not loaded. Google may process technical information, including your IP address, when providing this service.
                 </p>
                 <p>
-                    Your browser may also store standard technical data such as cached files. You can control cookies and similar technologies through your browser settings.
+                    Your choice is stored in your browser so we can remember it on future visits. You can clear this choice at any time by deleting this website's local storage data. Your browser may also store standard technical data such as cached files.
                 </p>
             </article>
 
@@ -1046,7 +1047,7 @@
     <footer class="site-footer">
         © 2026 ABCweb.ing. All rights reserved.
         <span style="display:inline-block; margin-left:12px;">
-            <a href="privacy.html" aria-current="page" style="color:var(--text-soft);">Privacy Policy</a>
+            <a href="policy.html" aria-current="page" style="color:var(--text-soft);">Privacy Policy</a>
         </span>
     </footer>
 
@@ -1096,5 +1097,19 @@
             }
         });
     </script>
+    <div id="cookie-banner" class="cookie-banner" role="region" aria-label="Cookie preferences">
+        <div class="cookie-content">
+            <p class="cookie-text">
+                We use Google Analytics cookies only if you accept. See our
+                <a href="policy.html" class="cookie-link">Privacy Policy</a>.
+            </p>
+            <div class="cookie-buttons">
+                <button id="cookie-decline" class="cookie-btn cookie-btn-secondary" type="button">Decline</button>
+                <button id="cookie-accept" class="cookie-btn cookie-btn-primary" type="button">Accept</button>
+            </div>
+        </div>
+    </div>
+    <link rel="stylesheet" href="cookies.css">
+    <script src="cookies.js" defer></script>
 </body>
 </html>
