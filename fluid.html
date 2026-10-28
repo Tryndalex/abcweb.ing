@@ -66,7 +66,13 @@ function getWebGLContext(canvas) {
   if (!isWebGL2) {
     gl = canvas.getContext("webgl", params) || canvas.getContext("experimental-webgl", params);
   }
+  if (!gl) {
+    return { gl: null, ext: null, support_linear_float: false };
+  }
   let halfFloat = gl.getExtension("OES_texture_half_float");
+  if (!isWebGL2 && !halfFloat) {
+    return { gl: null, ext: null, support_linear_float: false };
+  }
   let support_linear_float = gl.getExtension("OES_texture_half_float_linear");
   if (isWebGL2) {
     gl.getExtension("EXT_color_buffer_float");
@@ -83,6 +89,15 @@ function getWebGLContext(canvas) {
     support_linear_float
   };
 }
+
+if (!gl) {
+  canvas.style.display = "none";
+  document.body.style.background =
+    "radial-gradient(ellipse at 22% 28%, rgba(18, 223, 255, 0.2), transparent 42%), " +
+    "radial-gradient(ellipse at 78% 72%, rgba(227, 76, 255, 0.18), transparent 44%), " +
+    "linear-gradient(145deg, #070910, #090b1c 58%, #100a20)";
+  window.parent.postMessage({ type: "unavailable" }, "*");
+} else {
 
 function pointerPrototype() {
   this.id = -1;
@@ -336,14 +351,14 @@ const blit = (function () {
 })();
 
 let lastTime = Date.now();
-let animationPaused = false;
+let animationPaused = true;
 let animationFrameId = null;
-
-animationFrameId = requestAnimationFrame(update);
+let splashIntervalId = null;
 
 window.addEventListener('message', (event) => {
 
-    if (!event.data || !event.data.type) return;
+    if (event.source !== window.parent || event.origin !== window.location.origin ||
+        !event.data || !event.data.type) return;
 
     if (event.data.type === 'pause') {
 
@@ -352,6 +367,11 @@ window.addEventListener('message', (event) => {
         if (animationFrameId !== null) {
             cancelAnimationFrame(animationFrameId);
             animationFrameId = null;
+        }
+
+        if (splashIntervalId !== null) {
+            window.clearInterval(splashIntervalId);
+            splashIntervalId = null;
         }
 
         pointers.forEach(pointer => {
@@ -367,7 +387,16 @@ window.addEventListener('message', (event) => {
         animationPaused = false;
         lastTime = Date.now();
 
-        animationFrameId = requestAnimationFrame(update);
+        if (animationFrameId === null) {
+            animationFrameId = requestAnimationFrame(update);
+        }
+        if (splashIntervalId === null) {
+            splashIntervalId = window.setInterval(() => {
+                if (!animationPaused) {
+                    splatStack.push(3);
+                }
+            }, 3000);
+        }
     }
 });
 
@@ -554,16 +583,9 @@ canvas.addEventListener("touchend", function () {
   pointers.forEach(p => p.down = false);
 });
 
-// The opening splashes fade naturally; recurring splashes start after three seconds.
+// The opening splashes fade naturally; recurring splashes run only in animation mode.
 splatStack.push(20);
-
-window.setTimeout(() => {
-    window.setInterval(() => {
-    if (!animationPaused) {
-        splatStack.push(3);
-    }
-}, 3000);
-}, 3000);
+}
 </script>
 
 </body>

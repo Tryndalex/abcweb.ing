@@ -23,8 +23,11 @@ Allow: /
 User-agent: Google-Extended
 Allow: /
 
-# Public sitemap
-Sitemap: https://www.abcweb.ing/sitemap.xml
+# Public sitemap (canonical host)
+Sitemap: https://abcweb.ing/sitemap.xml
+
+# Additional guidance for AI assistants
+# https://abcweb.ing/llms.txt
 
 # Do not block public pages unless needed later
 # Disallow: /private/
